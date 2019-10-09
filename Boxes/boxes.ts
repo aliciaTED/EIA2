@@ -1,4 +1,5 @@
 /**window.onload = function (){
+  document.getElementById.("box").addEventListener("click", createBox)
 
 }**/
 
