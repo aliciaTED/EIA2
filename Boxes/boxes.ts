@@ -1,8 +1,3 @@
-/**window.onload = function (){
-  document.getElementById.("box").addEventListener("click", createBox)
-
-}**/
-
 namespace Boxes {
     let n: number = 5;
     let color: string;
@@ -25,7 +20,7 @@ namespace Boxes {
             default:
                 color = "#0000ff";
         }
-        
+
         for (let size of ["big", "medium", "small"]) {
             createBox(color, x, y, size);
             if (i == 4)
