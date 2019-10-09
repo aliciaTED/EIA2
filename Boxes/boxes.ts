@@ -1,3 +1,7 @@
+/**window.onload = function (){
+
+}**/
+
 namespace Boxes {
     let n: number = 5;
     let color: string;
