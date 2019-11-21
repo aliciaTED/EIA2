@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "test": "node https://github.com/aliciaTED/EIA2/CocktailBar.js"
+    "start": "node L006/CocktailBar/Server/Server.js"
   },
   "repository": {
     "type": "git",
