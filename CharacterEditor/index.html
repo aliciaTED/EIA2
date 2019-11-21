@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Character Editor</title>
+	<link rel="stylesheet" href="CharacterEditor.css" type="text/css" media="screen" />
+
+	<script src="GenerateContent.js" type="text/javascript" charset="utf-8"></script>
+	<script src="CharacterEditor.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<header>
+		<h1>Character Editor</h1>
+		<p>Feel free to create your own personal character for your next role play game here! Fill in the gaps, choose
+			certain characteristics and enjoy!</p>
+	</header>
+
+	<form id="characterForm" method="GET">
+		<div>
+			<h2>Create your character here!</h2>
+			<fieldset id="general">
+				<legend>General information</legend>
+				<!--wird als Titel des Fieldsets angezeigt-->
+				<label for="name" id="name">Name: </label>
+				<input type="text" name="name" placeholder="Enter your name."></br>
+				<label for="gender">Gender: </label>
+				<input type="radio" name="gender" value="male">
+				<label class="fontWeightNormal" for="male">male</label>
+				<input type="radio" name="gender" value="female">
+				<label class="fontWeightNormal" for="female">female</label>
+				<input type="radio" name="gender" value="diverse">
+				<label class="fontWeightNormal" for="diverse">diverse</label></br>
+				<label for="race">Race: </label>
+				<select name="race" id="race">
+					<option value="">--choose your race--</option>
+					<option value="elf">Elf</option>
+					<option value="orc">Orc</option>
+					<option value="fae">Fae</option>
+					<option value="demon">Demon</option>
+					<option value="human">Human</option>
+				</select></br>
+				<label for="class">Class: </label>
+				<select name="class" id="class">
+					<option value="">--choose your class--</option>
+					<option value="priest">Priest</option>
+					<option value="scholar">Scholar</option>
+					<option value="warrior">Warrior</option>
+					<option value="hunter">Hunter</option>
+					<option value="thief">Thief</option>
+					<option value="buglar">Buglar</option>
+				</select></br>
+				<label for="birthday">Birthday: </label>
+				<input type="date" name="birthday">
+			</fieldset>
+			<fieldset id="appearance">
+				<legend>Appearance</legend>
+				<label for="height">Height: </label>
+				1,00m
+				<input type="range" name="height" min="1,00" max="2,50" value="1,50" step="0,05">
+				2,50m </br>
+				<label for="weight">Weight: </label>
+				10kg
+				<input type="range" name="height" min="10" max="250" value="150" step="1">
+				250kg</br>
+				<label for="haircolor">Haircolor: </label>
+				<input type="color" name="haircolor" value="#000000"></br>
+				<label for="eyecolor">Eyecolor: </label>
+				<input type="color" name="eyecolor" value="#00cc00">
+			</fieldset>
+			<fieldset id="items">
+				<legend>Items</legend>
+				<span id="accessories">
+					<!-- <label for="accessories">Accessories: </label>
+					<input type="radio" name="accessories" value="jewelry">
+					<label class="fontWeightNormal" for="jewelry">Jewelry</label>
+					<input type="radio" name="accessories" value="clothaccessories">
+					<label class="fontWeightNormal" for="clothaccessories">Clothing Accessories</label></br> -->
+				</span>
+				<label for="clothing">Clothing:</label>
+				<input list="clothing" />
+				<datalist name="clothing" id="clothing">
+					<option value="basic clothing"></option>
+					<option value="hunting clothes"></option>
+					<option value="dress"></option>
+					<option value="uniform"></option>
+					<option value="patched up tissues"></option>
+					<option value="clothes with ornaments"></option>
+				</datalist></br>
+				<span id="weapons">
+					<!-- <label for="weapons">Weapons: </label>
+					<input type="radio" name="weapons" value="singlehanded">
+					<label class="fontWeightNormal" for="singlehanded">Singlehanded</label>
+					<input type="radio" name="weapons" value="twohanded">
+					<label class="fontWeightNormal" for="twohanded">Twohanded</label> -->
+				</span>
+				<label for="specialItem">Special Item: </label>
+				<select name="specialItem" id="specialItem">
+					<option value="">--choose your special item--</option>
+					<option value="mouseSkeleton">Mouse Skeleton</option>
+					<option value="heirloom">Heirloom (expensive Ring)</option>
+					<option value="magicWand">Magic Wand</option>
+					<option value="woodenFigure">Wooden Figure</option>
+					<option value="enscryptedPaper">Encrypted Paper</option>
+				</select>
+			</fieldset>
+			<fieldset id="abilities">
+				<legend>Abilities</legend>
+				<label for="intellect">Intellect: </label>
+				<input type="number" name="intellect" min="0" max="10" value="0"></br>
+				<label for="will">Will: </label>
+				<input type="number" name="will" min="0" max="10" value="0"></br>
+				<label for="strength">Strength: </label>
+				<input type="number" name="strength" min="0" max="10" value="0">
+			</fieldset>
+			<fieldset id="backstory">
+				<legend>Backstory</legend>
+				<textarea name=backstory placeholder="Type your character's backstory here!" rows="10"></textarea>
+			</fieldset>
+		</div>
+	</form>
+
+	<div>
+		<h2>Check your character here!</h2>
+		<div id="yourCharacter">
+			<!-- hier sollen alle Formelemente übergeben werden -->
+		</div>
+		<div id="calculatedValues">
+
+		</div>
+		<div id="button">
+			<button type="reset" form="characterForm">reset</button>
+			<button type="button" form="characterForm">Save</button>
+		</div>
+	</div>
+
+</body>
+
+</html>

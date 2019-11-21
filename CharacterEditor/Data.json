@@ -1,0 +1,90 @@
+{
+    "Weapons": [
+        {
+            "subcategory": "singlehanded",
+            "type": "checkbox": [
+                {
+                    "name": "Sword",
+                    "weight": "1,8"
+                },
+                {
+                    "name": "Gun",
+                    "weight": "1,2"
+                },
+                {
+                    "name": "Dagger",
+                    "weight": "1,0"
+                },
+                {
+                    "name": "Stick",
+                    "weight": "1,5"
+                }
+            ],
+            "subcategory": "twohanded",
+            "type": "checkbox": [
+                {
+                    "name": "Double-Sword",
+                    "weight": "3,6"
+                },
+                {
+                    "name": "Bow & Arrow",
+                    "weight": "1,9"
+                },
+                {
+                    "name": "Axe",
+                    "weight": "2,5"
+                },
+                {
+                    "name": "Morning Star Weapon",
+                    "weight": "3,5"
+                }
+            ],
+        }
+    ],
+    "Accessories": [
+        {
+            "subcategory": "jewelry",
+            "type": "checkbox": [
+                {
+                    "name": "Bracelet",
+                    "weight": "0,4"
+                },
+                {
+                    "name": "Necklace",
+                    "weight": "0,5"
+                },
+                {
+                    "name": "Ring",
+                    "weight": "0,3"
+                },
+                {
+                    "name": "Flower (in hair)",
+                    "weight": "0,1"
+                },
+                {
+                    "name": "Wrist Watch",
+                    "weight": "0,7"
+                }
+            ],
+            "subcategory": "clothAccessories",
+            "type": "checkbox": [
+                {
+                    "name": "Hat",
+                    "weight": "0,7"
+                },
+                {
+                    "name": "Scarf",
+                    "weight": "0,9"
+                },
+                {
+                    "name": "Leather Gloves",
+                    "weight": "0,8"
+                },
+                {
+                    "name": "headband",
+                    "weight": "0,7"
+                }
+            ],
+        }
+    ],
+}

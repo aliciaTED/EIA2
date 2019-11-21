@@ -31,7 +31,8 @@ namespace Boxes {
         }
 
 
-    }
+    };
+    
     function createBox(_color: string, _x: number, _y: number, _size: string): void {
         let div: HTMLDivElement = document.createElement("div");
         document.body.appendChild(div);

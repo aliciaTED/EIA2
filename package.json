@@ -1,0 +1,27 @@
+{
+  "name": "zero-x",
+  "version": "1.0.0",
+  "description": "created in order to be able to run heroku app; author: me (Alicia Ted)",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "node https://github.com/aliciaTED/EIA2/CocktailBar.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliciaTED/EIA2.git"
+  },
+  "keywords": [
+    "app",
+    "eia2",
+    "zero-x",
+    "aliciated"
+  ],
+  "author": "Alicia Ted",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aliciaTED/EIA2/issues"
+  },
+  "homepage": "https://github.com/aliciaTED/EIA2#readme"
+}
