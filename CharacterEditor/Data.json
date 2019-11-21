@@ -1,8 +1,7 @@
 {
     "Weapons": [
         {
-            "subcategory": "singlehanded",
-            "type": "checkbox": [
+            "singlehanded" : [
                 {
                     "name": "Sword",
                     "weight": "1,8"
@@ -20,8 +19,7 @@
                     "weight": "1,5"
                 }
             ],
-            "subcategory": "twohanded",
-            "type": "checkbox": [
+            "twohanded": [
                 {
                     "name": "Double-Sword",
                     "weight": "3,6"
@@ -38,13 +36,12 @@
                     "name": "Morning Star Weapon",
                     "weight": "3,5"
                 }
-            ],
+            ]
         }
     ],
     "Accessories": [
         {
-            "subcategory": "jewelry",
-            "type": "checkbox": [
+            "jewelry" : [
                 {
                     "name": "Bracelet",
                     "weight": "0,4"
@@ -66,8 +63,7 @@
                     "weight": "0,7"
                 }
             ],
-            "subcategory": "clothAccessories",
-            "type": "checkbox": [
+            "clothAccessories" : [
                 {
                     "name": "Hat",
                     "weight": "0,7"
@@ -84,7 +80,7 @@
                     "name": "headband",
                     "weight": "0,7"
                 }
-            ],
+            ]
         }
-    ],
+    ]
 }
