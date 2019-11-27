@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "created in order to be able to run heroku app; author: me (Alicia Ted)",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@types/mongodb": "^3.3.11",
+    "mongodb": "^3.3.5"
+  },
   "devDependencies": {},
   "scripts": {
     "start": "node L006/CocktailBar/Server/Server.js"
