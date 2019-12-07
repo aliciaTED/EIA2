@@ -8,20 +8,18 @@ namespace CharacterEditor {
         let data: Data = JSON.parse(offer);
         generateContent(data);
         form = <HTMLFormElement>document.querySelector("form");
-        let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("input#amount");
         let submit: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=button]");
         console.log(submit);
         form.addEventListener("change", handleChange);
-        slider.addEventListener("input", displayAmount);
-        submit.addEventListener("click", sendOrder);
+        submit.addEventListener("click", sendCharacter);
         displayOrder();
     }
-    async function sendOrder(_event: Event): Promise<void> {
-        console.log("Send order");
+    async function sendCharacter(_event: Event): Promise<void> {
+        console.log("Character saved & sent");
         let formData: FormData = new FormData(form);
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         await fetch("index.html?" + query.toString());
-        alert("Order sent!");
+        alert("Character sent!");
     }
     function handleChange(_event: Event): void {
         displayOrder();
@@ -49,10 +47,5 @@ namespace CharacterEditor {
             price += itemPrice;
         }
         order.innerHTML += "<p><strong>Total: : €" + price.toFixed(2);
-    }
-    function displayAmount(_event: Event): void {
-        let progress: HTMLProgressElement = <HTMLProgressElement>document.querySelector("progress");
-        let amount: string = (<HTMLInputElement>_event.target).value;
-        progress.value = parseFloat(amount);
     }
 }

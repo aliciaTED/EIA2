@@ -10,20 +10,18 @@ var CharacterEditor;
         let data = JSON.parse(offer);
         CharacterEditor.generateContent(data);
         form = document.querySelector("form");
-        let slider = document.querySelector("input#amount");
         let submit = document.querySelector("button[type=button]");
         console.log(submit);
         form.addEventListener("change", handleChange);
-        slider.addEventListener("input", displayAmount);
-        submit.addEventListener("click", sendOrder);
+        submit.addEventListener("click", sendCharacter);
         displayOrder();
     }
-    async function sendOrder(_event) {
-        console.log("Send order");
+    async function sendCharacter(_event) {
+        console.log("Character saved & sent");
         let formData = new FormData(form);
         let query = new URLSearchParams(formData);
         await fetch("index.html?" + query.toString());
-        alert("Order sent!");
+        alert("Character sent!");
     }
     function handleChange(_event) {
         displayOrder();
@@ -51,11 +49,6 @@ var CharacterEditor;
             price += itemPrice;
         }
         order.innerHTML += "<p><strong>Total: : €" + price.toFixed(2);
-    }
-    function displayAmount(_event) {
-        let progress = document.querySelector("progress");
-        let amount = _event.target.value;
-        progress.value = parseFloat(amount);
     }
 })(CharacterEditor || (CharacterEditor = {}));
 //# sourceMappingURL=CharacterEditor.js.map
