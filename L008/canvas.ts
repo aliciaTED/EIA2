@@ -28,6 +28,28 @@ function handleLoad(): void {
     crc2.stroke(); // letztes Element für Zeichnungen, damit überhaupt gezeichnet wird
 
     //Kurven
-    
 
+    //Text
+    crc2.font = "30px Arial";
+    crc2.fillText("Ich bin ein Canvas-Text!", 100, 130);
+    crc2.closePath();
+    crc2.strokeText("Ich bin ein Canvas-Text!", 100, 130);
+
+    //Pfadobjekte
+    let path: Path2D = new Path2D();
+    path.arc(60, 60, 50, 0, 2 * Math.PI);
+    crc2.stroke(path);
+
+    //Farbverlauf
+    let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, 100);
+    
+    crc2.beginPath();
+    gradient.addColorStop(0, "black");
+    gradient.addColorStop(.5, "red");
+    gradient.addColorStop(1, "gold");
+
+    crc2.fillStyle = gradient;
+    crc2.fillRect(0, 0, 200, 100);
+    crc2.closePath();
+    crc2.stroke();
 }
