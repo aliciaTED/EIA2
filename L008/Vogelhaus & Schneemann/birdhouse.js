@@ -17,14 +17,15 @@ var L08_Canvas_Birdhouse;
         drawTree();
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
-        drawBirds();
-        drawSnowflakes({ x: 0, y: 600 }, { x: 1500, y: 600 });
+        drawBirds({ x: 0, y: 500 }, { x: 600, y: 600 });
+        drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
+        drawSnowflakes({ x: 0, y: 600 }, { x: 800, y: 600 });
     }
     function drawBackground() {
         console.log("Background");
         let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
-        gradient.addColorStop(golden, "white");
+        gradient.addColorStop(golden, "HSL(220, 30%, 90%)");
         gradient.addColorStop(1, "white");
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -174,24 +175,81 @@ var L08_Canvas_Birdhouse;
         crc2.fillStyle = "black";
         crc2.fill(hole);
         crc2.stroke(hole);
+        crc2.beginPath();
+        crc2.moveTo(110, 510); // Strich
+        crc2.lineTo(158, 448); // Ecke oben
+        crc2.lineTo(205, 510);
+        crc2.closePath();
+        crc2.fillStyle = "darkred";
+        crc2.fill();
     }
-    function drawBirds() {
+    function drawBirds(_position, _size) {
         console.log("(Angry) birds.");
+        let nBirds = 15;
+        let radiusBird = 7 + Math.random() * 10;
+        let bird = new Path2D();
+        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
+        let head = 0 - radiusBird;
+        bird.arc(head, -2, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+        bird.ellipse(5, -5, (1 / 3) * radiusBird, radiusBird, 13, 0, 2 * Math.PI);
+        //bird.ellipse(3, -8, (1 / 3 ) * radiusBird, radiusBird, 9, 0, 2 * Math.PI);
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        for (let drawn = 0; drawn < nBirds; drawn++) {
+            let colorAngle = 120 - Math.random() * 290;
+            let color = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+            let scale = 0.7 + Math.random() * 1;
+            crc2.fillStyle = color;
+            crc2.save();
+            let x = Math.random() * _size.x;
+            let y = -(Math.random() * _size.y);
+            crc2.translate(x, y);
+            crc2.transform(scale, 0, 0, scale, 0, 0);
+            crc2.fill(bird);
+            crc2.restore();
+        }
+        crc2.restore();
+    }
+    function drawBirdsInTree(_position, _size) {
+        console.log("Birds in Tree");
+        let nBirds = 5;
+        let radiusBird = 10 + Math.random() * 10;
+        let bird = new Path2D();
+        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
+        let wing = 0 - radiusBird;
+        bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
+        crc2.stroke(bird);
+        let head = 0 - radiusBird;
+        bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        for (let drawn = 0; drawn < nBirds; drawn++) {
+            let colorAngle = 120 - Math.random() * 290;
+            let color = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+            crc2.fillStyle = color;
+            crc2.save();
+            let x = Math.random() * _size.x;
+            let y = -(Math.random() * _size.y);
+            crc2.translate(x, y);
+            crc2.fill(bird);
+            crc2.restore();
+        }
+        crc2.restore();
     }
     function drawSnowflakes(_position, _size) {
-        let nParticles = 333;
+        let nParticles = 222;
         let radiusParticle = 10;
         let particle = new Path2D();
         let gradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
         particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 0.5)");
+        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 1)");
         gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
         crc2.save();
         crc2.translate(_position.x, _position.y);
         crc2.fillStyle = gradient;
         for (let drawn = 0; drawn < nParticles; drawn++) {
             crc2.save();
-            let x = (Math.random() - 0.5) * _size.x;
+            let x = Math.random() * _size.x;
             let y = -(Math.random() * _size.y);
             crc2.translate(x, y);
             crc2.fill(particle);

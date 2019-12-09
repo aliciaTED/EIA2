@@ -22,8 +22,9 @@ namespace L08_Canvas_Birdhouse {
         drawTree();
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
-        drawBirds();
-        drawSnowflakes({ x: 0, y: 600 }, { x: 1500, y: 600 });
+        drawBirds({x : 0, y: 500}, {x: 600, y: 600 });
+        drawBirdsInTree({x: 510, y: 400}, {x: 180, y: 120});
+        drawSnowflakes({ x: 0, y: 600 }, { x: 800, y: 600 });
     }
 
     function drawBackground(): void {
@@ -31,7 +32,7 @@ namespace L08_Canvas_Birdhouse {
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
-        gradient.addColorStop(golden, "white");
+        gradient.addColorStop(golden, "HSL(220, 30%, 90%)");
         gradient.addColorStop(1, "white");
 
         crc2.fillStyle = gradient;
@@ -121,12 +122,12 @@ namespace L08_Canvas_Birdhouse {
         console.log("Tree");
         let transform: DOMMatrix = crc2.getTransform();
 
-       // let x: number = Math.random() * 800;
+        // let x: number = Math.random() * 800;
         let nBranches: number = 50;
         let maxRadius: number = 60;
         let branch: Path2D = new Path2D();
         branch.arc(600, 470, maxRadius, 0, 2 * Math.PI);
-        
+
         crc2.fillStyle = "HSL(30, 70%, 40%)"; // Baumstamm
         crc2.fillRect(600, 450, 20, -100);
         crc2.save();
@@ -142,11 +143,11 @@ namespace L08_Canvas_Birdhouse {
 
             let colorAngle: number = 120 - Math.random() * 60;
             let color: string = "HSLA(" + colorAngle + ", 50%, 60%, 0.5)";
-            
+
             crc2.fillStyle = color;
             crc2.fill(branch);
             crc2.restore();
-        }   while (-- nBranches > 0);
+        } while (--nBranches > 0);
 
         crc2.restore();
         crc2.setTransform(transform);
@@ -210,7 +211,7 @@ namespace L08_Canvas_Birdhouse {
         crc2.fill(nose);
         crc2.stroke(nose);
     }
-       
+
     function drawBirdhouse(): void {
         console.log("Birdhouse");
 
@@ -229,22 +230,93 @@ namespace L08_Canvas_Birdhouse {
         crc2.fill(hole);
         crc2.stroke(hole);
 
-        
+        crc2.beginPath();
+        crc2.moveTo(110, 510); // Strich
+        crc2.lineTo(158, 448); // Ecke oben
+        crc2.lineTo(205, 510);
+        crc2.closePath();
+        crc2.fillStyle = "darkred";
+        crc2.fill();
 
     }
 
-    function drawBirds(): void {
+    function drawBirds(_position: Vector, _size: Vector): void {
         console.log("(Angry) birds.");
+
+        let nBirds: number = 15;
+        let radiusBird: number = 7 + Math.random() * 10;
+        let bird: Path2D = new Path2D();
+        
+        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
+
+        let head: number = 0 - radiusBird;
+        bird.arc(head, -2, (1 / 2 ) * radiusBird, 0, 2 * Math.PI);
+
+        bird.ellipse(5, -5, (1 / 3 ) * radiusBird, radiusBird, 13, 0, 2 * Math.PI);
+        //bird.ellipse(3, -8, (1 / 3 ) * radiusBird, radiusBird, 9, 0, 2 * Math.PI);
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        
+
+        for (let drawn: number = 0; drawn < nBirds; drawn++) {
+            let colorAngle: number = 120 - Math.random() * 290;
+            let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+            let scale: number =  0.7 + Math.random() * 1;
+            crc2.fillStyle = color;
+            crc2.save();
+            let x: number = Math.random() * _size.x;
+            let y: number = - (Math.random() * _size.y);
+            crc2.translate(x, y);
+            crc2.transform(scale, 0, 0, scale, 0, 0);
+            crc2.fill(bird);
+            crc2.restore();
+        }
+        crc2.restore();
+    }
+
+    function drawBirdsInTree (_position: Vector, _size: Vector): void {
+        console.log("Birds in Tree");
+
+        let nBirds: number = 5;
+        let radiusBird: number = 10 + Math.random() * 10;
+        let bird: Path2D = new Path2D();
+        
+        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
+
+        let wing: number = 0 - radiusBird;
+        bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
+        crc2.stroke(bird);
+
+        let head: number = 0 - radiusBird;
+        bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        
+
+        for (let drawn: number = 0; drawn < nBirds; drawn++) {
+            let colorAngle: number = 120 - Math.random() * 290;
+            let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+            crc2.fillStyle = color;
+            crc2.save();
+            let x: number = Math.random() * _size.x;
+            let y: number = - (Math.random() * _size.y);
+            crc2.translate(x, y);
+            crc2.fill(bird);
+            crc2.restore();
+        }
+        crc2.restore();
     }
 
     function drawSnowflakes(_position: Vector, _size: Vector): void {
-        let nParticles: number = 333;
+        let nParticles: number = 222;
         let radiusParticle: number = 10;
         let particle: Path2D = new Path2D();
         let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
 
         particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 0.5)");
+        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 1)");
         gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
 
         crc2.save();
@@ -253,13 +325,12 @@ namespace L08_Canvas_Birdhouse {
 
         for (let drawn: number = 0; drawn < nParticles; drawn++) {
             crc2.save();
-            let x: number = (Math.random() - 0.5) * _size.x;
+            let x: number = Math.random() * _size.x;
             let y: number = - (Math.random() * _size.y);
             crc2.translate(x, y);
             crc2.fill(particle);
             crc2.restore();
         }
-
         crc2.restore();
     }
 }
