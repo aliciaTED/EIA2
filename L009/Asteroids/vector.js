@@ -1,12 +1,15 @@
 "use strict";
-var L09_Vector_Übung;
-(function (L09_Vector_Übung) {
-    window.addEventListener("load", handleLoad);
+var L09_Asteroids;
+(function (L09_Asteroids) {
     class Vector {
         constructor(_x, _y) {
             this.x = 0;
             this.y = 0;
             this.set(_x, _y);
+        }
+        set(_x, _y) {
+            this.x = _x;
+            this.y = _y;
         }
         scale(_factor) {
             this.x *= _factor;
@@ -16,17 +19,13 @@ var L09_Vector_Übung;
             this.x += _addend.x;
             this.y += _addend.y;
         }
-        set(_x, _y) {
-            this.x = _x;
-            this.y = _y;
+        random(_minLength, _maxLength) {
+            let length = _minLength = Math.random() * (_maxLength - _minLength);
+            let direction = Math.random() * 2 * Math.PI;
+            this.set(Math.cos(direction), Math.sin(direction));
+            this.scale(length);
         }
     }
-    function handleLoad() {
-        console.log("loaded");
-        let v1 = new Vector(10, -3);
-        console.log(v1);
-        v1.scale(2);
-        console.log(v1);
-    }
-})(L09_Vector_Übung || (L09_Vector_Übung = {}));
+    L09_Asteroids.Vector = Vector;
+})(L09_Asteroids || (L09_Asteroids = {}));
 //# sourceMappingURL=vector.js.map
