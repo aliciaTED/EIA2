@@ -192,7 +192,12 @@ var L08_Canvas_Birdhouse;
         let head = 0 - radiusBird;
         bird.arc(head, -2, (1 / 2) * radiusBird, 0, 2 * Math.PI);
         bird.ellipse(5, -5, (1 / 3) * radiusBird, radiusBird, 13, 0, 2 * Math.PI);
-        //bird.ellipse(3, -8, (1 / 3 ) * radiusBird, radiusBird, 9, 0, 2 * Math.PI);
+        // let birdEye: Path2D = new Path2D;
+        // crc2.translate(_position.x, _position.y);
+        // birdEye.arc(head, 5, 1.5, 0, 2 * Math.PI);
+        // crc2.fillStyle = "black";
+        // crc2.fill(birdEye);
+        // crc2.stroke(birdEye);
         crc2.save();
         crc2.translate(_position.x, _position.y);
         for (let drawn = 0; drawn < nBirds; drawn++) {
