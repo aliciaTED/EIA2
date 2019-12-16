@@ -17,7 +17,7 @@ var L08_Canvas_Birdhouse;
         drawTree();
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
-        drawBirds({ x: 0, y: 500 }, { x: 600, y: 600 });
+        drawBirds({ x: 0, y: 500 }, { x: 500, y: 600 });
         drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
         drawSnowflakes({ x: 0, y: 600 }, { x: 800, y: 600 });
     }
@@ -184,8 +184,8 @@ var L08_Canvas_Birdhouse;
         crc2.fill();
     }
     function drawBirds(_position, _size) {
-        console.log("(Angry) birds.");
-        let nBirds = 15;
+        console.log("(Hotdog) birds.");
+        let nBirds = 20;
         let radiusBird = 7 + Math.random() * 10;
         let bird = new Path2D();
         bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);

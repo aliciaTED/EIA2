@@ -22,7 +22,7 @@ namespace L08_Canvas_Birdhouse {
         drawTree();
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
-        drawBirds({ x: 0, y: 500 }, { x: 600, y: 600 });
+        drawBirds({ x: 0, y: 500 }, { x: 500, y: 600 });
         drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
         drawSnowflakes({ x: 0, y: 600 }, { x: 800, y: 600 });
     }
@@ -241,9 +241,9 @@ namespace L08_Canvas_Birdhouse {
     }
 
     function drawBirds(_position: Vector, _size: Vector): void {
-        console.log("(Angry) birds.");
+        console.log("(Hotdog) birds.");
 
-        let nBirds: number = 15;
+        let nBirds: number = 20;
         let radiusBird: number = 7 + Math.random() * 10;
         let bird: Path2D = new Path2D();
 
