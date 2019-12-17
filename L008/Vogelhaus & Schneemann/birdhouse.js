@@ -164,17 +164,20 @@ var L08_Canvas_Birdhouse;
     }
     function drawBirdhouse() {
         console.log("Birdhouse");
+        //Gehäuse
         crc2.fillStyle = "HSL(30, 70%, 15%)";
         crc2.fillRect(150, 550, 15, -70);
         crc2.save();
         crc2.translate(0, -120);
         crc2.fillStyle = "HSL(30, 70%, 50%)";
         crc2.fillRect(118, 600, 80, -90);
+        // Loch
         let hole = new Path2D;
         hole.arc(158, 560, 15, 0, 2 * Math.PI);
         crc2.fillStyle = "black";
         crc2.fill(hole);
         crc2.stroke(hole);
+        // Dach
         crc2.beginPath();
         crc2.moveTo(110, 510); // Strich
         crc2.lineTo(158, 448); // Ecke oben
