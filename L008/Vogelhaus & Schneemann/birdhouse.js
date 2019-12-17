@@ -19,7 +19,7 @@ var L08_Canvas_Birdhouse;
         drawBirdhouse();
         drawBirds({ x: 0, y: 500 }, { x: 500, y: 600 });
         drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
-        drawSnowflakes({ x: 0, y: 600 }, { x: 800, y: 600 });
+        drawSnowflakes({ x: 0, y: 600 });
     }
     function drawBackground() {
         console.log("Background");
@@ -244,8 +244,8 @@ var L08_Canvas_Birdhouse;
         }
         crc2.restore();
     }
-    function drawSnowflakes(_position, _size) {
-        let nParticles = 222;
+    function drawSnowflakes(_position) {
+        let nSnowflakes = 222;
         let radiusParticle = 10;
         let particle = new Path2D();
         let gradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
@@ -255,10 +255,10 @@ var L08_Canvas_Birdhouse;
         crc2.save();
         crc2.translate(_position.x, _position.y);
         crc2.fillStyle = gradient;
-        for (let drawn = 0; drawn < nParticles; drawn++) {
+        for (let drawn = 0; drawn < nSnowflakes; drawn++) {
             crc2.save();
-            let x = Math.random() * _size.x;
-            let y = -(Math.random() * _size.y);
+            let x = Math.random() * 800;
+            let y = -(Math.random() * 600);
             crc2.translate(x, y);
             crc2.fill(particle);
             crc2.restore();

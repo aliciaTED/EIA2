@@ -24,7 +24,7 @@ namespace L08_Canvas_Birdhouse {
         drawBirdhouse();
         drawBirds({ x: 0, y: 500 }, { x: 500, y: 600 });
         drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
-        drawSnowflakes({ x: 0, y: 600 }, { x: 800, y: 600 });
+        drawSnowflakes({ x: 0, y: 600 });
     }
 
     function drawBackground(): void {
@@ -317,8 +317,8 @@ namespace L08_Canvas_Birdhouse {
         crc2.restore();
     }
 
-    function drawSnowflakes(_position: Vector, _size: Vector): void {
-        let nParticles: number = 222;
+    function drawSnowflakes(_position: Vector): void {
+        let nSnowflakes: number = 222;
         let radiusParticle: number = 10;
         let particle: Path2D = new Path2D();
         let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
@@ -331,10 +331,10 @@ namespace L08_Canvas_Birdhouse {
         crc2.translate(_position.x, _position.y);
         crc2.fillStyle = gradient;
 
-        for (let drawn: number = 0; drawn < nParticles; drawn++) {
+        for (let drawn: number = 0; drawn < nSnowflakes; drawn++) {
             crc2.save();
-            let x: number = Math.random() * _size.x;
-            let y: number = - (Math.random() * _size.y);
+            let x: number = Math.random() * 800;
+            let y: number = - (Math.random() * 600);
             crc2.translate(x, y);
             crc2.fill(particle);
             crc2.restore();
