@@ -3,9 +3,9 @@ namespace L09_Canvas_Birdhouse {
         x: number;
         y: number;
     }
-
+    
     window.addEventListener("load", handleLoad);
-    let crc2: CanvasRenderingContext2D;
+    export let crc2: CanvasRenderingContext2D;
     let golden: number = 0.62;
 
     function handleLoad(_event: Event): void {
