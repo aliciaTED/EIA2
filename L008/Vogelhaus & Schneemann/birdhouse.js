@@ -17,7 +17,7 @@ var L08_Canvas_Birdhouse;
         drawTree();
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
-        drawBirds({ x: 0, y: 500 }, { x: 500, y: 600 });
+        drawBirds({ x: 10, y: 500 }, { x: 500, y: 600 });
         drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
         drawSnowflakes({ x: 0, y: 600 });
     }
