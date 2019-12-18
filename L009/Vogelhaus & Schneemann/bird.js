@@ -4,6 +4,10 @@ var L09_Canvas_Birdhouse;
     class Bird {
         constructor(_position) {
             console.log("constructed");
+            this.position = new L09_Canvas_Birdhouse.Vector(this.position.x, this.position.y);
+            // Geschwindigkeit & Richtung
+            this.velocity = new L09_Canvas_Birdhouse.Vector(0, 0);
+            this.velocity.random(100, 200);
         }
         move(_timeslice) {
             console.log("moved");

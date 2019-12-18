@@ -2,32 +2,38 @@
 var L09_Canvas_Birdhouse;
 (function (L09_Canvas_Birdhouse) {
     class Snowflake {
-        constructor(_position) {
+        constructor() {
             console.log("constructed");
+            let x = 800 * Math.random();
+            let y = 600 * Math.random();
+            this.position = new L09_Canvas_Birdhouse.Vector(x, y);
+            // Geschwindigkeit & Richtung
+            this.velocity = new L09_Canvas_Birdhouse.Vector(0, 5);
         }
         move(_timeslice) {
             console.log("moved");
+            // Anmerkung: "newMove" beschreibt Abstand von alter und neuer Position (alte wird "übermalt")
+            let newMove = new L09_Canvas_Birdhouse.Vector(this.velocity.x, this.velocity.y);
+            newMove.scale(_timeslice);
+            this.position.add(this.velocity);
+            //Schneeflocken-Endless-Schleife
+            if (this.position.y > 600)
+                this.position.y -= L09_Canvas_Birdhouse.crc2.canvas.height;
         }
         draw() {
             console.log("drawn");
-            let radiusSnowflake = 10;
-            let snowflake = new Path2D();
-            let gradient = L09_Canvas_Birdhouse.crc2.createRadialGradient(0, 0, 0, 0, 0, radiusSnowflake);
-            snowflake.arc(0, 0, radiusSnowflake, 0, 2 * Math.PI);
+            let gradient = L09_Canvas_Birdhouse.crc2.createRadialGradient(0, 0, 0, 0, 0, 10);
+            L09_Canvas_Birdhouse.crc2.beginPath();
+            L09_Canvas_Birdhouse.crc2.save();
+            L09_Canvas_Birdhouse.crc2.translate(this.position.x, this.position.y);
+            // crc2.scale(this.size, this.size);
+            L09_Canvas_Birdhouse.crc2.arc(0, 0, 10, 0, 2 * Math.PI);
             gradient.addColorStop(0, "HSLA(0, 100%, 100%, 1)");
             gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
-            L09_Canvas_Birdhouse.crc2.save();
-            L09_Canvas_Birdhouse.crc2.translate(_position.x, _position.y);
             L09_Canvas_Birdhouse.crc2.fillStyle = gradient;
-            for (let drawn = 0; drawn < nSnowflakes; drawn++) {
-                L09_Canvas_Birdhouse.crc2.save();
-                let x = Math.random() * 800;
-                let y = -(Math.random() * 600);
-                L09_Canvas_Birdhouse.crc2.translate(x, y);
-                L09_Canvas_Birdhouse.crc2.fill(snowflake);
-                L09_Canvas_Birdhouse.crc2.restore();
-            }
+            L09_Canvas_Birdhouse.crc2.fill();
             L09_Canvas_Birdhouse.crc2.restore();
+            L09_Canvas_Birdhouse.crc2.closePath();
         }
     }
     L09_Canvas_Birdhouse.Snowflake = Snowflake;

@@ -1,7 +1,7 @@
 namespace L09_Canvas_Birdhouse {
     export class Vector {
-        x: number = 0;
-        y: number = 0;
+        x: number;
+        y: number;
 
         constructor(_x: number, _y: number) {
             this.set(_x, _y);
@@ -11,8 +11,9 @@ namespace L09_Canvas_Birdhouse {
             this.x = _x;
             this.y = _y;
         }
+
         scale(_factor: number): void {
-            this.x *= _factor;
+            this.x *= _factor; 
             this.y *= _factor;
         }
 
@@ -25,7 +26,7 @@ namespace L09_Canvas_Birdhouse {
         random(_minLength: number, _maxLength: number): void {
             let length: number = _minLength = Math.random() * (_maxLength - _minLength);
 
-            this.set(0, 10);
+           // this.set(0, 10);
             this.scale(length);
         }
     }

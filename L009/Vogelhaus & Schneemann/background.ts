@@ -8,7 +8,7 @@ namespace L09_Canvas_Birdhouse {
         gradient.addColorStop(0, "lightblue");
         gradient.addColorStop(golden, "HSL(220, 30%, 90%)");
         gradient.addColorStop(1, "white");
-
+ 
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
@@ -150,7 +150,7 @@ namespace L09_Canvas_Birdhouse {
         crc2.strokeStyle = "black";
         crc2.stroke(snowman1);
 
-        let snowman2: Path2D = new Path2D;
+        let snowman2: Path2D = new Path2D; 
         let y3: number = y2 - (r2 + r3);
 
         snowman2.arc(_position.x, y3, r3, 0, 2 * Math.PI);

@@ -7,6 +7,9 @@ namespace L09_Canvas_Birdhouse {
     window.addEventListener("load", handleLoad);
     export let crc2: CanvasRenderingContext2D;
     export let golden: number = 0.62;
+    
+    let snowflakes: Snowflake[] = [];
+    let birds: Bird[] = [];
 
     function handleLoad(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -27,7 +30,7 @@ namespace L09_Canvas_Birdhouse {
 
         // drawBirds({ x: 10, y: 500 }, { x: 500, y: 600 });
         // drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
-        // drawSnowflakes();
+        drawSnowflakes(111);
 
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
     }
@@ -106,37 +109,30 @@ namespace L09_Canvas_Birdhouse {
     //     crc2.restore();
     // }
 
-    // function drawSnowflakes(): void {
-    //     let nSnowflakes: number = 111;
-    //     // for (let i: number = 0; i <= nSnowflakes; i++) {
+    function drawSnowflakes(nSnowflakes: number): void {
+        console.log("Schneeflocken");
+        //let nSnowflakes: number = 111;
 
-    //     // }
-    //     let radiusParticle: number = 10;
-    //     let snowflake: Snowflake = new Snowflake({ x: 0, y: 600 }, {});
-    //     let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
-
-    //     snowflake.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-    //     gradient.addColorStop(0, "HSLA(0, 100%, 100%, 1)");
-    //     gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
-
-    //     crc2.save();
-    //     crc2.translate(_position.x, _position.y);
-    //     crc2.fillStyle = gradient;
-
-    //     for (let drawn: number = 0; drawn < nSnowflakes; drawn++) {
-    //         crc2.save();
-    //         let x: number = Math.random() * 800;
-    //         let y: number = - (Math.random() * 600);
-    //         crc2.translate(x, y);
-    //         crc2.fill(snowflake);
-    //         crc2.restore();
-    //     }
-    //     crc2.restore();
-    // }
+        for (let i: number = 0; i < nSnowflakes; i++) {
+            let snowflake: Snowflake = new Snowflake();          
+            snowflakes.push(snowflake);
+        }
+    }
 
     // update Background & Animation
+
     function update(_background: ImageData): void {
         console.log("updated");
         crc2.putImageData(_background, 0, 0);
+        
+        for (let snowflake of snowflakes) {
+            snowflake.move(1.5);
+            snowflake.draw();
+        }
+
+        for (let bird of birds) {
+            bird.move(1);
+            bird.draw();
+        }
     }
 }

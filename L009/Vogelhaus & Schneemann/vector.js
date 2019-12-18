@@ -3,8 +3,6 @@ var L09_Canvas_Birdhouse;
 (function (L09_Canvas_Birdhouse) {
     class Vector {
         constructor(_x, _y) {
-            this.x = 0;
-            this.y = 0;
             this.set(_x, _y);
         }
         set(_x, _y) {
@@ -19,10 +17,10 @@ var L09_Canvas_Birdhouse;
             this.x += _addend.x;
             this.y += _addend.y;
         }
+        // Geschwindigkeit zufällig berechnen & Richtung festlegen
         random(_minLength, _maxLength) {
             let length = _minLength = Math.random() * (_maxLength - _minLength);
-            let direction = Math.random() * 2 * Math.PI;
-            this.set(Math.cos(direction), Math.sin(direction));
+            // this.set(0, 10);
             this.scale(length);
         }
     }
