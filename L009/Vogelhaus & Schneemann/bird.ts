@@ -1,6 +1,6 @@
 namespace L09_Canvas_Birdhouse {
     export class Bird {
-        positon: Vector;
+        position: Vector;
         velocity: Vector;
         activity: string;
         size: number;

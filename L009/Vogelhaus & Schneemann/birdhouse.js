@@ -16,9 +16,11 @@ var L09_Canvas_Birdhouse;
         drawTree();
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
-        drawBirds({ x: 10, y: 500 }, { x: 500, y: 600 });
-        drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
-        drawSnowflakes({ x: 0, y: 600 });
+        let background = L09_Canvas_Birdhouse.crc2.getImageData(0, 0, 800, 600);
+        // drawBirds({ x: 10, y: 500 }, { x: 500, y: 600 });
+        // drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
+        // drawSnowflakes();
+        window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
     }
     function drawBackground() {
         console.log("Background");
@@ -185,84 +187,91 @@ var L09_Canvas_Birdhouse;
         L09_Canvas_Birdhouse.crc2.fillStyle = "darkred";
         L09_Canvas_Birdhouse.crc2.fill();
     }
-    function drawBirds(_position, _size) {
-        console.log("(Hotdog) birds.");
-        let nBirds = 20;
-        let radiusBird = 7 + Math.random() * 10;
-        let bird = new Path2D();
-        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
-        let head = 0 - radiusBird;
-        bird.arc(head, -2, (1 / 2) * radiusBird, 0, 2 * Math.PI);
-        bird.ellipse(5, -5, (1 / 3) * radiusBird, radiusBird, 13, 0, 2 * Math.PI);
-        // let birdEye: Path2D = new Path2D;
-        // crc2.translate(_position.x, _position.y);
-        // birdEye.arc(head, 5, 1.5, 0, 2 * Math.PI);
-        // crc2.fillStyle = "black";
-        // crc2.fill(birdEye);
-        // crc2.stroke(birdEye);
-        L09_Canvas_Birdhouse.crc2.save();
-        L09_Canvas_Birdhouse.crc2.translate(_position.x, _position.y);
-        for (let drawn = 0; drawn < nBirds; drawn++) {
-            let colorAngle = 120 - Math.random() * 290;
-            let color = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
-            let scale = 0.7 + Math.random() * 1;
-            L09_Canvas_Birdhouse.crc2.fillStyle = color;
-            L09_Canvas_Birdhouse.crc2.save();
-            let x = Math.random() * _size.x;
-            let y = -(Math.random() * _size.y);
-            L09_Canvas_Birdhouse.crc2.translate(x, y);
-            L09_Canvas_Birdhouse.crc2.transform(scale, 0, 0, scale, 0, 0);
-            L09_Canvas_Birdhouse.crc2.fill(bird);
-            L09_Canvas_Birdhouse.crc2.restore();
-        }
-        L09_Canvas_Birdhouse.crc2.restore();
-    }
-    function drawBirdsInTree(_position, _size) {
-        console.log("Birds in Tree");
-        let nBirds = 5;
-        let radiusBird = 10 + Math.random() * 10;
-        let bird = new Path2D();
-        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
-        let wing = 0 - radiusBird;
-        bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
-        L09_Canvas_Birdhouse.crc2.stroke(bird);
-        let head = 0 - radiusBird;
-        bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
-        L09_Canvas_Birdhouse.crc2.save();
-        L09_Canvas_Birdhouse.crc2.translate(_position.x, _position.y);
-        for (let drawn = 0; drawn < nBirds; drawn++) {
-            let colorAngle = 120 - Math.random() * 290;
-            let color = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
-            L09_Canvas_Birdhouse.crc2.fillStyle = color;
-            L09_Canvas_Birdhouse.crc2.save();
-            let x = Math.random() * _size.x;
-            let y = -(Math.random() * _size.y);
-            L09_Canvas_Birdhouse.crc2.translate(x, y);
-            L09_Canvas_Birdhouse.crc2.fill(bird);
-            L09_Canvas_Birdhouse.crc2.restore();
-        }
-        L09_Canvas_Birdhouse.crc2.restore();
-    }
-    function drawSnowflakes(_position) {
-        let nSnowflakes = 222;
-        let radiusParticle = 10;
-        let particle = new Path2D();
-        let gradient = L09_Canvas_Birdhouse.crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
-        particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-        gradient.addColorStop(0, "HSLA(0, 100%, 100%, 1)");
-        gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
-        L09_Canvas_Birdhouse.crc2.save();
-        L09_Canvas_Birdhouse.crc2.translate(_position.x, _position.y);
-        L09_Canvas_Birdhouse.crc2.fillStyle = gradient;
-        for (let drawn = 0; drawn < nSnowflakes; drawn++) {
-            L09_Canvas_Birdhouse.crc2.save();
-            let x = Math.random() * 800;
-            let y = -(Math.random() * 600);
-            L09_Canvas_Birdhouse.crc2.translate(x, y);
-            L09_Canvas_Birdhouse.crc2.fill(particle);
-            L09_Canvas_Birdhouse.crc2.restore();
-        }
-        L09_Canvas_Birdhouse.crc2.restore();
+    // function drawBirds(_position: Vector, _size: Vector): void {
+    //     console.log("(Hotdog) birds.");
+    //     let nBirds: number = 20;
+    //     let radiusBird: number = 7 + Math.random() * 10;
+    //     let bird: Path2D = new Path2D();
+    //     bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
+    //     let head: number = 0 - radiusBird;
+    //     bird.arc(head, -2, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+    //     bird.ellipse(5, -5, (1 / 3) * radiusBird, radiusBird, 13, 0, 2 * Math.PI);
+    //     // let birdEye: Path2D = new Path2D;
+    //     // crc2.translate(_position.x, _position.y);
+    //     // birdEye.arc(head, 5, 1.5, 0, 2 * Math.PI);
+    //     // crc2.fillStyle = "black";
+    //     // crc2.fill(birdEye);
+    //     // crc2.stroke(birdEye);
+    //     crc2.save();
+    //     crc2.translate(_position.x, _position.y);
+    //     for (let drawn: number = 0; drawn < nBirds; drawn++) {
+    //         let colorAngle: number = 120 - Math.random() * 290;
+    //         let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+    //         let scale: number = 0.7 + Math.random() * 1;
+    //         crc2.fillStyle = color;
+    //         crc2.save();
+    //         let x: number = Math.random() * _size.x;
+    //         let y: number = - (Math.random() * _size.y);
+    //         crc2.translate(x, y);
+    //         crc2.transform(scale, 0, 0, scale, 0, 0);
+    //         crc2.fill(bird);
+    //         crc2.restore();
+    //     }
+    //     crc2.restore();
+    // }
+    // function drawBirdsInTree(_position: Vector, _size: Vector): void {
+    //     console.log("Birds in Tree");
+    //     let nBirds: number = 5;
+    //     let radiusBird: number = 10 + Math.random() * 10;
+    //     let bird: Path2D = new Path2D();
+    //     bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
+    //     let wing: number = 0 - radiusBird;
+    //     bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
+    //     crc2.stroke(bird);
+    //     let head: number = 0 - radiusBird;
+    //     bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+    //     crc2.save();
+    //     crc2.translate(_position.x, _position.y);
+    //     for (let drawn: number = 0; drawn < nBirds; drawn++) {
+    //         let colorAngle: number = 120 - Math.random() * 290;
+    //         let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+    //         crc2.fillStyle = color;
+    //         crc2.save();
+    //         let x: number = Math.random() * _size.x;
+    //         let y: number = - (Math.random() * _size.y);
+    //         crc2.translate(x, y);
+    //         crc2.fill(bird);
+    //         crc2.restore();
+    //     }
+    //     crc2.restore();
+    // }
+    // function drawSnowflakes(): void {
+    //     let nSnowflakes: number = 111;
+    //     // for (let i: number = 0; i <= nSnowflakes; i++) {
+    //     // }
+    //     let radiusParticle: number = 10;
+    //     let snowflake: Snowflake = new Snowflake({ x: 0, y: 600 }, {});
+    //     let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
+    //     snowflake.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
+    //     gradient.addColorStop(0, "HSLA(0, 100%, 100%, 1)");
+    //     gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
+    //     crc2.save();
+    //     crc2.translate(_position.x, _position.y);
+    //     crc2.fillStyle = gradient;
+    //     for (let drawn: number = 0; drawn < nSnowflakes; drawn++) {
+    //         crc2.save();
+    //         let x: number = Math.random() * 800;
+    //         let y: number = - (Math.random() * 600);
+    //         crc2.translate(x, y);
+    //         crc2.fill(snowflake);
+    //         crc2.restore();
+    //     }
+    //     crc2.restore();
+    // }
+    // update Background & Animation
+    function update(_background) {
+        console.log("updated");
+        L09_Canvas_Birdhouse.crc2.putImageData(_background, 0, 0);
     }
 })(L09_Canvas_Birdhouse || (L09_Canvas_Birdhouse = {}));
 //# sourceMappingURL=birdhouse.js.map
