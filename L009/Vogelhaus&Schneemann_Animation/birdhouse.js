@@ -5,6 +5,7 @@ var L09_Canvas_Birdhouse;
     L09_Canvas_Birdhouse.golden = 0.62;
     let snowflakes = [];
     let birds = [];
+    let sittingBirds = [];
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas)
@@ -18,9 +19,10 @@ var L09_Canvas_Birdhouse;
         L09_Canvas_Birdhouse.drawTree();
         L09_Canvas_Birdhouse.drawSnowman({ x: 400, y: 500 });
         L09_Canvas_Birdhouse.drawBirdhouse();
+        L09_Canvas_Birdhouse.drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
         let background = L09_Canvas_Birdhouse.crc2.getImageData(0, 0, 800, 600);
-        drawBirds(20);
-        // drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
+        drawBirds(15);
+        drawSittingBirds(7);
         drawSnowflakes(111);
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
     }
@@ -32,32 +34,12 @@ var L09_Canvas_Birdhouse;
         }
         // 
     }
-    // function drawBirdsInTree(_position: Vector, _size: Vector): void {
-    //     console.log("Birds in Tree");
-    //     let nBirds: number = 5;
-    //     let radiusBird: number = 10 + Math.random() * 10;
-    //     let bird: Path2D = new Path2D();
-    //     bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
-    //     let wing: number = 0 - radiusBird;
-    //     bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
-    //     crc2.stroke(bird);
-    //     let head: number = 0 - radiusBird;
-    //     bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
-    //     crc2.save();
-    //     crc2.translate(_position.x, _position.y);
-    //     for (let drawn: number = 0; drawn < nBirds; drawn++) {
-    //         let colorAngle: number = 120 - Math.random() * 290;
-    //         let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
-    //         crc2.fillStyle = color;
-    //         crc2.save();
-    //         let x: number = Math.random() * _size.x;
-    //         let y: number = - (Math.random() * _size.y);
-    //         crc2.translate(x, y);
-    //         crc2.fill(bird);
-    //         crc2.restore();
-    //     }
-    //     crc2.restore();
-    // }
+    function drawSittingBirds(nBirds) {
+        for (let i = 0; i < nBirds; i++) {
+            let sittingBird = new L09_Canvas_Birdhouse.SittingBird();
+            sittingBirds.push(sittingBird);
+        }
+    }
     function drawSnowflakes(nSnowflakes) {
         console.log("Schneeflocken");
         //let nSnowflakes: number = 111;
@@ -76,11 +58,11 @@ var L09_Canvas_Birdhouse;
         }
         for (let bird of birds) {
             bird.move(1);
-            // if (bird.position.y <= 600 * golden) {
-            //     bird.drawFlyingBird();
-            // } else {
-            //     bird.drawWalkingBird();
             bird.drawFlyingBird();
+        }
+        for (let sittingBird of sittingBirds) {
+            sittingBird.move(1);
+            sittingBird.draw();
         }
     }
 })(L09_Canvas_Birdhouse || (L09_Canvas_Birdhouse = {}));

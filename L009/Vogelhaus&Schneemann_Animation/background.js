@@ -174,5 +174,32 @@ var L09_Canvas_Birdhouse;
         L09_Canvas_Birdhouse.crc2.fill();
     }
     L09_Canvas_Birdhouse.drawBirdhouse = drawBirdhouse;
+    function drawBirdsInTree(_position, _size) {
+        console.log("Birds in Tree");
+        let nBirds = 3;
+        let radiusBird = 10 + Math.random() * 10;
+        let bird = new Path2D();
+        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
+        let wing = 0 - radiusBird;
+        bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
+        L09_Canvas_Birdhouse.crc2.stroke(bird);
+        let head = 0 - radiusBird;
+        bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+        L09_Canvas_Birdhouse.crc2.save();
+        L09_Canvas_Birdhouse.crc2.translate(_position.x, _position.y);
+        for (let drawn = 0; drawn < nBirds; drawn++) {
+            let colorAngle = 120 - Math.random() * 290;
+            let color = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+            L09_Canvas_Birdhouse.crc2.fillStyle = color;
+            L09_Canvas_Birdhouse.crc2.save();
+            let x = Math.random() * _size.x;
+            let y = -(Math.random() * _size.y);
+            L09_Canvas_Birdhouse.crc2.translate(x, y);
+            L09_Canvas_Birdhouse.crc2.fill(bird);
+            L09_Canvas_Birdhouse.crc2.restore();
+        }
+        L09_Canvas_Birdhouse.crc2.restore();
+    }
+    L09_Canvas_Birdhouse.drawBirdsInTree = drawBirdsInTree;
 })(L09_Canvas_Birdhouse || (L09_Canvas_Birdhouse = {}));
 //# sourceMappingURL=background.js.map

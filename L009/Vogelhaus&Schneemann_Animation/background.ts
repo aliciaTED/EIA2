@@ -217,4 +217,38 @@ namespace L09_Canvas_Birdhouse {
 
     }
 
+    export function drawBirdsInTree(_position: VectorBack, _size: VectorBack): void {
+        console.log("Birds in Tree");
+
+        let nBirds: number = 3;
+        let radiusBird: number = 10 + Math.random() * 10;
+        let bird: Path2D = new Path2D();
+
+        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
+
+        let wing: number = 0 - radiusBird;
+        bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
+        crc2.stroke(bird);
+
+        let head: number = 0 - radiusBird;
+        bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+
+
+        for (let drawn: number = 0; drawn < nBirds; drawn++) {
+            let colorAngle: number = 120 - Math.random() * 290;
+            let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+            crc2.fillStyle = color;
+            crc2.save();
+            let x: number = Math.random() * _size.x;
+            let y: number = - (Math.random() * _size.y);
+            crc2.translate(x, y);
+            crc2.fill(bird);
+            crc2.restore();
+        }
+        crc2.restore();
+    }
+
 }

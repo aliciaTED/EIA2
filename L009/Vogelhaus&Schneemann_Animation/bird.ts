@@ -14,16 +14,10 @@ namespace L09_Canvas_Birdhouse {
 
             // Geschwindigkeit & Richtung
             this.velocity = new Vector(-5, 0);
-            // this.color = this.randomColor();
-            // this.size = this.randomSize();
-            // if (this.position.y <= 600 * golden)
-            //     this.drawFlyingBird();
-            // else
-            //     this.drawWalkingBird();
         }
 
         move(_timeslice: number): void {
-            console.log("moved");
+            //console.log("moved");
             this.position.add(this.velocity);
 
             //Vogel-Endless-Schleife
@@ -32,19 +26,19 @@ namespace L09_Canvas_Birdhouse {
         }
 
         drawFlyingBird(): void {
-            console.log("flying");
+            //console.log("flying");
 
-            let radiusBird: number = 7 + Math.random() * 10;
+            // let radiusBird: number = 7 + Math.random() * 10;
 
             crc2.beginPath();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
             //crc2.scale(this.size, this.size);
-            crc2.arc(0, 0, radiusBird, 0, 2 * Math.PI);
+            crc2.arc(0, 0, 15, 0, 2 * Math.PI);
 
-            let head: number = 0 - radiusBird;
-            crc2.arc(head, -2, (1 / 2) * radiusBird, 0, 2 * Math.PI);
-            crc2.ellipse(5, -5, (1 / 3) * radiusBird, radiusBird, 13, 0, 2 * Math.PI);
+            let head: number = -15;
+            crc2.arc(head, -2, (1 / 2) * 15, 0, 2 * Math.PI);
+            crc2.ellipse(5, -5, (1 / 3) * 15, 15, 13, 0, 2 * Math.PI);
 
             for (let drawn: number = 0; drawn < 20; drawn++) {
                 let colorAngle: number = 120 - Math.random() * 290;
@@ -64,24 +58,5 @@ namespace L09_Canvas_Birdhouse {
             crc2.closePath();
 
         }
-
-        // drawWalkingBird(): void {
-        //     console.log("walking");
-        // }
-
-        //     randomColor(): string {
-        //         let colorAngle: number = 120 - Math.random() * 290;
-        //         let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
-        //         return color;
-        //     }
-
-        //     randomSize(): number {
-        //         let scale: number = 0.7 + Math.random() * 1;
-        //         let x: number = Math.random() * 800;
-        //         let y: number = - (Math.random() * 600);
-        //         crc2.translate(x, y);
-        //         return scale;
-        //     }
-        // }
     }
 }
