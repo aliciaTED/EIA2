@@ -11,15 +11,13 @@ namespace L09_Canvas_Birdhouse {
             this.position = new Vector (x, y);
            
             // Geschwindigkeit & Richtung
-            this.velocity = new Vector(0, 5);
+            this.velocity = new Vector(0, 3);
         }
 
         move(_timeslice: number): void {
-            console.log("moved");
+            //console.log("moved");
 
-            // Anmerkung: "newMove" beschreibt Abstand von alter und neuer Position (alte wird "übermalt")
-            let newMove: Vector = new Vector (this.velocity.x, this.velocity.y);
-            newMove.scale(_timeslice);
+            // Geschwindigkeit & Richtung zu Positon addieren
             this.position.add(this.velocity);
         
             //Schneeflocken-Endless-Schleife
@@ -28,7 +26,7 @@ namespace L09_Canvas_Birdhouse {
         }
 
         draw(): void {
-            console.log("drawn");
+            //console.log("drawn");
 
             let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, 10); 
             

@@ -8,20 +8,18 @@ var L09_Canvas_Birdhouse;
             let y = 600 * Math.random();
             this.position = new L09_Canvas_Birdhouse.Vector(x, y);
             // Geschwindigkeit & Richtung
-            this.velocity = new L09_Canvas_Birdhouse.Vector(0, 5);
+            this.velocity = new L09_Canvas_Birdhouse.Vector(0, 3);
         }
         move(_timeslice) {
-            console.log("moved");
-            // Anmerkung: "newMove" beschreibt Abstand von alter und neuer Position (alte wird "übermalt")
-            let newMove = new L09_Canvas_Birdhouse.Vector(this.velocity.x, this.velocity.y);
-            newMove.scale(_timeslice);
+            //console.log("moved");
+            // Geschwindigkeit & Richtung zu Positon addieren
             this.position.add(this.velocity);
             //Schneeflocken-Endless-Schleife
             if (this.position.y > 600)
                 this.position.y -= L09_Canvas_Birdhouse.crc2.canvas.height;
         }
         draw() {
-            console.log("drawn");
+            //console.log("drawn");
             let gradient = L09_Canvas_Birdhouse.crc2.createRadialGradient(0, 0, 0, 0, 0, 10);
             L09_Canvas_Birdhouse.crc2.beginPath();
             L09_Canvas_Birdhouse.crc2.save();
