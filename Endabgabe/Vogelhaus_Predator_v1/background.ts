@@ -239,7 +239,7 @@ namespace Endabgabe {
 
         for (let drawn: number = 0; drawn < nBirds; drawn++) {
             let colorAngle: number = 120 - Math.random() * 290;
-            let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+            let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 1)";
             crc2.fillStyle = color;
             crc2.save();
             let x: number = Math.random() * _size.x;

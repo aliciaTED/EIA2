@@ -23,9 +23,6 @@ var Endabgabe;
             // this.set(0, 10);
             this.scale(length);
         }
-        copy() {
-            return new Vector(this.x, this.y);
-        }
     }
     Endabgabe.Vector = Vector;
 })(Endabgabe || (Endabgabe = {}));

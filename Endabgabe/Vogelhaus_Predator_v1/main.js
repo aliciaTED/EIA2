@@ -22,8 +22,8 @@ var Endabgabe;
         Endabgabe.drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
         let background = Endabgabe.crc2.getImageData(0, 0, 800, 600);
         drawBirds(15);
-        // drawSittingBirds(7);
         drawSnowflakes(111);
+        drawPartyBird(1);
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
     }
     function drawBirds(nBirds) {
@@ -32,20 +32,20 @@ var Endabgabe;
             let bird = new Endabgabe.Bird();
             moveables.push(bird);
         }
-        // 
     }
-    // function drawSittingBirds(nBirds: number): void {
-    //     for (let i: number = 0; i < nBirds; i++) {
-    //         let sittingBird: SittingBird = new SittingBird();
-    //         moveables.push(sittingBird);
-    //     }
-    // }
     function drawSnowflakes(nSnowflakes) {
         console.log("Schneeflocken");
-        //let nSnowflakes: number = 111;
         for (let i = 0; i < nSnowflakes; i++) {
             let snowflake = new Endabgabe.Snowflake();
             moveables.push(snowflake);
+        }
+    }
+    function drawPartyBird(nBirds) {
+        console.log("Party Bird.");
+        for (let i = 0; i < nBirds; i++) {
+            let partyBird = new Endabgabe.PartyBird();
+            moveables.push(partyBird);
+            console.log("Party Bird.");
         }
     }
     // update Background & Animation

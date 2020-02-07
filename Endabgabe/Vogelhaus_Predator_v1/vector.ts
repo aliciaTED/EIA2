@@ -29,9 +29,5 @@ namespace Endabgabe {
            // this.set(0, 10);
             this.scale(length);
         }
-
-        copy(): Vector {
-            return new Vector(this.x, this.y);
-        }
     }
 }

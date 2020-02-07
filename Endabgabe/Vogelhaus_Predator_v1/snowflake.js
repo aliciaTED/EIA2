@@ -4,12 +4,12 @@ var Endabgabe;
     class Snowflake extends Endabgabe.Moveable {
         constructor() {
             super();
-            console.log("constructed");
+            // console.log("constructed");
             let x = 800 * Math.random();
             let y = 600 * Math.random();
             this.position = new Endabgabe.Vector(x, y);
             // Geschwindigkeit & Richtung
-            this.velocity = new Endabgabe.Vector(0, 3);
+            this.velocity = new Endabgabe.Vector(0, 2);
         }
         draw() {
             //console.log("drawn");

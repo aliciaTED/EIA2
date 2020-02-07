@@ -32,8 +32,8 @@ namespace Endabgabe {
         let background: ImageData = crc2.getImageData(0, 0, 800, 600);
 
         drawBirds(15);
-        // drawSittingBirds(7);
         drawSnowflakes(111);
+        drawPartyBird(1);
 
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
     }
@@ -45,25 +45,23 @@ namespace Endabgabe {
             let bird: Bird = new Bird();
             moveables.push(bird);
         }
-
-        // 
     }
-
-    // function drawSittingBirds(nBirds: number): void {
-    //     for (let i: number = 0; i < nBirds; i++) {
-    //         let sittingBird: SittingBird = new SittingBird();
-    //         moveables.push(sittingBird);
-    //     }
-    // }
-
 
     function drawSnowflakes(nSnowflakes: number): void {
         console.log("Schneeflocken");
-        //let nSnowflakes: number = 111;
 
         for (let i: number = 0; i < nSnowflakes; i++) {
             let snowflake: Snowflake = new Snowflake();
             moveables.push(snowflake);
+        }
+    }
+
+    function drawPartyBird(nBirds: number): void {
+        console.log("Party Bird.");
+        for (let i: number = 0; i < nBirds; i++) {
+            let partyBird: PartyBird = new PartyBird();
+            moveables.push(partyBird);
+            console.log("Party Bird.");
         }
     }
 

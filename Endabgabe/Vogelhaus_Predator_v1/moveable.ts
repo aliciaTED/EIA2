@@ -1,10 +1,10 @@
 namespace Endabgabe {
-    export class Moveable {
+    export abstract class Moveable {
         position: Vector;
         velocity: Vector;
 
         constructor() {
-            console.log("constructed");   
+            // console.log("constructed");   
                      
             let x: number = 800 * Math.random();
             let y: number = 700 * golden * Math.random();

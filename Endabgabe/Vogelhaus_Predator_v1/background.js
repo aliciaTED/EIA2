@@ -189,7 +189,7 @@ var Endabgabe;
         Endabgabe.crc2.translate(_position.x, _position.y);
         for (let drawn = 0; drawn < nBirds; drawn++) {
             let colorAngle = 120 - Math.random() * 290;
-            let color = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
+            let color = "HSLA(" + colorAngle + ", 90%, 50%, 1)";
             Endabgabe.crc2.fillStyle = color;
             Endabgabe.crc2.save();
             let x = Math.random() * _size.x;

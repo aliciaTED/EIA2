@@ -7,13 +7,13 @@ namespace Endabgabe {
         constructor() {
             super();
 
-            console.log("constructed");
+            // console.log("constructed");
             let x: number = 800 * Math.random();
             let y: number = 600 * Math.random();
             this.position = new Vector (x, y);
            
             // Geschwindigkeit & Richtung
-            this.velocity = new Vector(0, 3);
+            this.velocity = new Vector(0, 2);
         }
 
         draw(): void {

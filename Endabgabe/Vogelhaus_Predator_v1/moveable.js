@@ -3,7 +3,7 @@ var Endabgabe;
 (function (Endabgabe) {
     class Moveable {
         constructor() {
-            console.log("constructed");
+            // console.log("constructed");   
             let x = 800 * Math.random();
             let y = 700 * Endabgabe.golden * Math.random();
             this.position = new Endabgabe.Vector(x, y);
