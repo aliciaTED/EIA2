@@ -25,6 +25,9 @@ var L10_Asteroids;
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
         }
+        copy() {
+            return new Vector(this.x, this.y);
+        }
     }
     L10_Asteroids.Vector = Vector;
 })(L10_Asteroids || (L10_Asteroids = {}));

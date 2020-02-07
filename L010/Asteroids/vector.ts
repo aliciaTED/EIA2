@@ -28,5 +28,9 @@ namespace L10_Asteroids {
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
         }
+
+        copy(): Vector {
+            return new Vector (this.x, this.y);
+        }
     }
 }

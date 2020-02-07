@@ -5,7 +5,7 @@ var L10_Asteroids;
         constructor(_size, _position) {
             console.log("Asteroid constructor");
             if (_position)
-                this.position = new L10_Asteroids.Vector(_position.x, _position.y);
+                this.position = _position.copy();
             else
                 this.position = new L10_Asteroids.Vector(0, 0);
             this.velocity = new L10_Asteroids.Vector(0, 0);
@@ -33,6 +33,7 @@ var L10_Asteroids;
             L10_Asteroids.crc2.translate(this.position.x, this.position.y);
             L10_Asteroids.crc2.scale(this.size, this.size);
             L10_Asteroids.crc2.translate(-50, -50);
+            L10_Asteroids.crc2.lineWidth = 1 / this.size; // Linien umgekehrt proportional zeichnen
             L10_Asteroids.crc2.stroke(L10_Asteroids.asteroidPaths[this.type]);
             L10_Asteroids.crc2.restore();
         }
