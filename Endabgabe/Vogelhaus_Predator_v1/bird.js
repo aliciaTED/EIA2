@@ -12,13 +12,11 @@ var Endabgabe;
             this.velocity = new Endabgabe.Vector(-2, 2);
         }
         draw() {
-            //console.log("flying");
-            if (Endabgabe.crc2.canvas.height < 100) {
-                //console.log("sitting");
+            //sitzende/laufende Vögel
+            if (this.position.y >= 490) {
                 Endabgabe.crc2.beginPath();
                 Endabgabe.crc2.save();
                 Endabgabe.crc2.translate(this.position.x, this.position.y);
-                //crc2.scale(this.size, this.size);
                 Endabgabe.crc2.arc(0, 0, 10, 0, 2 * Math.PI);
                 let wing = -10;
                 Endabgabe.crc2.arc(wing, 0, 10, 0, 0.5 * Math.PI);

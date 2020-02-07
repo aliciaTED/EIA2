@@ -20,14 +20,13 @@ namespace Endabgabe {
         }
 
         draw(): void {
-            //console.log("flying");
+        
+        //sitzende/laufende Vögel
 
-            if (crc2.canvas.height < 100) {
-                //console.log("sitting");
+            if (this.position.y >= 490) {
                 Endabgabe.crc2.beginPath();
                 Endabgabe.crc2.save();
                 Endabgabe.crc2.translate(this.position.x, this.position.y);
-                //crc2.scale(this.size, this.size);
                 Endabgabe.crc2.arc(0, 0, 10, 0, 2 * Math.PI);
                 let wing: number = -10;
                 Endabgabe.crc2.arc(wing, 0, 10, 0, 0.5 * Math.PI);
@@ -58,9 +57,6 @@ namespace Endabgabe {
                 crc2.restore();
                 crc2.closePath();
             }
-
-
-
         }
     }
 }
