@@ -1,6 +1,8 @@
 "use strict";
 var Endabgabe;
 (function (Endabgabe) {
+    let url = "https://zero-x.herokuapp.com/";
+    console.log(url);
     window.addEventListener("load", handleLoad);
     Endabgabe.golden = 0.62;
     let snowflakes = [];

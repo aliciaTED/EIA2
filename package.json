@@ -1,7 +1,7 @@
 {
   "name": "zero-x",
   "version": "1.0.0",
-  "description": "created in order to be able to run heroku app; author: me (Alicia Ted)",
+  "description": "created in order to be able to finish my EIA-Project; author: me (Alicia Ted)",
   "main": "index.js",
   "dependencies": {
     "@types/mongodb": "^3.3.11",

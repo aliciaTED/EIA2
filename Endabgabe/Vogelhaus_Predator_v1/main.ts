@@ -4,6 +4,9 @@ namespace Endabgabe {
         y: number;
     }
 
+    let url: string = "https://zero-x.herokuapp.com/";
+    console.log(url);
+
     window.addEventListener("load", handleLoad);
     export let crc2: CanvasRenderingContext2D;
     export let golden: number = 0.62;
