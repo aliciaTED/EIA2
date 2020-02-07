@@ -1,22 +1,15 @@
 "use strict";
 var L10_Canvas_Birdhouse;
 (function (L10_Canvas_Birdhouse) {
-    class Snowflake {
+    class Snowflake extends L10_Canvas_Birdhouse.Moveable {
         constructor() {
+            super();
             console.log("constructed");
             let x = 800 * Math.random();
             let y = 600 * Math.random();
             this.position = new L10_Canvas_Birdhouse.Vector(x, y);
             // Geschwindigkeit & Richtung
             this.velocity = new L10_Canvas_Birdhouse.Vector(0, 3);
-        }
-        move(_timeslice) {
-            //console.log("moved");
-            // Geschwindigkeit & Richtung zu Positon addieren
-            this.position.add(this.velocity);
-            //Schneeflocken-Endless-Schleife
-            if (this.position.y > 600)
-                this.position.y -= L10_Canvas_Birdhouse.crc2.canvas.height;
         }
         draw() {
             //console.log("drawn");

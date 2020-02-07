@@ -1,4 +1,4 @@
-namespace L10_Canvas_Birdhouse {
+namespace Endabgabe {
     export class SittingBird extends Moveable {
         position: Vector;
         velocity: Vector;

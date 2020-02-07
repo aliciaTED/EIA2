@@ -1,4 +1,4 @@
-namespace L10_Canvas_Birdhouse {
+namespace Endabgabe {
     export class Snowflake extends Moveable {
         position: Vector;
         velocity: Vector;

@@ -1,6 +1,6 @@
 "use strict";
-var L10_Canvas_Birdhouse;
-(function (L10_Canvas_Birdhouse) {
+var Endabgabe;
+(function (Endabgabe) {
     class Vector {
         constructor(_x, _y) {
             this.set(_x, _y);
@@ -27,6 +27,6 @@ var L10_Canvas_Birdhouse;
             return new Vector(this.x, this.y);
         }
     }
-    L10_Canvas_Birdhouse.Vector = Vector;
-})(L10_Canvas_Birdhouse || (L10_Canvas_Birdhouse = {}));
+    Endabgabe.Vector = Vector;
+})(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=vector.js.map

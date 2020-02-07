@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node L006/CocktailBar/Server/Server.js"
+    "start": "node Endabgabe/Vogelhaus_Predator_v1/server.js"
   },
   "repository": {
     "type": "git",

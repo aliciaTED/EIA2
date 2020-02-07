@@ -1,4 +1,4 @@
-namespace L10_Canvas_Birdhouse {
+namespace Endabgabe {
     export interface VectorBack {
         x: number;
         y: number;

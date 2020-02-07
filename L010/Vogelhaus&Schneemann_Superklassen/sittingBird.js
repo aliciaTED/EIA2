@@ -1,21 +1,15 @@
 "use strict";
 var L10_Canvas_Birdhouse;
 (function (L10_Canvas_Birdhouse) {
-    class SittingBird {
+    class SittingBird extends L10_Canvas_Birdhouse.Moveable {
         constructor() {
+            super();
             console.log("constructed");
             let x = 800 * Math.random();
             let y = 700 - (80 * Math.random());
             this.position = new L10_Canvas_Birdhouse.Vector(x, y);
             // Geschwindigkeit & Richtung
             this.velocity = new L10_Canvas_Birdhouse.Vector(1, 0);
-        }
-        move(_timeslice) {
-            //console.log("moved");
-            this.position.add(this.velocity);
-            //Vogel-Endless-Schleife
-            if (this.position.x > 800)
-                this.position.x -= L10_Canvas_Birdhouse.crc2.canvas.width;
         }
         draw() {
             //console.log("sitting");
