@@ -11,9 +11,7 @@ namespace Endabgabe {
     export let crc2: CanvasRenderingContext2D;
     export let golden: number = 0.62;
 
-    let snowflakes: Snowflake[] = [];
-    let birds: Bird[] = [];
-    let sittingBirds: SittingBird[] = [];
+    let moveables: Moveable[] = [];
 
     function handleLoad(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -34,7 +32,7 @@ namespace Endabgabe {
         let background: ImageData = crc2.getImageData(0, 0, 800, 600);
 
         drawBirds(15);
-        drawSittingBirds(7);
+        // drawSittingBirds(7);
         drawSnowflakes(111);
 
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
@@ -45,18 +43,18 @@ namespace Endabgabe {
 
         for (let i: number = 0; i < nBirds; i++) {
             let bird: Bird = new Bird();
-            birds.push(bird);
+            moveables.push(bird);
         }
 
         // 
     }
 
-    function drawSittingBirds(nBirds: number): void {
-        for (let i: number = 0; i < nBirds; i++) {
-            let sittingBird: SittingBird = new SittingBird();
-            sittingBirds.push(sittingBird);
-        }
-    }
+    // function drawSittingBirds(nBirds: number): void {
+    //     for (let i: number = 0; i < nBirds; i++) {
+    //         let sittingBird: SittingBird = new SittingBird();
+    //         moveables.push(sittingBird);
+    //     }
+    // }
 
 
     function drawSnowflakes(nSnowflakes: number): void {
@@ -65,7 +63,7 @@ namespace Endabgabe {
 
         for (let i: number = 0; i < nSnowflakes; i++) {
             let snowflake: Snowflake = new Snowflake();
-            snowflakes.push(snowflake);
+            moveables.push(snowflake);
         }
     }
 
@@ -75,19 +73,9 @@ namespace Endabgabe {
         console.log("updated");
         crc2.putImageData(_background, 0, 0);
 
-        for (let snowflake of snowflakes) {
-            snowflake.move(1.5);
-            snowflake.draw();
-        }
-
-        for (let bird of birds) {
-            bird.move(1);
-            bird.draw();
-        }
-
-        for (let sittingBird of sittingBirds) {
-            sittingBird.move(1);
-            sittingBird.draw();
+        for (let moveable of moveables) {
+            moveable.move(1);
+            moveable.draw();
         }
     }
 }

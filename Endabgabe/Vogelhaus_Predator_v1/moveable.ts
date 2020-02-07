@@ -10,7 +10,7 @@ namespace Endabgabe {
             let y: number = 700 * golden * Math.random();
             this.position = new Vector(x, y);
 
-            // Geschwindigkeit & Richtung
+            // Geschwindigkeit & Richtung, wird von Subklassen überschrieben
             this.velocity = new Vector(0, 0);
         }
 

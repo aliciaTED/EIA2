@@ -7,7 +7,7 @@ var Endabgabe;
             let x = 800 * Math.random();
             let y = 700 * Endabgabe.golden * Math.random();
             this.position = new Endabgabe.Vector(x, y);
-            // Geschwindigkeit & Richtung
+            // Geschwindigkeit & Richtung, wird von Subklassen überschrieben
             this.velocity = new Endabgabe.Vector(0, 0);
         }
         move(_timeslice) {
