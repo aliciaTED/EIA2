@@ -5,9 +5,9 @@ var Endabgabe;
         constructor() {
             super();
             // console.log("constructed");
-            let x = 800 * Math.random();
-            let y = 600 * Math.random();
-            this.position = new Endabgabe.Vector(x, y);
+            // let x: number = 800 * Math.random();
+            // let y: number = 600 * Math.random();
+            // this.position = new Vector(x, y);
             // Geschwindigkeit & Richtung
             let a = Math.random() * 0.3;
             let b = Math.random() * 2 + 1;

@@ -201,5 +201,13 @@ var Endabgabe;
     }
     Endabgabe.drawBirdsInTree = drawBirdsInTree;
     console.log("Background, Mountains, Sun, Cloud, Tree, Birdhouse and Snowman created.");
+    // export function drawSlingshotWoodenPart(): void {
+    //     crc2.beginPath();
+    //     //crc2.rect(crc2.canvas.width - 50, crc2.canvas.height + 60, 30, 10);
+    //     crc2.fillStyle = "brown";
+    //     crc2.fillRect(crc2.canvas.width - 50, crc2.canvas.height + 60, 30, 10);
+    //     crc2.save();
+    //     crc2.translate(760, 550);
+    // }
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=background.js.map

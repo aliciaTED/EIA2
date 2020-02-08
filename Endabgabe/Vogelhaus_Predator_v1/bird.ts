@@ -3,6 +3,7 @@ namespace Endabgabe {
         color: string;
         aim: Vector;
         isLured: boolean;
+        isHit: boolean;
         score: number;
 
         constructor() {
@@ -10,9 +11,9 @@ namespace Endabgabe {
 
             // console.log("constructed");
 
-            let x: number = 800 * Math.random();
-            let y: number = 700 * golden * Math.random();
-            this.position = new Vector(x, y);
+            // let x: number = 800 * Math.random();
+            // let y: number = 700 * golden * Math.random();
+            // this.position = new Vector(x, y);
 
             // Geschwindigkeit & Richtung
             this.velocity = new Vector(-2, 2);

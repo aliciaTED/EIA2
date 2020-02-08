@@ -5,9 +5,9 @@ namespace Endabgabe {
             super();
 
             // console.log("constructed");
-            let x: number = 800 * Math.random();
-            let y: number = 600 * Math.random();
-            this.position = new Vector(x, y);
+            // let x: number = 800 * Math.random();
+            // let y: number = 600 * Math.random();
+            // this.position = new Vector(x, y);
 
             // Geschwindigkeit & Richtung
             let a: number = Math.random() * 0.3;

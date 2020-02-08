@@ -35,7 +35,9 @@ namespace Endabgabe {
         drawBirds(15);
         drawSnowflakes(150);
         drawPartyBird(1);
-        canvas.addEventListener("click", throwSnowball);
+        drawSlingshot();
+        // drawSlingshotWoodenPart();
+        canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
 
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
@@ -67,8 +69,32 @@ namespace Endabgabe {
         }
     }
 
-    function throwSnowball(_event: MouseEvent): void {
-        console.log("Snowball thrown.");
+    function drawSlingshot(): void {
+        console.log("Slingshot.");
+        let slingShot: Slingshot = new Slingshot();
+        moveables.push(slingShot);
+    }
+
+
+    function useSlingshot(_event: MouseEvent): void {
+        console.log("Slingshot used.");
+        let _mousePosition: Vector = new Vector(_event.screenX, _event.screenY);
+        for (let moveable of moveables) {
+            if (moveable instanceof Slingshot) {
+                // console.log("Slingshot started.");
+                moveable.targetBird(_mousePosition);
+            }
+        }
+    }
+
+    export function deleteSlingshot(): void {
+        for (let i: number = 0; i < moveables.length; i++) {
+            if (moveables[i] instanceof Slingshot) {
+                moveables.splice(i, 1);
+                // console.log("Sling was deleted.");
+            }
+        }
+        drawSlingshot();
     }
 
     function throwFood(_event: MouseEvent): void {
@@ -121,6 +147,12 @@ namespace Endabgabe {
         for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isLured) {
                 moveable.eatFood();
+            }
+        }
+
+        for (let moveable of moveables) {
+            if (moveable instanceof Slingshot) {
+                moveable.reachedTarget();
             }
         }
     }

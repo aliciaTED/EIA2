@@ -25,7 +25,9 @@ var Endabgabe;
         drawBirds(15);
         drawSnowflakes(150);
         drawPartyBird(1);
-        canvas.addEventListener("click", throwSnowball);
+        drawSlingshot();
+        // drawSlingshotWoodenPart();
+        canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
     }
@@ -50,9 +52,31 @@ var Endabgabe;
             moveables.push(partyBird);
         }
     }
-    function throwSnowball(_event) {
-        console.log("Snowball thrown.");
+    function drawSlingshot() {
+        console.log("Slingshot.");
+        let slingShot = new Endabgabe.Slingshot();
+        moveables.push(slingShot);
     }
+    function useSlingshot(_event) {
+        console.log("Slingshot used.");
+        let _mousePosition = new Endabgabe.Vector(_event.screenX, _event.screenY);
+        for (let moveable of moveables) {
+            if (moveable instanceof Endabgabe.Slingshot) {
+                // console.log("Slingshot started.");
+                moveable.targetBird(_mousePosition);
+            }
+        }
+    }
+    function deleteSlingshot() {
+        for (let i = 0; i < moveables.length; i++) {
+            if (moveables[i] instanceof Endabgabe.Slingshot) {
+                moveables.splice(i, 1);
+                // console.log("Sling was deleted.");
+            }
+        }
+        drawSlingshot();
+    }
+    Endabgabe.deleteSlingshot = deleteSlingshot;
     function throwFood(_event) {
         console.log("Food thrown.");
         //console.log(_event);
@@ -96,6 +120,11 @@ var Endabgabe;
         for (let moveable of moveables) {
             if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
                 moveable.eatFood();
+            }
+        }
+        for (let moveable of moveables) {
+            if (moveable instanceof Endabgabe.Slingshot) {
+                moveable.reachedTarget();
             }
         }
     }

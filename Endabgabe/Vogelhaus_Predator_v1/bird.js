@@ -5,9 +5,9 @@ var Endabgabe;
         constructor() {
             super();
             // console.log("constructed");
-            let x = 800 * Math.random();
-            let y = 700 * Endabgabe.golden * Math.random();
-            this.position = new Endabgabe.Vector(x, y);
+            // let x: number = 800 * Math.random();
+            // let y: number = 700 * golden * Math.random();
+            // this.position = new Vector(x, y);
             // Geschwindigkeit & Richtung
             this.velocity = new Endabgabe.Vector(-2, 2);
             // Farbe für Vögel
