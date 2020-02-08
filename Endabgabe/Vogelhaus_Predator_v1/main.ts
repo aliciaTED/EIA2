@@ -12,7 +12,7 @@ namespace Endabgabe {
     export let golden: number = 0.62;
 
     let moveables: Moveable[] = [];
-    let luredBirds: Moveable[] = [];
+    // let luredBirds: Moveable[] = [];
 
     function handleLoad(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -83,6 +83,8 @@ namespace Endabgabe {
                 }
             }
         }
+        let food: Food = new Food(_mousePosition);
+        moveables.push(food);
     }
 
     export function changeDirection(): void {
@@ -90,7 +92,7 @@ namespace Endabgabe {
             if (moveable instanceof Bird) {
                 if (moveable.isLured) {
                     if (Math.random() * 5 < 0.07) {
-                        
+
                         moveable.velocity = new Vector(2, 3);
                     }
                 }

@@ -6,7 +6,7 @@ var Endabgabe;
     window.addEventListener("load", handleLoad);
     Endabgabe.golden = 0.62;
     let moveables = [];
-    let luredBirds = [];
+    // let luredBirds: Moveable[] = [];
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas)
@@ -65,6 +65,8 @@ var Endabgabe;
                 }
             }
         }
+        let food = new Endabgabe.Food(_mousePosition);
+        moveables.push(food);
     }
     function changeDirection() {
         for (let moveable of moveables) {
