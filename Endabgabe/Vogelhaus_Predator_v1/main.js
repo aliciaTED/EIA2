@@ -58,25 +58,32 @@ var Endabgabe;
         //console.log(_event);
         let _mousePosition = new Endabgabe.Vector(_event.screenX, _event.screenY);
         for (let moveable of moveables) {
-            if (moveable instanceof Endabgabe.Bird) {
+            if (moveable instanceof Endabgabe.Bird)
                 if (moveable.isLured) {
                     //console.log(moveable.position);
                     moveable.getFood(_mousePosition);
                 }
-            }
         }
         let food = new Endabgabe.Food(_mousePosition);
         moveables.push(food);
+        setTimeout(deleteFood, 5000);
+    }
+    function deleteFood() {
+        for (let i = 0; i < moveables.length; i++) {
+            if (moveables[i] instanceof Endabgabe.Food) {
+                moveables.splice(i, 1);
+                console.log("All the food was eaten.");
+            }
+        }
     }
     function changeDirection() {
         for (let moveable of moveables) {
-            if (moveable instanceof Endabgabe.Bird) {
+            if (moveable instanceof Endabgabe.Bird)
                 if (moveable.isLured) {
                     if (Math.random() * 5 < 0.07) {
                         moveable.velocity = new Endabgabe.Vector(2, 3);
                     }
                 }
-            }
         }
     }
     Endabgabe.changeDirection = changeDirection;
@@ -85,7 +92,7 @@ var Endabgabe;
         //console.log("updated");
         Endabgabe.crc2.putImageData(_background, 0, 0);
         for (let moveable of moveables) {
-            moveable.move(1);
+            moveable.move();
             moveable.draw();
         }
         for (let moveable of moveables) {

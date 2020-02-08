@@ -76,29 +76,39 @@ namespace Endabgabe {
         //console.log(_event);
         let _mousePosition: Vector = new Vector(_event.screenX, _event.screenY);
         for (let moveable of moveables) {
-            if (moveable instanceof Bird) {
+            if (moveable instanceof Bird)
                 if (moveable.isLured) {
                     //console.log(moveable.position);
                     moveable.getFood(_mousePosition);
+
                 }
-            }
         }
         let food: Food = new Food(_mousePosition);
         moveables.push(food);
+
+        setTimeout(deleteFood, 5000);
+    }
+
+    function deleteFood(): void {
+        for (let i: number = 0; i < moveables.length; i++) {
+            if (moveables[i] instanceof Food) {
+                moveables.splice(i, 1);
+                console.log("All the food was eaten.");
+            }
+        }
     }
 
     export function changeDirection(): void {
         for (let moveable of moveables) {
-            if (moveable instanceof Bird) {
+            if (moveable instanceof Bird)
                 if (moveable.isLured) {
                     if (Math.random() * 5 < 0.07) {
-
                         moveable.velocity = new Vector(2, 3);
                     }
                 }
-            }
         }
     }
+
 
     // update Background & Animation
 
@@ -107,7 +117,7 @@ namespace Endabgabe {
         crc2.putImageData(_background, 0, 0);
 
         for (let moveable of moveables) {
-            moveable.move(1);
+            moveable.move();
             moveable.draw();
         }
 

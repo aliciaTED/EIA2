@@ -1,9 +1,6 @@
 namespace Endabgabe {
     export class Food extends Moveable {
-        position: Vector;
-        velocity: Vector;
-        lifetime: number;
-
+        
         constructor(_position: Vector) {
             super();
             this.position = new Vector(_position.x, _position.y);

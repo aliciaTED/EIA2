@@ -10,7 +10,7 @@ var Endabgabe;
             // Geschwindigkeit & Richtung, wird von Subklassen überschrieben
             this.velocity = new Endabgabe.Vector(0, 0);
         }
-        move(_timeslice) {
+        move() {
             //console.log("moved");
             this.position.add(this.velocity);
             //Vogel-Endless-Schleife

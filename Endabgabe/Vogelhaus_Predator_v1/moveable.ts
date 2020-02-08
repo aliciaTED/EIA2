@@ -14,7 +14,7 @@ namespace Endabgabe {
             this.velocity = new Vector(0, 0);
         }
 
-        move(_timeslice: number): void {
+        move(): void {
             //console.log("moved");
             this.position.add(this.velocity);
 

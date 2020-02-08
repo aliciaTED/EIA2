@@ -3,7 +3,7 @@ namespace Endabgabe {
         color: string;
         target: Vector;
         isLured: boolean;
-        // isDoneEating: boolean;
+        score: number;
 
         constructor() {
             super();

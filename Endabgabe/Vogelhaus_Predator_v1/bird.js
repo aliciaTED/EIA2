@@ -2,7 +2,6 @@
 var Endabgabe;
 (function (Endabgabe) {
     class Bird extends Endabgabe.Moveable {
-        // isDoneEating: boolean;
         constructor() {
             super();
             // console.log("constructed");

@@ -1,19 +1,16 @@
 namespace Endabgabe {
     export class Snowflake extends Moveable {
-        position: Vector;
-        velocity: Vector;
-        size: number;
-
+        
         constructor() {
             super();
 
             // console.log("constructed");
             let x: number = 800 * Math.random();
             let y: number = 600 * Math.random();
-            this.position = new Vector (x, y);
-           
+            this.position = new Vector(x, y);
+
             // Geschwindigkeit & Richtung
-            let a: number = Math.random() * 0.3; 
+            let a: number = Math.random() * 0.3;
             let b: number = Math.random() * 2 + 1;
             this.velocity = new Vector(a, b);
         }
@@ -21,8 +18,8 @@ namespace Endabgabe {
         draw(): void {
             //console.log("drawn");
 
-            let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, 7); 
-            
+            let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, 7);
+
             crc2.beginPath();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);

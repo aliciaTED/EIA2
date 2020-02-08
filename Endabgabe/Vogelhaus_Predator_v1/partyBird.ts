@@ -1,6 +1,7 @@
 namespace Endabgabe {
     export class PartyBird extends Moveable {
-        
+        score: number;
+
         constructor() {
             super();
 

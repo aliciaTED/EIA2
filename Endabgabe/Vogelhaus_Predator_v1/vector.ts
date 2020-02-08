@@ -13,7 +13,7 @@ namespace Endabgabe {
         }
 
         scale(_factor: number): void {
-            this.x *= _factor; 
+            this.x *= _factor;
             this.y *= _factor;
         }
 
