@@ -20,7 +20,6 @@ var Endabgabe;
         // Geschwindigkeit zufällig berechnen & Richtung festlegen
         random(_minLength, _maxLength) {
             let length = _minLength = Math.random() * (_maxLength - _minLength);
-            // this.set(0, 10);
             this.scale(length);
         }
     }

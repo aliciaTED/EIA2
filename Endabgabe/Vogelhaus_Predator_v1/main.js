@@ -24,6 +24,7 @@ var Endabgabe;
         drawBirds(15);
         drawSnowflakes(111);
         drawPartyBird(1);
+        canvas.addEventListener("click", throwFood);
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
     }
     function drawBirds(nBirds) {
@@ -47,6 +48,11 @@ var Endabgabe;
             moveables.push(partyBird);
             console.log("Party Bird.");
         }
+    }
+    function throwFood(_event) {
+        let _mousePosition = new Endabgabe.Vector(_event.x, _event.y);
+        let food = new Endabgabe.Food();
+        food.draw();
     }
     // update Background & Animation
     function update(_background) {

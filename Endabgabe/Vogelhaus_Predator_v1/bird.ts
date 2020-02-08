@@ -2,7 +2,8 @@ namespace Endabgabe {
     export class Bird extends Moveable {
         color: string;
 
-        isFeeding: boolean;
+        target: boolean;
+        isLured: boolean;
         //Aktivität für späteres Picken von Futter 
 
         constructor() {
