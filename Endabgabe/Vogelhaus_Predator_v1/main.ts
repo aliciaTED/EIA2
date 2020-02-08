@@ -12,6 +12,7 @@ namespace Endabgabe {
     export let golden: number = 0.62;
 
     let moveables: Moveable[] = [];
+    let luredBirds: Moveable[] = [];
 
     function handleLoad(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -75,11 +76,25 @@ namespace Endabgabe {
         //console.log(_event);
         let _mousePosition: Vector = new Vector(_event.screenX, _event.screenY);
         for (let moveable of moveables) {
-            if (moveable instanceof Bird)
+            if (moveable instanceof Bird) {
                 if (moveable.isLured) {
                     //console.log(moveable.position);
-                    moveable.eatFood(_mousePosition);
+                    moveable.getFood(_mousePosition);
                 }
+            }
+        }
+    }
+
+    export function changeDirection(): void {
+        for (let moveable of moveables) {
+            if (moveable instanceof Bird) {
+                if (moveable.isLured) {
+                    if (Math.random() * 5 < 0.07) {
+                        
+                        moveable.velocity = new Vector(2, 3);
+                    }
+                }
+            }
         }
     }
 
@@ -92,6 +107,14 @@ namespace Endabgabe {
         for (let moveable of moveables) {
             moveable.move(1);
             moveable.draw();
+        }
+
+        for (let moveable of moveables) {
+            if (moveable instanceof Bird) {
+                if (moveable.isLured) {
+                    moveable.eatFood();
+                }
+            }
         }
     }
 }

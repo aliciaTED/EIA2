@@ -1,10 +1,9 @@
 namespace Endabgabe {
     export class Bird extends Moveable {
         color: string;
-
-        target: boolean;
+        target: Vector;
         isLured: boolean;
-        //Aktivität für späteres Picken von Futter 
+        // isDoneEating: boolean;
 
         constructor() {
             super();
@@ -21,9 +20,9 @@ namespace Endabgabe {
             // Farbe für Vögel
             this.color = Bird.getRandomColor();
 
+            // anlockbare Vögel
             if (Math.random() <= 0.2) {
                 this.isLured = true;
-                //this.eatFood();
                 console.log("I am lured & hungry.");
             } else {
                 this.isLured = false;
@@ -37,23 +36,21 @@ namespace Endabgabe {
             return color;
         }
 
-        eatFood(_mousePosition: Vector): void {
+        getFood(_mousePosition: Vector): void {
+            this.target = _mousePosition;
             let newVelocityX: number = (_mousePosition.x - this.position.x) * 0.01;
-            //console.log(this.position.x);
-            let newVelocityY: number =  (_mousePosition.y - this.position.y) * 0.01;
-            //console.log(this.position.y);
+            let newVelocityY: number = (_mousePosition.y - this.position.y) * 0.01;
             let newVelocity: Vector = new Vector(newVelocityX, newVelocityY);
             this.velocity = newVelocity;
-            console.log("Birds are lured to food.");
+            // console.log("Birds are lured to food.");
+        }
 
-            let destinationX: number = this.position.x + newVelocity.x / 0.01;
-            let destinationY: number = this.position.y + newVelocity.y / 0.01;
-            let destination: Vector = new Vector(destinationX, destinationY);
-
-            if (destination == _mousePosition) {
+        eatFood(): void {
+            if (this.target && (this.position == this.target || (this.position.x <= this.target.x + 10 && this.position.y <= this.target.y + 10 && this.position.x >= this.target.x - 10 && this.position.y >= this.target.y - 10))) {
                 let stop: Vector = new Vector(0, 0);
                 this.velocity = stop;
-                console.log("Birds stopped to eat.");
+                // console.log("Birds stopped to eat.");
+                setTimeout(changeDirection, 3000);
             }
         }
 

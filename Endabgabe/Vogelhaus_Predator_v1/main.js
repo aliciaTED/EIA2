@@ -6,6 +6,7 @@ var Endabgabe;
     window.addEventListener("load", handleLoad);
     Endabgabe.golden = 0.62;
     let moveables = [];
+    let luredBirds = [];
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas)
@@ -57,13 +58,26 @@ var Endabgabe;
         //console.log(_event);
         let _mousePosition = new Endabgabe.Vector(_event.screenX, _event.screenY);
         for (let moveable of moveables) {
-            if (moveable instanceof Endabgabe.Bird)
+            if (moveable instanceof Endabgabe.Bird) {
                 if (moveable.isLured) {
                     //console.log(moveable.position);
-                    moveable.eatFood(_mousePosition);
+                    moveable.getFood(_mousePosition);
                 }
+            }
         }
     }
+    function changeDirection() {
+        for (let moveable of moveables) {
+            if (moveable instanceof Endabgabe.Bird) {
+                if (moveable.isLured) {
+                    if (Math.random() * 5 < 0.07) {
+                        moveable.velocity = new Endabgabe.Vector(2, 3);
+                    }
+                }
+            }
+        }
+    }
+    Endabgabe.changeDirection = changeDirection;
     // update Background & Animation
     function update(_background) {
         //console.log("updated");
@@ -71,6 +85,13 @@ var Endabgabe;
         for (let moveable of moveables) {
             moveable.move(1);
             moveable.draw();
+        }
+        for (let moveable of moveables) {
+            if (moveable instanceof Endabgabe.Bird) {
+                if (moveable.isLured) {
+                    moveable.eatFood();
+                }
+            }
         }
     }
 })(Endabgabe || (Endabgabe = {}));

@@ -2,7 +2,7 @@
 var Endabgabe;
 (function (Endabgabe) {
     class Bird extends Endabgabe.Moveable {
-        //Aktivität für späteres Picken von Futter 
+        // isDoneEating: boolean;
         constructor() {
             super();
             // console.log("constructed");
@@ -13,9 +13,9 @@ var Endabgabe;
             this.velocity = new Endabgabe.Vector(-2, 2);
             // Farbe für Vögel
             this.color = Bird.getRandomColor();
+            // anlockbare Vögel
             if (Math.random() <= 0.2) {
                 this.isLured = true;
-                //this.eatFood();
                 console.log("I am lured & hungry.");
             }
             else {
@@ -27,21 +27,20 @@ var Endabgabe;
             let color = "HSLA(" + colorAngle + ", 90%, 45%, 1)";
             return color;
         }
-        eatFood(_mousePosition) {
+        getFood(_mousePosition) {
+            this.target = _mousePosition;
             let newVelocityX = (_mousePosition.x - this.position.x) * 0.01;
-            //console.log(this.position.x);
             let newVelocityY = (_mousePosition.y - this.position.y) * 0.01;
-            //console.log(this.position.y);
             let newVelocity = new Endabgabe.Vector(newVelocityX, newVelocityY);
             this.velocity = newVelocity;
-            console.log("Birds are lured to food.");
-            let destinationX = this.position.x + newVelocity.x / 0.01;
-            let destinationY = this.position.y + newVelocity.y / 0.01;
-            let destination = new Endabgabe.Vector(destinationX, destinationY);
-            if (destination == _mousePosition) {
+            // console.log("Birds are lured to food.");
+        }
+        eatFood() {
+            if (this.target && (this.position == this.target || (this.position.x <= this.target.x + 10 && this.position.y <= this.target.y + 10 && this.position.x >= this.target.x - 10 && this.position.y >= this.target.y - 10))) {
                 let stop = new Endabgabe.Vector(0, 0);
                 this.velocity = stop;
-                console.log("Birds stopped to eat.");
+                // console.log("Birds stopped to eat.");
+                setTimeout(Endabgabe.changeDirection, 3000);
             }
         }
         draw() {
