@@ -1,7 +1,7 @@
 namespace Endabgabe {
     export class Bird extends Moveable {
         color: string;
-        target: Vector;
+        aim: Vector;
         isLured: boolean;
         score: number;
 
@@ -37,7 +37,7 @@ namespace Endabgabe {
         }
 
         getFood(_mousePosition: Vector): void {
-            this.target = _mousePosition;
+            this.aim = _mousePosition;
             let newVelocityX: number = (_mousePosition.x - this.position.x) * 0.01;
             let newVelocityY: number = (_mousePosition.y - this.position.y) * 0.01;
             let newVelocity: Vector = new Vector(newVelocityX, newVelocityY);
@@ -46,7 +46,7 @@ namespace Endabgabe {
         }
 
         eatFood(): void {
-            if (this.target && (this.position == this.target || (this.position.x <= this.target.x + 10 && this.position.y <= this.target.y + 10 && this.position.x >= this.target.x - 10 && this.position.y >= this.target.y - 10))) {
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 let stop: Vector = new Vector(0, 0);
                 this.velocity = stop;
                 // console.log("Birds stopped to eat.");

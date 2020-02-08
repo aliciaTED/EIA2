@@ -58,11 +58,10 @@ var Endabgabe;
         //console.log(_event);
         let _mousePosition = new Endabgabe.Vector(_event.screenX, _event.screenY);
         for (let moveable of moveables) {
-            if (moveable instanceof Endabgabe.Bird)
-                if (moveable.isLured) {
-                    //console.log(moveable.position);
-                    moveable.getFood(_mousePosition);
-                }
+            if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
+                //console.log(moveable.position);
+                moveable.getFood(_mousePosition);
+            }
         }
         let food = new Endabgabe.Food(_mousePosition);
         moveables.push(food);
@@ -78,12 +77,11 @@ var Endabgabe;
     }
     function changeDirection() {
         for (let moveable of moveables) {
-            if (moveable instanceof Endabgabe.Bird)
-                if (moveable.isLured) {
-                    if (Math.random() * 5 < 0.07) {
-                        moveable.velocity = new Endabgabe.Vector(2, 3);
-                    }
+            if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
+                if (Math.random() * 5 < 0.07) {
+                    moveable.velocity = new Endabgabe.Vector(2, 3);
                 }
+            }
         }
     }
     Endabgabe.changeDirection = changeDirection;
@@ -96,10 +94,8 @@ var Endabgabe;
             moveable.draw();
         }
         for (let moveable of moveables) {
-            if (moveable instanceof Endabgabe.Bird) {
-                if (moveable.isLured) {
-                    moveable.eatFood();
-                }
+            if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
+                moveable.eatFood();
             }
         }
     }

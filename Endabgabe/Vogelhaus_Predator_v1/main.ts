@@ -76,12 +76,11 @@ namespace Endabgabe {
         //console.log(_event);
         let _mousePosition: Vector = new Vector(_event.screenX, _event.screenY);
         for (let moveable of moveables) {
-            if (moveable instanceof Bird)
-                if (moveable.isLured) {
-                    //console.log(moveable.position);
-                    moveable.getFood(_mousePosition);
+            if (moveable instanceof Bird && moveable.isLured) {
+                //console.log(moveable.position);
+                moveable.getFood(_mousePosition);
 
-                }
+            }
         }
         let food: Food = new Food(_mousePosition);
         moveables.push(food);
@@ -100,15 +99,13 @@ namespace Endabgabe {
 
     export function changeDirection(): void {
         for (let moveable of moveables) {
-            if (moveable instanceof Bird)
-                if (moveable.isLured) {
-                    if (Math.random() * 5 < 0.07) {
-                        moveable.velocity = new Vector(2, 3);
-                    }
+            if (moveable instanceof Bird && moveable.isLured) {
+                if (Math.random() * 5 < 0.07) {
+                    moveable.velocity = new Vector(2, 3);
                 }
+            }
         }
     }
-
 
     // update Background & Animation
 
@@ -122,10 +119,8 @@ namespace Endabgabe {
         }
 
         for (let moveable of moveables) {
-            if (moveable instanceof Bird) {
-                if (moveable.isLured) {
-                    moveable.eatFood();
-                }
+            if (moveable instanceof Bird && moveable.isLured) {
+                moveable.eatFood();
             }
         }
     }
