@@ -32,9 +32,10 @@ namespace Endabgabe {
         let background: ImageData = crc2.getImageData(0, 0, 800, 600);
 
         drawBirds(15);
-        drawSnowflakes(111);
+        drawSnowflakes(150);
         drawPartyBird(1);
-        canvas.addEventListener("click", throwFood);
+        canvas.addEventListener("click", throwSnowball);
+        canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
 
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
     }
@@ -49,7 +50,7 @@ namespace Endabgabe {
     }
 
     function drawSnowflakes(nSnowflakes: number): void {
-        console.log("Schneeflocken");
+        console.log("Snowflakes.");
 
         for (let i: number = 0; i < nSnowflakes; i++) {
             let snowflake: Snowflake = new Snowflake();
@@ -62,20 +63,30 @@ namespace Endabgabe {
         for (let i: number = 0; i < nBirds; i++) {
             let partyBird: PartyBird = new PartyBird();
             moveables.push(partyBird);
-            console.log("Party Bird.");
         }
     }
 
+    function throwSnowball(_event: MouseEvent): void {
+        console.log("Snowball thrown.");
+    }
+
     function throwFood(_event: MouseEvent): void {
-        let _mousePosition: Vector = new Vector(_event.x, _event.y);
-        let food: Food = new Food();
-        food.draw();
+        console.log("Food thrown.");
+        //console.log(_event);
+        let _mousePosition: Vector = new Vector(_event.screenX, _event.screenY);
+        for (let moveable of moveables) {
+            if (moveable instanceof Bird)
+                if (moveable.isLured) {
+                    //console.log(moveable.position);
+                    moveable.eatFood(_mousePosition);
+                }
+        }
     }
 
     // update Background & Animation
 
     function update(_background: ImageData): void {
-        console.log("updated");
+        //console.log("updated");
         crc2.putImageData(_background, 0, 0);
 
         for (let moveable of moveables) {

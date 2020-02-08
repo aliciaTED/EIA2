@@ -13,13 +13,15 @@ namespace Endabgabe {
             this.position = new Vector (x, y);
            
             // Geschwindigkeit & Richtung
-            this.velocity = new Vector(0, 2);
+            let a: number = Math.random() * 0.3; 
+            let b: number = Math.random() * 2 + 1;
+            this.velocity = new Vector(a, b);
         }
 
         draw(): void {
             //console.log("drawn");
 
-            let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, 10); 
+            let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, 7); 
             
             crc2.beginPath();
             crc2.save();
@@ -27,7 +29,7 @@ namespace Endabgabe {
             // crc2.scale(this.size, this.size);
             crc2.arc(0, 0, 10, 0, 2 * Math.PI);
             gradient.addColorStop(0, "HSLA(0, 100%, 100%, 1)");
-            gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0)");
+            gradient.addColorStop(1, "HSLA(0, 100%, 100%, 0.03)");
 
             crc2.fillStyle = gradient;
             crc2.fill();

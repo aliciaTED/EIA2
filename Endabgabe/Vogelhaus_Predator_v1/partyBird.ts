@@ -4,7 +4,7 @@ namespace Endabgabe {
         constructor() {
             super();
 
-            console.log("constructed");
+            //console.log("constructed");
 
             let x: number = 800 * Math.random();
             let y: number = 700 * golden * Math.random();

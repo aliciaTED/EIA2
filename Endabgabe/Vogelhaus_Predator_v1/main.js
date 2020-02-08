@@ -22,9 +22,10 @@ var Endabgabe;
         Endabgabe.drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
         let background = Endabgabe.crc2.getImageData(0, 0, 800, 600);
         drawBirds(15);
-        drawSnowflakes(111);
+        drawSnowflakes(150);
         drawPartyBird(1);
-        canvas.addEventListener("click", throwFood);
+        canvas.addEventListener("click", throwSnowball);
+        canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
     }
     function drawBirds(nBirds) {
@@ -35,7 +36,7 @@ var Endabgabe;
         }
     }
     function drawSnowflakes(nSnowflakes) {
-        console.log("Schneeflocken");
+        console.log("Snowflakes.");
         for (let i = 0; i < nSnowflakes; i++) {
             let snowflake = new Endabgabe.Snowflake();
             moveables.push(snowflake);
@@ -46,17 +47,26 @@ var Endabgabe;
         for (let i = 0; i < nBirds; i++) {
             let partyBird = new Endabgabe.PartyBird();
             moveables.push(partyBird);
-            console.log("Party Bird.");
         }
     }
+    function throwSnowball(_event) {
+        console.log("Snowball thrown.");
+    }
     function throwFood(_event) {
-        let _mousePosition = new Endabgabe.Vector(_event.x, _event.y);
-        let food = new Endabgabe.Food();
-        food.draw();
+        console.log("Food thrown.");
+        //console.log(_event);
+        let _mousePosition = new Endabgabe.Vector(_event.screenX, _event.screenY);
+        for (let moveable of moveables) {
+            if (moveable instanceof Endabgabe.Bird)
+                if (moveable.isLured) {
+                    //console.log(moveable.position);
+                    moveable.eatFood(_mousePosition);
+                }
+        }
     }
     // update Background & Animation
     function update(_background) {
-        console.log("updated");
+        //console.log("updated");
         Endabgabe.crc2.putImageData(_background, 0, 0);
         for (let moveable of moveables) {
             moveable.move(1);

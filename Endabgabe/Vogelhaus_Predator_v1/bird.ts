@@ -20,6 +20,14 @@ namespace Endabgabe {
 
             // Farbe für Vögel
             this.color = Bird.getRandomColor();
+
+            if (Math.random() <= 0.2) {
+                this.isLured = true;
+                //this.eatFood();
+                console.log("I am lured & hungry.");
+            } else {
+                this.isLured = false;
+            }
         }
 
         static getRandomColor(): string {
@@ -27,6 +35,26 @@ namespace Endabgabe {
             let color: string = "HSLA(" + colorAngle + ", 90%, 45%, 1)";
 
             return color;
+        }
+
+        eatFood(_mousePosition: Vector): void {
+            let newVelocityX: number = (_mousePosition.x - this.position.x) * 0.01;
+            //console.log(this.position.x);
+            let newVelocityY: number =  (_mousePosition.y - this.position.y) * 0.01;
+            //console.log(this.position.y);
+            let newVelocity: Vector = new Vector(newVelocityX, newVelocityY);
+            this.velocity = newVelocity;
+            console.log("Birds are lured to food.");
+
+            let destinationX: number = this.position.x + newVelocity.x / 0.01;
+            let destinationY: number = this.position.y + newVelocity.y / 0.01;
+            let destination: Vector = new Vector(destinationX, destinationY);
+
+            if (destination == _mousePosition) {
+                let stop: Vector = new Vector(0, 0);
+                this.velocity = stop;
+                console.log("Birds stopped to eat.");
+            }
         }
 
         draw(): void {

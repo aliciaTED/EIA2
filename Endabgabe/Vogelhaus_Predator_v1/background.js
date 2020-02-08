@@ -3,7 +3,7 @@ var Endabgabe;
 (function (Endabgabe) {
     // Funktionen für alle Hintergrundelemente
     function drawBackground() {
-        console.log("Background");
+        //console.log("Background");
         let gradient = Endabgabe.crc2.createLinearGradient(0, 0, 0, Endabgabe.crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
         gradient.addColorStop(Endabgabe.golden, "HSL(220, 30%, 90%)");
@@ -13,7 +13,7 @@ var Endabgabe;
     }
     Endabgabe.drawBackground = drawBackground;
     function drawSun(_position) {
-        console.log("Sun" + _position);
+        //console.log("Sun" + _position);
         let r1 = 25;
         let r2 = 150;
         let gradient = Endabgabe.crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
@@ -28,7 +28,7 @@ var Endabgabe;
     }
     Endabgabe.drawSun = drawSun;
     function drawCloud(_position, _size) {
-        console.log("Cloud" + _position, _size);
+        //console.log("Cloud" + _position, _size);
         let nParticles = 30;
         let radiusParticle = 50;
         let particle = new Path2D();
@@ -51,8 +51,7 @@ var Endabgabe;
     }
     Endabgabe.drawCloud = drawCloud;
     function drawMountains(_position, _min, _max, _colorHigh, _colorLow) {
-        console.log("Mountains" + _position, _min, _max, _colorHigh, _colorLow);
-        console.log("Mountains");
+        //console.log("Mountains" + _position, _min, _max, _colorHigh, _colorLow);
         let stepMin = 50;
         let stepMax = 80;
         let x = 0;
@@ -77,7 +76,7 @@ var Endabgabe;
     }
     Endabgabe.drawMountains = drawMountains;
     function drawTree() {
-        console.log("Tree");
+        //console.log("Tree");
         let transform = Endabgabe.crc2.getTransform();
         // let x: number = Math.random() * 800;
         let nBranches = 50;
@@ -105,7 +104,7 @@ var Endabgabe;
     }
     Endabgabe.drawTree = drawTree;
     function drawSnowman(_position) {
-        console.log("Snowman");
+        //console.log("Snowman");
         let snowman = new Path2D;
         let r1 = 70;
         let r2 = 40;
@@ -150,7 +149,7 @@ var Endabgabe;
     }
     Endabgabe.drawSnowman = drawSnowman;
     function drawBirdhouse() {
-        console.log("Birdhouse");
+        //console.log("Birdhouse");
         //Gehäuse
         Endabgabe.crc2.fillStyle = "HSL(30, 70%, 15%)";
         Endabgabe.crc2.fillRect(150, 550, 15, -70);
@@ -175,7 +174,7 @@ var Endabgabe;
     }
     Endabgabe.drawBirdhouse = drawBirdhouse;
     function drawBirdsInTree(_position, _size) {
-        console.log("Birds in Tree");
+        //console.log("Birds in Tree");
         let nBirds = 3;
         let radiusBird = 10 + Math.random() * 10;
         let bird = new Path2D();
@@ -201,5 +200,6 @@ var Endabgabe;
         Endabgabe.crc2.restore();
     }
     Endabgabe.drawBirdsInTree = drawBirdsInTree;
+    console.log("Background, Mountains, Sun, Cloud, Tree, Birdhouse and Snowman created.");
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=background.js.map

@@ -2,7 +2,7 @@ namespace Endabgabe {
     
     // Funktionen für alle Hintergrundelemente
     export function drawBackground(): void {
-        console.log("Background");
+        //console.log("Background");
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
@@ -14,7 +14,7 @@ namespace Endabgabe {
     }
 
     export function drawSun(_position: VectorBack): void {
-        console.log("Sun" + _position);
+        //console.log("Sun" + _position);
 
         let r1: number = 25;
         let r2: number = 150;
@@ -32,7 +32,7 @@ namespace Endabgabe {
     }
 
     export function drawCloud(_position: VectorBack, _size: VectorBack): void {
-        console.log("Cloud" + _position, _size);
+        //console.log("Cloud" + _position, _size);
         let nParticles: number = 30;
         let radiusParticle: number = 50;
         let particle: Path2D = new Path2D();
@@ -59,8 +59,7 @@ namespace Endabgabe {
     }
 
     export function drawMountains(_position: VectorBack, _min: number, _max: number, _colorHigh: string, _colorLow: string): void {
-        console.log("Mountains" + _position, _min, _max, _colorHigh, _colorLow);
-        console.log("Mountains");
+        //console.log("Mountains" + _position, _min, _max, _colorHigh, _colorLow);
         let stepMin: number = 50;
         let stepMax: number = 80;
         let x: number = 0;
@@ -93,7 +92,7 @@ namespace Endabgabe {
     }
 
     export function drawTree(): void {
-        console.log("Tree");
+        //console.log("Tree");
         let transform: DOMMatrix = crc2.getTransform();
 
         // let x: number = Math.random() * 800;
@@ -128,7 +127,7 @@ namespace Endabgabe {
     }
 
     export function drawSnowman(_position: VectorBack): void {
-        console.log("Snowman");
+        //console.log("Snowman");
 
         let snowman: Path2D = new Path2D;
         let r1: number = 70;
@@ -187,7 +186,7 @@ namespace Endabgabe {
     }
 
     export function drawBirdhouse(): void {
-        console.log("Birdhouse");
+        //console.log("Birdhouse");
 
         //Gehäuse
         crc2.fillStyle = "HSL(30, 70%, 15%)";
@@ -218,7 +217,7 @@ namespace Endabgabe {
     }
 
     export function drawBirdsInTree(_position: VectorBack, _size: VectorBack): void {
-        console.log("Birds in Tree");
+        //console.log("Birds in Tree");
 
         let nBirds: number = 3;
         let radiusBird: number = 10 + Math.random() * 10;
@@ -250,5 +249,5 @@ namespace Endabgabe {
         }
         crc2.restore();
     }
-
+    console.log("Background, Mountains, Sun, Cloud, Tree, Birdhouse and Snowman created.");
 }
