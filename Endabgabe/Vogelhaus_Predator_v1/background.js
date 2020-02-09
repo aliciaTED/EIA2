@@ -214,7 +214,6 @@ var Endabgabe;
         Endabgabe.crc2.lineTo(_position.x, _position.y + 15); // Ecke unten an Stiel
         Endabgabe.crc2.lineTo(_position.x - 40, _position.y - 30);
         Endabgabe.crc2.lineTo(_position.x - 30, _position.y - 30);
-        Endabgabe.crc2.closePath();
         Endabgabe.crc2.fillStyle = "HSL(30, 80%, 30%)";
         Endabgabe.crc2.fill();
         Endabgabe.crc2.closePath();
@@ -223,15 +222,13 @@ var Endabgabe;
         Endabgabe.crc2.lineTo(_position.x + 10, _position.y + 15); // Ecke unten an Stiel
         Endabgabe.crc2.lineTo(_position.x + 50, _position.y - 30);
         Endabgabe.crc2.lineTo(_position.x + 40, _position.y - 30);
-        Endabgabe.crc2.closePath();
         Endabgabe.crc2.fillStyle = "HSL(30, 80%, 30%)";
         Endabgabe.crc2.fill();
         Endabgabe.crc2.closePath();
         Endabgabe.crc2.beginPath();
         Endabgabe.crc2.moveTo(_position.x + 10, _position.y);
         Endabgabe.crc2.lineTo(_position.x + 10, _position.y + 15);
-        Endabgabe.crc2.closePath();
-        Endabgabe.crc2.fillStyle = "darkred";
+        Endabgabe.crc2.fillStyle = "HSL(30, 80%, 30%)";
         Endabgabe.crc2.fill();
         Endabgabe.crc2.closePath();
     }

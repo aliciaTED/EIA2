@@ -15,14 +15,21 @@ var Endabgabe;
             let newVelocity = new Endabgabe.Vector(newVelocityX, newVelocityY);
             this.velocity = newVelocity;
             // console.log("Slingshot shot.");
+            Endabgabe.flyingSlingshot = true;
         }
         reachedTarget() {
             if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 let stop = new Endabgabe.Vector(0, 0);
                 this.velocity = stop;
                 // console.log("Slingshot stopped.")
+                for (let moveable of Endabgabe.moveables) {
+                    if (moveable instanceof Endabgabe.Bird) {
+                        moveable.hitBird(this.aim);
+                    }
+                }
                 setTimeout(Endabgabe.deleteSlingshot, 2000);
             }
+            // drawTarget(this.aim);
         }
         draw() {
             //console.log("drawn");

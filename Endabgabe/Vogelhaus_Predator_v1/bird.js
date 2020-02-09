@@ -5,11 +5,8 @@ var Endabgabe;
         constructor() {
             super();
             // console.log("constructed");
-            // let x: number = 800 * Math.random();
-            // let y: number = 700 * golden * Math.random();
-            // this.position = new Vector(x, y);
             // Geschwindigkeit & Richtung
-            this.velocity = new Endabgabe.Vector(-2, 2);
+            this.velocity = new Endabgabe.Vector(-1, 1);
             // Farbe für Vögel
             this.color = Bird.getRandomColor();
             // anlockbare Vögel
@@ -20,6 +17,7 @@ var Endabgabe;
             else {
                 this.isLured = false;
             }
+            this.isHit = false;
         }
         static getRandomColor() {
             let colorAngle = 120 - Math.random() * 300;
@@ -39,7 +37,14 @@ var Endabgabe;
                 let stop = new Endabgabe.Vector(0, 0);
                 this.velocity = stop;
                 // console.log("Birds stopped to eat.");
-                setTimeout(Endabgabe.changeDirection, 3000);
+                setTimeout(Endabgabe.changeDirection, 1300);
+            }
+        }
+        hitBird(_mousePosition) {
+            this.aim = _mousePosition;
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
+                this.isHit = true;
+                console.log("Bird is hit: " + this.isHit);
             }
         }
         draw() {

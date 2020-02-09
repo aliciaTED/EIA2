@@ -16,6 +16,7 @@ namespace Endabgabe {
             let newVelocity: Vector = new Vector(newVelocityX, newVelocityY);
             this.velocity = newVelocity;
             // console.log("Slingshot shot.");
+            flyingSlingshot = true;
         }
 
         reachedTarget(): void {
@@ -23,8 +24,14 @@ namespace Endabgabe {
                 let stop: Vector = new Vector(0, 0);
                 this.velocity = stop;
                 // console.log("Slingshot stopped.")
+                for (let moveable of moveables) {
+                    if (moveable instanceof Bird) {
+                        moveable.hitBird(this.aim);
+                    }
+                }
                 setTimeout(deleteSlingshot, 2000);
             }
+            // drawTarget(this.aim);
         }
 
         draw(): void {

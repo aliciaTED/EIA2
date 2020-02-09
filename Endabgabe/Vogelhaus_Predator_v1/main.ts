@@ -11,8 +11,11 @@ namespace Endabgabe {
     export let crc2: CanvasRenderingContext2D;
     export let golden: number = 0.62;
 
-    let moveables: Moveable[] = [];
+    export let moveables: Moveable[] = [];
     // let luredBirds: Moveable[] = [];
+
+    export let flyingSlingshot: boolean = false;
+    console.log("Slingshot is flying: " + flyingSlingshot);
 
     function handleLoad(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -29,7 +32,7 @@ namespace Endabgabe {
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
         drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
-        drawSlingshotWoodenPart({x: canvas.width - 55, y: canvas.height + 70});
+        drawSlingshotWoodenPart({ x: canvas.width - 55, y: canvas.height + 70 });
 
         let background: ImageData = crc2.getImageData(0, 0, 800, 600);
 
@@ -37,7 +40,6 @@ namespace Endabgabe {
         drawSnowflakes(150);
         drawPartyBird(1);
         drawSlingshot();
-        // drawSlingshotWoodenPart({x: canvas.width - 50, y: canvas.height + 50});
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
 
@@ -70,8 +72,36 @@ namespace Endabgabe {
         }
     }
 
+    export function changeDirection(): void {
+        for (let moveable of moveables) {
+            if (moveable instanceof Bird && moveable.isLured) {
+                if (Math.random() * 5 < 0.07) {
+                    moveable.velocity = new Vector(2, 3);
+                }
+            }
+        }
+    }
+
+    export function deleteBird(): void {
+        for (let i: number = 0; i < moveables.length; i++) {
+            if (moveables[i].isHit) {
+                moveables.splice(i, 1);
+                console.log("Bird was hit and killed!");
+                // console.log("Bird was hit.");
+            }
+        }
+    }
+
+    // export function drawTarget(_mousePosition: Vector): void {
+    //     crc2.beginPath();
+    //     crc2.moveTo(_mousePosition.x + 10, _mousePosition.y - 5);
+    //     crc2.moveTo(_mousePosition.x + 10, _mousePosition.y + 5);
+    //     crc2.moveTo(_mousePosition.x + 20, _mousePosition.y - 5);
+    //     crc2.moveTo(_mousePosition.x + 20, _mousePosition.y + 5);
+    // }
+
     function drawSlingshot(): void {
-        console.log("Slingshot.");
+        //console.log("Slingshot.");
         let slingShot: Slingshot = new Slingshot();
         moveables.push(slingShot);
     }
@@ -93,6 +123,7 @@ namespace Endabgabe {
             if (moveables[i] instanceof Slingshot) {
                 moveables.splice(i, 1);
                 // console.log("Sling was deleted.");
+                flyingSlingshot = false;
             }
         }
         drawSlingshot();
@@ -106,13 +137,12 @@ namespace Endabgabe {
             if (moveable instanceof Bird && moveable.isLured) {
                 //console.log(moveable.position);
                 moveable.getFood(_mousePosition);
-
             }
         }
         let food: Food = new Food(_mousePosition);
         moveables.push(food);
 
-        setTimeout(deleteFood, 5000);
+        setTimeout(deleteFood, 3000);
     }
 
     function deleteFood(): void {
@@ -124,18 +154,7 @@ namespace Endabgabe {
         }
     }
 
-    export function changeDirection(): void {
-        for (let moveable of moveables) {
-            if (moveable instanceof Bird && moveable.isLured) {
-                if (Math.random() * 5 < 0.07) {
-                    moveable.velocity = new Vector(2, 3);
-                }
-            }
-        }
-    }
-
     // update Background & Animation
-
     function update(_background: ImageData): void {
         //console.log("updated");
         crc2.putImageData(_background, 0, 0);
@@ -154,6 +173,12 @@ namespace Endabgabe {
         for (let moveable of moveables) {
             if (moveable instanceof Slingshot) {
                 moveable.reachedTarget();
+            }
+        }
+
+        for (let moveable of moveables) {
+            if (moveable instanceof Bird && moveable.isHit) {
+                deleteBird();
             }
         }
     }

@@ -265,7 +265,6 @@ namespace Endabgabe {
         crc2.lineTo(_position.x, _position.y + 15); // Ecke unten an Stiel
         crc2.lineTo(_position.x - 40, _position.y - 30);
         crc2.lineTo(_position.x - 30, _position.y - 30);
-        crc2.closePath();
         crc2.fillStyle = "HSL(30, 80%, 30%)";
         crc2.fill();
         crc2.closePath();
@@ -275,7 +274,6 @@ namespace Endabgabe {
         crc2.lineTo(_position.x + 10, _position.y + 15); // Ecke unten an Stiel
         crc2.lineTo(_position.x + 50, _position.y - 30);
         crc2.lineTo(_position.x + 40, _position.y - 30);
-        crc2.closePath();
         crc2.fillStyle = "HSL(30, 80%, 30%)";
         crc2.fill();
         crc2.closePath();
@@ -283,8 +281,7 @@ namespace Endabgabe {
         crc2.beginPath();
         crc2.moveTo(_position.x + 10, _position.y);
         crc2.lineTo(_position.x + 10, _position.y + 15);
-        crc2.closePath();
-        crc2.fillStyle = "darkred";
+        crc2.fillStyle = "HSL(30, 80%, 30%)";
         crc2.fill();
         crc2.closePath();
     }

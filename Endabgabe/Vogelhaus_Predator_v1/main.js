@@ -5,8 +5,10 @@ var Endabgabe;
     console.log(url);
     window.addEventListener("load", handleLoad);
     Endabgabe.golden = 0.62;
-    let moveables = [];
+    Endabgabe.moveables = [];
     // let luredBirds: Moveable[] = [];
+    Endabgabe.flyingSlingshot = false;
+    console.log("Slingshot is flying: " + Endabgabe.flyingSlingshot);
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas)
@@ -27,7 +29,6 @@ var Endabgabe;
         drawSnowflakes(150);
         drawPartyBird(1);
         drawSlingshot();
-        // drawSlingshotWoodenPart({x: canvas.width - 50, y: canvas.height + 50});
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
@@ -36,32 +37,59 @@ var Endabgabe;
         console.log("(Hotdog) birds.");
         for (let i = 0; i < nBirds; i++) {
             let bird = new Endabgabe.Bird();
-            moveables.push(bird);
+            Endabgabe.moveables.push(bird);
         }
     }
     function drawSnowflakes(nSnowflakes) {
         console.log("Snowflakes.");
         for (let i = 0; i < nSnowflakes; i++) {
             let snowflake = new Endabgabe.Snowflake();
-            moveables.push(snowflake);
+            Endabgabe.moveables.push(snowflake);
         }
     }
     function drawPartyBird(nBirds) {
         console.log("Party Bird.");
         for (let i = 0; i < nBirds; i++) {
             let partyBird = new Endabgabe.PartyBird();
-            moveables.push(partyBird);
+            Endabgabe.moveables.push(partyBird);
         }
     }
+    function changeDirection() {
+        for (let moveable of Endabgabe.moveables) {
+            if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
+                if (Math.random() * 5 < 0.07) {
+                    moveable.velocity = new Endabgabe.Vector(2, 3);
+                }
+            }
+        }
+    }
+    Endabgabe.changeDirection = changeDirection;
+    function deleteBird() {
+        for (let i = 0; i < Endabgabe.moveables.length; i++) {
+            if (Endabgabe.moveables[i].isHit) {
+                Endabgabe.moveables.splice(i, 1);
+                console.log("Bird was hit and killed!");
+                // console.log("Bird was hit.");
+            }
+        }
+    }
+    Endabgabe.deleteBird = deleteBird;
+    // export function drawTarget(_mousePosition: Vector): void {
+    //     crc2.beginPath();
+    //     crc2.moveTo(_mousePosition.x + 10, _mousePosition.y - 5);
+    //     crc2.moveTo(_mousePosition.x + 10, _mousePosition.y + 5);
+    //     crc2.moveTo(_mousePosition.x + 20, _mousePosition.y - 5);
+    //     crc2.moveTo(_mousePosition.x + 20, _mousePosition.y + 5);
+    // }
     function drawSlingshot() {
-        console.log("Slingshot.");
+        //console.log("Slingshot.");
         let slingShot = new Endabgabe.Slingshot();
-        moveables.push(slingShot);
+        Endabgabe.moveables.push(slingShot);
     }
     function useSlingshot(_event) {
         console.log("Slingshot used.");
         let _mousePosition = new Endabgabe.Vector(_event.screenX, _event.screenY);
-        for (let moveable of moveables) {
+        for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Slingshot) {
                 // console.log("Slingshot started.");
                 moveable.targetBird(_mousePosition);
@@ -69,10 +97,11 @@ var Endabgabe;
         }
     }
     function deleteSlingshot() {
-        for (let i = 0; i < moveables.length; i++) {
-            if (moveables[i] instanceof Endabgabe.Slingshot) {
-                moveables.splice(i, 1);
+        for (let i = 0; i < Endabgabe.moveables.length; i++) {
+            if (Endabgabe.moveables[i] instanceof Endabgabe.Slingshot) {
+                Endabgabe.moveables.splice(i, 1);
                 // console.log("Sling was deleted.");
+                Endabgabe.flyingSlingshot = false;
             }
         }
         drawSlingshot();
@@ -82,50 +111,45 @@ var Endabgabe;
         console.log("Food thrown.");
         //console.log(_event);
         let _mousePosition = new Endabgabe.Vector(_event.screenX, _event.screenY);
-        for (let moveable of moveables) {
+        for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
                 //console.log(moveable.position);
                 moveable.getFood(_mousePosition);
             }
         }
         let food = new Endabgabe.Food(_mousePosition);
-        moveables.push(food);
-        setTimeout(deleteFood, 5000);
+        Endabgabe.moveables.push(food);
+        setTimeout(deleteFood, 3000);
     }
     function deleteFood() {
-        for (let i = 0; i < moveables.length; i++) {
-            if (moveables[i] instanceof Endabgabe.Food) {
-                moveables.splice(i, 1);
+        for (let i = 0; i < Endabgabe.moveables.length; i++) {
+            if (Endabgabe.moveables[i] instanceof Endabgabe.Food) {
+                Endabgabe.moveables.splice(i, 1);
                 console.log("All the food was eaten.");
             }
         }
     }
-    function changeDirection() {
-        for (let moveable of moveables) {
-            if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
-                if (Math.random() * 5 < 0.07) {
-                    moveable.velocity = new Endabgabe.Vector(2, 3);
-                }
-            }
-        }
-    }
-    Endabgabe.changeDirection = changeDirection;
     // update Background & Animation
     function update(_background) {
         //console.log("updated");
         Endabgabe.crc2.putImageData(_background, 0, 0);
-        for (let moveable of moveables) {
+        for (let moveable of Endabgabe.moveables) {
             moveable.move();
             moveable.draw();
         }
-        for (let moveable of moveables) {
+        for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
                 moveable.eatFood();
             }
         }
-        for (let moveable of moveables) {
+        for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Slingshot) {
                 moveable.reachedTarget();
+            }
+        }
+        for (let moveable of Endabgabe.moveables) {
+            if (moveable instanceof Endabgabe.Bird && moveable.isHit) {
+                deleteBird();
             }
         }
     }

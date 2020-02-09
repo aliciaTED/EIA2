@@ -2,6 +2,7 @@ namespace Endabgabe {
     export abstract class Moveable {
         position: Vector;
         velocity: Vector;
+        isHit: boolean;
 
         constructor() {
             // console.log("constructed");   
