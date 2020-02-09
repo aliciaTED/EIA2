@@ -73,8 +73,6 @@ namespace Endabgabe {
                 let head: number = -15;
                 crc2.arc(head, 0, 15, 0, 0.5 * Math.PI);
                 crc2.arc(0, head, (1 / 2) * 15, 0, 2 * Math.PI);
-                // let color: string = "HSLA(100%, 90%, 50%, 0.7)";
-                // crc2.fillStyle = color;
                 crc2.fill();
                 crc2.restore();
                 crc2.closePath();

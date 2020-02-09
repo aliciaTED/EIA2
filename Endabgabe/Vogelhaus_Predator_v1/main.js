@@ -9,8 +9,8 @@ var Endabgabe;
     // let luredBirds: Moveable[] = [];
     Endabgabe.flyingSlingshot = false;
     console.log("Slingshot is flying: " + Endabgabe.flyingSlingshot);
-    let highscore = 0;
-    console.log("Your Highscore: " + highscore);
+    Endabgabe.highscore = 0;
+    console.log("Your Highscore: " + Endabgabe.highscore);
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas)
@@ -25,7 +25,8 @@ var Endabgabe;
         Endabgabe.drawSnowman({ x: 400, y: 500 });
         Endabgabe.drawBirdhouse();
         Endabgabe.drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
-        Endabgabe.drawSlingshotWoodenPart({ x: canvas.width - 55, y: canvas.height + 70 });
+        // drawSlingshotWoodenPart({ x: canvas.width - 55, y: canvas.height + 70 });
+        Endabgabe.showScore();
         let background = Endabgabe.crc2.getImageData(0, 0, 800, 600);
         drawBirds(15);
         drawSnowflakes(150);
@@ -71,18 +72,18 @@ var Endabgabe;
             if (Endabgabe.moveables[i].isHit) {
                 if (Endabgabe.moveables[i].isHit && Endabgabe.moveables[i].isLured) {
                     Endabgabe.moveables[i].score = 10;
-                    highscore += Endabgabe.moveables[i].score;
-                    console.log("Your Highscore: " + highscore);
+                    Endabgabe.highscore += Endabgabe.moveables[i].score;
+                    console.log("Your Highscore: " + Endabgabe.highscore);
                 }
                 if (Endabgabe.moveables[i].isHit && Endabgabe.moveables[i].isPartyBird) {
                     Endabgabe.moveables[i].score = 50;
-                    highscore += Endabgabe.moveables[i].score;
-                    console.log("Your Highscore: " + highscore);
+                    Endabgabe.highscore += Endabgabe.moveables[i].score;
+                    console.log("Your Highscore: " + Endabgabe.highscore);
                 }
                 if (!Endabgabe.moveables[i].isLured && !Endabgabe.moveables[i].isPartyBird) {
                     Endabgabe.moveables[i].score = 20;
-                    highscore += Endabgabe.moveables[i].score;
-                    console.log("Your Highscore: " + highscore);
+                    Endabgabe.highscore += Endabgabe.moveables[i].score;
+                    console.log("Your Highscore: " + Endabgabe.highscore);
                 }
                 Endabgabe.moveables.splice(i, 1);
                 console.log("Bird was hit and killed!");
@@ -145,6 +146,15 @@ var Endabgabe;
             }
         }
     }
+    // function showScore(): void {
+    //     crc2.fillStyle = "#0f0f0f";
+    //     crc2.fillRect(700, 0, 200, 80);
+    //     crc2.font = "20px Typescript";
+    //     crc2.fillStyle = "white";
+    //     crc2.fillText("Score: ", 660, 25);
+    //     crc2.fillText("" + highscore, 720, 25);
+    //     crc2.font = "20px Typescript";
+    // }
     // update Background & Animation
     function update(_background) {
         //console.log("updated");
@@ -171,6 +181,9 @@ var Endabgabe;
                 deleteBird();
             }
         }
+        Endabgabe.showScore();
+        Endabgabe.drawSlingshotWoodenPart({ x: Endabgabe.crc2.canvas.width - 55, y: Endabgabe.crc2.canvas.height + 70 });
+        // showScore();
     }
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map

@@ -17,7 +17,7 @@ namespace Endabgabe {
     export let flyingSlingshot: boolean = false;
     console.log("Slingshot is flying: " + flyingSlingshot);
 
-    let highscore: number = 0;
+    export let highscore: number = 0;
     console.log("Your Highscore: " + highscore);
 
     function handleLoad(_event: Event): void {
@@ -35,7 +35,8 @@ namespace Endabgabe {
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
         drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
-        drawSlingshotWoodenPart({ x: canvas.width - 55, y: canvas.height + 70 });
+        // drawSlingshotWoodenPart({ x: canvas.width - 55, y: canvas.height + 70 });
+        showScore();
 
         let background: ImageData = crc2.getImageData(0, 0, 800, 600);
 
@@ -171,6 +172,17 @@ namespace Endabgabe {
         }
     }
 
+    // function showScore(): void {
+    //     crc2.fillStyle = "#0f0f0f";
+    //     crc2.fillRect(700, 0, 200, 80);
+    //     crc2.font = "20px Typescript";
+    //     crc2.fillStyle = "white";
+    //     crc2.fillText("Score: ", 660, 25);
+
+    //     crc2.fillText("" + highscore, 720, 25);
+    //     crc2.font = "20px Typescript";
+    // }
+
     // update Background & Animation
     function update(_background: ImageData): void {
         //console.log("updated");
@@ -201,5 +213,8 @@ namespace Endabgabe {
                 deleteBird();
             }
         }
+        showScore();
+        drawSlingshotWoodenPart({ x: crc2.canvas.width - 55, y: crc2.canvas.height + 70 });
+        // showScore();
     }
 }

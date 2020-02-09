@@ -233,5 +233,15 @@ var Endabgabe;
         Endabgabe.crc2.closePath();
     }
     Endabgabe.drawSlingshotWoodenPart = drawSlingshotWoodenPart;
+    function showScore() {
+        Endabgabe.crc2.beginPath();
+        Endabgabe.crc2.fillStyle = "darkred";
+        Endabgabe.crc2.fillRect(630, 685, 170, 30);
+        Endabgabe.crc2.font = "20px Arial";
+        Endabgabe.crc2.fillStyle = "white";
+        Endabgabe.crc2.fillText("score: ", 640, 706);
+        Endabgabe.crc2.fillText("" + Endabgabe.highscore, 703, 707);
+    }
+    Endabgabe.showScore = showScore;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=background.js.map

@@ -58,8 +58,6 @@ var Endabgabe;
                 let head = -15;
                 Endabgabe.crc2.arc(head, 0, 15, 0, 0.5 * Math.PI);
                 Endabgabe.crc2.arc(0, head, (1 / 2) * 15, 0, 2 * Math.PI);
-                // let color: string = "HSLA(100%, 90%, 50%, 0.7)";
-                // crc2.fillStyle = color;
                 Endabgabe.crc2.fill();
                 Endabgabe.crc2.restore();
                 Endabgabe.crc2.closePath();

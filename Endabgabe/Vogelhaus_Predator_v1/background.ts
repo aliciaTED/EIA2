@@ -285,4 +285,15 @@ namespace Endabgabe {
         crc2.fill();
         crc2.closePath();
     }
+
+    export function showScore(): void {
+        crc2.beginPath();
+        crc2.fillStyle = "darkred";
+        crc2.fillRect(630, 685, 170, 30);
+        crc2.font = "20px Arial";
+        crc2.fillStyle = "white";
+        crc2.fillText("score: ", 640, 706);
+
+        crc2.fillText("" + highscore, 703, 707);
+    }
 }
