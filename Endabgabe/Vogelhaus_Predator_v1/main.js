@@ -69,7 +69,6 @@ var Endabgabe;
             if (Endabgabe.moveables[i].isHit) {
                 Endabgabe.moveables.splice(i, 1);
                 console.log("Bird was hit and killed!");
-                // console.log("Bird was hit.");
             }
         }
     }
@@ -141,17 +140,26 @@ var Endabgabe;
             if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
                 moveable.eatFood();
             }
-        }
-        for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Slingshot) {
                 moveable.reachedTarget();
             }
-        }
-        for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Bird && moveable.isHit) {
                 deleteBird();
             }
+            if (moveable instanceof Endabgabe.PartyBird && moveable.isHit) {
+                deleteBird();
+            }
         }
+        //     for (let moveable of moveables) {
+        //         if (moveable instanceof Slingshot) {
+        //             moveable.reachedTarget();
+        //         }
+        //     }
+        //     for (let moveable of moveables) {
+        //         if (moveable instanceof Bird && moveable.isHit) {
+        //             deleteBird();
+        //         }
+        //     }
     }
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map

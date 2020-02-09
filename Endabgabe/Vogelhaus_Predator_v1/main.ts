@@ -87,7 +87,6 @@ namespace Endabgabe {
             if (moveables[i].isHit) {
                 moveables.splice(i, 1);
                 console.log("Bird was hit and killed!");
-                // console.log("Bird was hit.");
             }
         }
     }
@@ -161,25 +160,34 @@ namespace Endabgabe {
 
         for (let moveable of moveables) {
             moveable.move();
-            moveable.draw();
+            moveable.draw();          
         }
 
         for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isLured) {
                 moveable.eatFood();
             }
-        }
-
-        for (let moveable of moveables) {
             if (moveable instanceof Slingshot) {
                 moveable.reachedTarget();
             }
-        }
-
-        for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isHit) {
                 deleteBird();
             }
+            if (moveable instanceof PartyBird && moveable.isHit) {
+                deleteBird();
+            }
         }
+
+    //     for (let moveable of moveables) {
+    //         if (moveable instanceof Slingshot) {
+    //             moveable.reachedTarget();
+    //         }
+    //     }
+
+    //     for (let moveable of moveables) {
+    //         if (moveable instanceof Bird && moveable.isHit) {
+    //             deleteBird();
+    //         }
+    //     }
     }
 }

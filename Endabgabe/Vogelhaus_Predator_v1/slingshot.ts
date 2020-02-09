@@ -28,6 +28,9 @@ namespace Endabgabe {
                     if (moveable instanceof Bird) {
                         moveable.hitBird(this.aim);
                     }
+                    if (moveable instanceof PartyBird) {
+                        moveable.hitPartyBird(this.aim);
+                    }
                 }
                 setTimeout(deleteSlingshot, 2000);
             }

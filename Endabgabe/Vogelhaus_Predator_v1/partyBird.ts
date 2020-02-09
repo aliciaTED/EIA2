@@ -1,5 +1,7 @@
 namespace Endabgabe {
     export class PartyBird extends Moveable {
+        aim: Vector;
+        isHit: boolean;
         score: number;
 
         constructor() {
@@ -12,7 +14,17 @@ namespace Endabgabe {
             this.position = new Vector(x, y);
 
             // Geschwindigkeit & Richtung
-            this.velocity = new Vector(-5, 3);
+            this.velocity = new Vector(-0.5, 0.5);
+
+            this.isHit = false;
+        }
+
+        hitPartyBird(_mousePosition: Vector): void {
+            this.aim = _mousePosition;
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 8 && this.position.x >= this.aim.x - 8 && this.position.y >= this.aim.y - 10))) {
+                this.isHit = true;
+                console.log("Partybird is hit: " + this.isHit);
+            }
         }
 
         draw(): void {
