@@ -17,6 +17,9 @@ namespace Endabgabe {
     export let flyingSlingshot: boolean = false;
     console.log("Slingshot is flying: " + flyingSlingshot);
 
+    let highscore: number = 0;
+    console.log("Your Highscore: " + highscore);
+
     function handleLoad(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
         if (!canvas)
@@ -38,7 +41,7 @@ namespace Endabgabe {
 
         drawBirds(15);
         drawSnowflakes(150);
-        drawPartyBird(1);
+        drawPartyBird(3);
         drawSlingshot();
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
@@ -85,6 +88,20 @@ namespace Endabgabe {
     export function deleteBird(): void {
         for (let i: number = 0; i < moveables.length; i++) {
             if (moveables[i].isHit) {
+                if (moveables[i].isLured) {
+                    moveables[i].score = 10;
+                    highscore += moveables[i].score;
+                    console.log("Your Highscore: " + highscore);
+                }
+                if (moveables[i].isHit && moveables[i].isPartyBird) {
+                    moveables[i].score = 50;
+                    highscore += moveables[i].score;
+                    console.log("Your Highscore: " + highscore);
+                } else {
+                    moveables[i].score = 20;
+                    highscore += moveables[i].score;
+                    console.log("Your Highscore: " + highscore);
+                }
                 moveables.splice(i, 1);
                 console.log("Bird was hit and killed!");
             }
@@ -160,16 +177,22 @@ namespace Endabgabe {
 
         for (let moveable of moveables) {
             moveable.move();
-            moveable.draw();          
+            moveable.draw();
         }
 
         for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isLured) {
                 moveable.eatFood();
             }
+        }
+
+        for (let moveable of moveables) {
             if (moveable instanceof Slingshot) {
                 moveable.reachedTarget();
             }
+        }
+
+        for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isHit) {
                 deleteBird();
             }
@@ -177,17 +200,5 @@ namespace Endabgabe {
                 deleteBird();
             }
         }
-
-    //     for (let moveable of moveables) {
-    //         if (moveable instanceof Slingshot) {
-    //             moveable.reachedTarget();
-    //         }
-    //     }
-
-    //     for (let moveable of moveables) {
-    //         if (moveable instanceof Bird && moveable.isHit) {
-    //             deleteBird();
-    //         }
-    //     }
     }
 }

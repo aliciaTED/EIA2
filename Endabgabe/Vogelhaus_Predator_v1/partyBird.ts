@@ -3,6 +3,7 @@ namespace Endabgabe {
         aim: Vector;
         isHit: boolean;
         score: number;
+        isPartyBird: boolean = true;
 
         constructor() {
             super();
@@ -14,14 +15,14 @@ namespace Endabgabe {
             this.position = new Vector(x, y);
 
             // Geschwindigkeit & Richtung
-            this.velocity = new Vector(-0.5, 0.5);
+            this.velocity = new Vector(-4, 3);
 
             this.isHit = false;
         }
 
         hitPartyBird(_mousePosition: Vector): void {
             this.aim = _mousePosition;
-            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 8 && this.position.x >= this.aim.x - 8 && this.position.y >= this.aim.y - 10))) {
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 this.isHit = true;
                 console.log("Partybird is hit: " + this.isHit);
             }

@@ -4,17 +4,18 @@ var Endabgabe;
     class PartyBird extends Endabgabe.Moveable {
         constructor() {
             super();
+            this.isPartyBird = true;
             //console.log("constructed");
             let x = 800 * Math.random();
             let y = 700 * Endabgabe.golden * Math.random();
             this.position = new Endabgabe.Vector(x, y);
             // Geschwindigkeit & Richtung
-            this.velocity = new Endabgabe.Vector(-0.5, 0.5);
+            this.velocity = new Endabgabe.Vector(-4, 3);
             this.isHit = false;
         }
         hitPartyBird(_mousePosition) {
             this.aim = _mousePosition;
-            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 8 && this.position.x >= this.aim.x - 8 && this.position.y >= this.aim.y - 10))) {
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 this.isHit = true;
                 console.log("Partybird is hit: " + this.isHit);
             }

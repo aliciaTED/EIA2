@@ -44,7 +44,7 @@ namespace Endabgabe {
         }
 
         eatFood(): void {
-            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 12 && this.position.y <= this.aim.y + 12 && this.position.x >= this.aim.x - 12 && this.position.y >= this.aim.y - 12))) {
                 let stop: Vector = new Vector(0, 0);
                 this.velocity = stop;
                 // console.log("Birds stopped to eat.");
@@ -54,7 +54,7 @@ namespace Endabgabe {
 
         hitBird(_mousePosition: Vector): void {
             this.aim = _mousePosition;
-            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 8 && this.position.x >= this.aim.x - 8 && this.position.y >= this.aim.y - 10))) {
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 this.isHit = true;
                 console.log("Bird is hit: " + this.isHit);
             }

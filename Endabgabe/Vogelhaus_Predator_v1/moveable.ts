@@ -3,6 +3,9 @@ namespace Endabgabe {
         position: Vector;
         velocity: Vector;
         isHit: boolean;
+        isLured: boolean;
+        score: number;
+        isPartyBird: boolean; 
 
         constructor() {
             // console.log("constructed");   
