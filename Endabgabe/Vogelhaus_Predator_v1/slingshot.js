@@ -30,7 +30,7 @@ var Endabgabe;
                         moveable.hitPartyBird(this.aim);
                     }
                 }
-                setTimeout(Endabgabe.deleteSlingshot, 2000);
+                setTimeout(Endabgabe.deleteSlingshot, 500);
             }
             // drawTarget(this.aim);
         }

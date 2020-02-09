@@ -177,7 +177,7 @@ var Endabgabe;
     function drawBirdsInTree(_position, _size) {
         //console.log("Birds in Tree");
         let nBirds = 3;
-        let radiusBird = 10 + Math.random() * 10;
+        let radiusBird = 10 + Math.random() * 7;
         let bird = new Path2D();
         bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
         let wing = 0 - radiusBird;

@@ -221,7 +221,7 @@ namespace Endabgabe {
         //console.log("Birds in Tree");
 
         let nBirds: number = 3;
-        let radiusBird: number = 10 + Math.random() * 10;
+        let radiusBird: number = 10 + Math.random() * 7;
         let bird: Path2D = new Path2D();
 
         bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);

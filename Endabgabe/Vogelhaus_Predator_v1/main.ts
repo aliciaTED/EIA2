@@ -88,7 +88,7 @@ namespace Endabgabe {
     export function deleteBird(): void {
         for (let i: number = 0; i < moveables.length; i++) {
             if (moveables[i].isHit) {
-                if (moveables[i].isLured) {
+                if (moveables[i].isHit && moveables[i].isLured) {
                     moveables[i].score = 10;
                     highscore += moveables[i].score;
                     console.log("Your Highscore: " + highscore);
@@ -97,7 +97,8 @@ namespace Endabgabe {
                     moveables[i].score = 50;
                     highscore += moveables[i].score;
                     console.log("Your Highscore: " + highscore);
-                } else {
+                }
+                if (!moveables[i].isLured && !moveables[i].isPartyBird) {
                     moveables[i].score = 20;
                     highscore += moveables[i].score;
                     console.log("Your Highscore: " + highscore);

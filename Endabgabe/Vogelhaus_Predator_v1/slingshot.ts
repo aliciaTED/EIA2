@@ -32,7 +32,7 @@ namespace Endabgabe {
                         moveable.hitPartyBird(this.aim);
                     }
                 }
-                setTimeout(deleteSlingshot, 2000);
+                setTimeout(deleteSlingshot, 500);
             }
             // drawTarget(this.aim);
         }

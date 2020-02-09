@@ -69,7 +69,7 @@ var Endabgabe;
     function deleteBird() {
         for (let i = 0; i < Endabgabe.moveables.length; i++) {
             if (Endabgabe.moveables[i].isHit) {
-                if (Endabgabe.moveables[i].isLured) {
+                if (Endabgabe.moveables[i].isHit && Endabgabe.moveables[i].isLured) {
                     Endabgabe.moveables[i].score = 10;
                     highscore += Endabgabe.moveables[i].score;
                     console.log("Your Highscore: " + highscore);
@@ -79,7 +79,7 @@ var Endabgabe;
                     highscore += Endabgabe.moveables[i].score;
                     console.log("Your Highscore: " + highscore);
                 }
-                else {
+                if (!Endabgabe.moveables[i].isLured && !Endabgabe.moveables[i].isPartyBird) {
                     Endabgabe.moveables[i].score = 20;
                     highscore += Endabgabe.moveables[i].score;
                     console.log("Your Highscore: " + highscore);
