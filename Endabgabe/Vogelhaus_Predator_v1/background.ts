@@ -1,5 +1,5 @@
 namespace Endabgabe {
-    
+
     // Funktionen für alle Hintergrundelemente
     export function drawBackground(): void {
         //console.log("Background");
@@ -8,7 +8,7 @@ namespace Endabgabe {
         gradient.addColorStop(0, "lightblue");
         gradient.addColorStop(golden, "HSL(220, 30%, 90%)");
         gradient.addColorStop(1, "white");
- 
+
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
@@ -149,7 +149,7 @@ namespace Endabgabe {
         crc2.strokeStyle = "black";
         crc2.stroke(snowman1);
 
-        let snowman2: Path2D = new Path2D; 
+        let snowman2: Path2D = new Path2D;
         let y3: number = y2 - (r2 + r3);
 
         snowman2.arc(_position.x, y3, r3, 0, 2 * Math.PI);
@@ -213,6 +213,7 @@ namespace Endabgabe {
         crc2.closePath();
         crc2.fillStyle = "darkred";
         crc2.fill();
+        crc2.closePath();
 
     }
 
@@ -251,12 +252,40 @@ namespace Endabgabe {
     }
     console.log("Background, Mountains, Sun, Cloud, Tree, Birdhouse and Snowman created.");
 
-    // export function drawSlingshotWoodenPart(): void {
-    //     crc2.beginPath();
-    //     //crc2.rect(crc2.canvas.width - 50, crc2.canvas.height + 60, 30, 10);
-    //     crc2.fillStyle = "brown";
-    //     crc2.fillRect(crc2.canvas.width - 50, crc2.canvas.height + 60, 30, 10);
-    //     crc2.save();
-    //     crc2.translate(760, 550);
-    // }
+    export function drawSlingshotWoodenPart(_position: VectorBack): void {
+        crc2.beginPath();
+        crc2.fillStyle = "HSL(30, 80%, 30%)";
+        crc2.fillRect(_position.x, _position.y, 10, 50);
+        crc2.stroke();
+        crc2.save();
+        crc2.closePath();
+
+        crc2.beginPath();
+        crc2.moveTo(_position.x, _position.y); // Ecke oben an Stiel
+        crc2.lineTo(_position.x, _position.y + 15); // Ecke unten an Stiel
+        crc2.lineTo(_position.x - 40, _position.y - 30);
+        crc2.lineTo(_position.x - 30, _position.y - 30);
+        crc2.closePath();
+        crc2.fillStyle = "HSL(30, 80%, 30%)";
+        crc2.fill();
+        crc2.closePath();
+
+        crc2.beginPath();
+        crc2.moveTo(_position.x + 10, _position.y); // Ecke oben an Stiel
+        crc2.lineTo(_position.x + 10, _position.y + 15); // Ecke unten an Stiel
+        crc2.lineTo(_position.x + 50, _position.y - 30);
+        crc2.lineTo(_position.x + 40, _position.y - 30);
+        crc2.closePath();
+        crc2.fillStyle = "HSL(30, 80%, 30%)";
+        crc2.fill();
+        crc2.closePath();
+
+        crc2.beginPath();
+        crc2.moveTo(_position.x + 10, _position.y);
+        crc2.lineTo(_position.x + 10, _position.y + 15);
+        crc2.closePath();
+        crc2.fillStyle = "darkred";
+        crc2.fill();
+        crc2.closePath();
+    }
 }

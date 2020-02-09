@@ -171,6 +171,7 @@ var Endabgabe;
         Endabgabe.crc2.closePath();
         Endabgabe.crc2.fillStyle = "darkred";
         Endabgabe.crc2.fill();
+        Endabgabe.crc2.closePath();
     }
     Endabgabe.drawBirdhouse = drawBirdhouse;
     function drawBirdsInTree(_position, _size) {
@@ -201,13 +202,39 @@ var Endabgabe;
     }
     Endabgabe.drawBirdsInTree = drawBirdsInTree;
     console.log("Background, Mountains, Sun, Cloud, Tree, Birdhouse and Snowman created.");
-    // export function drawSlingshotWoodenPart(): void {
-    //     crc2.beginPath();
-    //     //crc2.rect(crc2.canvas.width - 50, crc2.canvas.height + 60, 30, 10);
-    //     crc2.fillStyle = "brown";
-    //     crc2.fillRect(crc2.canvas.width - 50, crc2.canvas.height + 60, 30, 10);
-    //     crc2.save();
-    //     crc2.translate(760, 550);
-    // }
+    function drawSlingshotWoodenPart(_position) {
+        Endabgabe.crc2.beginPath();
+        Endabgabe.crc2.fillStyle = "HSL(30, 80%, 30%)";
+        Endabgabe.crc2.fillRect(_position.x, _position.y, 10, 50);
+        Endabgabe.crc2.stroke();
+        Endabgabe.crc2.save();
+        Endabgabe.crc2.closePath();
+        Endabgabe.crc2.beginPath();
+        Endabgabe.crc2.moveTo(_position.x, _position.y); // Ecke oben an Stiel
+        Endabgabe.crc2.lineTo(_position.x, _position.y + 15); // Ecke unten an Stiel
+        Endabgabe.crc2.lineTo(_position.x - 40, _position.y - 30);
+        Endabgabe.crc2.lineTo(_position.x - 30, _position.y - 30);
+        Endabgabe.crc2.closePath();
+        Endabgabe.crc2.fillStyle = "HSL(30, 80%, 30%)";
+        Endabgabe.crc2.fill();
+        Endabgabe.crc2.closePath();
+        Endabgabe.crc2.beginPath();
+        Endabgabe.crc2.moveTo(_position.x + 10, _position.y); // Ecke oben an Stiel
+        Endabgabe.crc2.lineTo(_position.x + 10, _position.y + 15); // Ecke unten an Stiel
+        Endabgabe.crc2.lineTo(_position.x + 50, _position.y - 30);
+        Endabgabe.crc2.lineTo(_position.x + 40, _position.y - 30);
+        Endabgabe.crc2.closePath();
+        Endabgabe.crc2.fillStyle = "HSL(30, 80%, 30%)";
+        Endabgabe.crc2.fill();
+        Endabgabe.crc2.closePath();
+        Endabgabe.crc2.beginPath();
+        Endabgabe.crc2.moveTo(_position.x + 10, _position.y);
+        Endabgabe.crc2.lineTo(_position.x + 10, _position.y + 15);
+        Endabgabe.crc2.closePath();
+        Endabgabe.crc2.fillStyle = "darkred";
+        Endabgabe.crc2.fill();
+        Endabgabe.crc2.closePath();
+    }
+    Endabgabe.drawSlingshotWoodenPart = drawSlingshotWoodenPart;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=background.js.map

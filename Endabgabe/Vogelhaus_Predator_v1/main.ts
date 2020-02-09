@@ -29,6 +29,7 @@ namespace Endabgabe {
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
         drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
+        drawSlingshotWoodenPart({x: canvas.width - 55, y: canvas.height + 70});
 
         let background: ImageData = crc2.getImageData(0, 0, 800, 600);
 
@@ -36,7 +37,7 @@ namespace Endabgabe {
         drawSnowflakes(150);
         drawPartyBird(1);
         drawSlingshot();
-        // drawSlingshotWoodenPart();
+        // drawSlingshotWoodenPart({x: canvas.width - 50, y: canvas.height + 50});
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
 

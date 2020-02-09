@@ -21,12 +21,13 @@ var Endabgabe;
         Endabgabe.drawSnowman({ x: 400, y: 500 });
         Endabgabe.drawBirdhouse();
         Endabgabe.drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
+        Endabgabe.drawSlingshotWoodenPart({ x: canvas.width - 55, y: canvas.height + 70 });
         let background = Endabgabe.crc2.getImageData(0, 0, 800, 600);
         drawBirds(15);
         drawSnowflakes(150);
         drawPartyBird(1);
         drawSlingshot();
-        // drawSlingshotWoodenPart();
+        // drawSlingshotWoodenPart({x: canvas.width - 50, y: canvas.height + 50});
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
