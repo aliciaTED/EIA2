@@ -108,4 +108,4 @@ export namespace Endabgabe {
 //         _response.end(); // Antwort muss beendet werden, damit Browser nicht endlos weiterläuft
 //     }
 
-}
+// }
