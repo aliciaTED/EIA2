@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node Endabgabe/Vogelhaus_Predator_v1/Server.js"
+    "start": "node ./Endabgabe/Vogelhaus_Predator_v1/Server.js"
   },
   "repository": {
     "type": "git",
