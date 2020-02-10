@@ -158,7 +158,7 @@ namespace Endabgabe {
         if (userName != null) {
             sendEntryToList(userName, highscore);
         }
-        window.open("https://aliciaTED.github.io/EIA2/Endabgabe/Vogelhaus_Predator_v1/startIndex.html");
+        window.open("https://aliciaTED.github.io/EIA2/Endabgabe/Vogelhaus_Predator_v1/startIndex.html", "_self");
     }
 
     async function sendEntryToList(_userName: string, _highscore: number): Promise<void> { // unbedingt anschauen und verstehen!!!
