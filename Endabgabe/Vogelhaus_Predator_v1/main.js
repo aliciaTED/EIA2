@@ -31,7 +31,6 @@ var Endabgabe;
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
-        window.setTimeout(endGame, 30000);
     }
     function drawBirds(nBirds) {
         console.log("(Hotdog) birds.");
@@ -156,7 +155,5 @@ var Endabgabe;
         Endabgabe.updateScore();
         Endabgabe.drawSlingshotWoodenPart({ x: Endabgabe.crc2.canvas.width - 55, y: Endabgabe.crc2.canvas.height - 50 });
     }
-    +Endabgabe.highscore + "!</br> Please enter your name: ";
-    ;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map
