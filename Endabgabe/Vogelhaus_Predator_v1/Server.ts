@@ -17,12 +17,12 @@ export namespace Endabgabe {
         port = 5001;
 
     startServer(port);
+    console.log("Server starting on port: " + port);
+
     connectToDatabase(databaseUrl);
 
     function startServer(_port: number | string): void {
         let server: Http.Server = Http.createServer();
-        console.log("Server starting on port:" + _port);
-
         server.listen(_port);
         server.addListener("request", handleRequest);
     }
@@ -43,6 +43,7 @@ export namespace Endabgabe {
 
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+
             if (url.query["command"] == "retrieve") {
                 let report: any[] | string = await retrieveHighscore();
                 if (report == "We encountered technical problems. Please try again later.")
@@ -72,7 +73,4 @@ export namespace Endabgabe {
             return "We encountered technical problems. Please try again later.";
         }
     }
-
 }
-
-

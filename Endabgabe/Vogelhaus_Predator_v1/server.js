@@ -14,10 +14,10 @@ var Endabgabe;
     if (port == undefined)
         port = 5001;
     startServer(port);
+    console.log("Server starting on port: " + port);
     connectToDatabase(databaseUrl);
     function startServer(_port) {
         let server = Http.createServer();
-        console.log("Server starting on port:" + _port);
         server.listen(_port);
         server.addListener("request", handleRequest);
     }
