@@ -31,6 +31,7 @@ var Endabgabe;
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
+        setTimeout(endGame, 5000);
     }
     function drawBirds(nBirds) {
         console.log("(Hotdog) birds.");
@@ -125,6 +126,19 @@ var Endabgabe;
                 console.log("All the food was eaten.");
             }
         }
+    }
+    function endGame() {
+        console.log("Game over.");
+        let userName = prompt("Game over! </br> Your Score: " + Endabgabe.highscore + "</br>Please enter your name here.");
+        if (userName != null) {
+            sendEntryToList(userName, Endabgabe.highscore);
+        }
+        window.open("https://aliciaTED.github.io/EIA2/Endabgabe/Vogelhaus_Predator_v1/startIndex.html");
+    }
+    async function sendEntryToList(_userName, _highscore) {
+        let query = "highScore=" + _highscore + "&name=" + _userName; // Variable für Werte, die gespeichert werden sollen
+        let response = await fetch(url + "?" + query); // Variablen in Response einfügen und darauf warten)
+        alert(response); // Benachrichtigung mit Response
     }
     // update Background & Animation
     function update(_background) {
