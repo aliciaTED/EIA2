@@ -154,7 +154,7 @@ namespace Endabgabe {
 
     function endGame(): void {
         console.log("Game over.");
-        let userName: any = prompt("Game over! </br> Your Score: " + highscore + "</br>Please enter your name here.");
+        let userName: any = prompt("Game over! \n Your Score: " + highscore + "\n Please enter your name here.");
         if (userName != null) {
             sendEntryToList(userName, highscore);
         }
