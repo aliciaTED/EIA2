@@ -43,6 +43,7 @@ namespace Endabgabe {
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
 
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
+        window.setTimeout(endGame, 30000);
     }
 
     function drawBirds(nBirds: number): void {
@@ -184,4 +185,8 @@ namespace Endabgabe {
         updateScore();
         drawSlingshotWoodenPart({ x: crc2.canvas.width - 55, y: crc2.canvas.height - 50 });
     }
+
+    function endGame(): {
+        alert("Time's over! Your score is " + highscore + "!</br> Please enter your name: ");
+}
 }
