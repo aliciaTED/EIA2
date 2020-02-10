@@ -7,6 +7,7 @@ var Endabgabe;
     Endabgabe.golden = 0.62;
     Endabgabe.moveables = [];
     // let luredBirds: Moveable[] = [];
+    Endabgabe.scoreBird = []; // tuple >> zwei Datentypen in einem Datentyp vereinen
     Endabgabe.highscore = 0;
     console.log("Your Highscore: " + Endabgabe.highscore);
     function handleLoad(_event) {

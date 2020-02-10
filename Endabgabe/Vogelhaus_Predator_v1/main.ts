@@ -13,6 +13,7 @@ namespace Endabgabe {
 
     export let moveables: Moveable[] = [];
     // let luredBirds: Moveable[] = [];
+    export let scoreBird: [Path2D, number][] = []; // tuple >> zwei Datentypen in einem Datentyp vereinen
 
     export let highscore: number = 0;
     console.log("Your Highscore: " + highscore);

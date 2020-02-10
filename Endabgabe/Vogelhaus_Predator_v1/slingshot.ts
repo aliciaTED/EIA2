@@ -1,6 +1,7 @@
 namespace Endabgabe {
     export class Slingshot extends Moveable {
         aim: Vector;
+        exists: boolean;
 
         constructor() {
             super();
@@ -22,6 +23,7 @@ namespace Endabgabe {
             if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 let stop: Vector = new Vector(0, 0);
                 this.velocity = stop;
+                this.exists = true;
                 // console.log("Slingshot stopped.")
                 for (let moveable of moveables) {
                     if (moveable instanceof Bird) {
@@ -40,6 +42,7 @@ namespace Endabgabe {
             for (let i: number = 0; i < moveables.length; i++) {
                 if (moveables[i] instanceof Slingshot) {
                     moveables.splice(i, 1);
+                    this.exists = false;
                     // console.log("Sling was deleted.");
                 }
             }

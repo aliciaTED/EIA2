@@ -1,10 +1,9 @@
 body {
     background-color: #B3D0FF;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #startscreen {
-    background-color: #B3D0FF;
-    margin: 0 auto; /* flexible Breite */
     text-align: center;
 }
 
@@ -24,6 +23,7 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 button:hover {

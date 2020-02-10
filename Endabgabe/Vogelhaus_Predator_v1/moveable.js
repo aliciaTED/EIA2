@@ -27,11 +27,16 @@ var Endabgabe;
             //console.log("Moveable drawn");
         }
         showScore() {
-            Endabgabe.crc2.beginPath();
-            Endabgabe.crc2.font = "20px Arial";
-            Endabgabe.crc2.fillStyle = "darkred";
-            Endabgabe.crc2.fillText("+ " + this.score, this.position.x, this.position.y);
-            Endabgabe.crc2.closePath();
+            for (let i = 0; i < Endabgabe.moveables.length; i++) {
+                if (Endabgabe.moveables[i] instanceof Endabgabe.Slingshot && Endabgabe.moveables[i].exists) {
+                    let score = new Path2D;
+                    Endabgabe.crc2.font = "20px Arial";
+                    Endabgabe.crc2.fillStyle = "darkred";
+                    Endabgabe.crc2.fillText("+ " + this.score, this.position.x, this.position.y);
+                    Endabgabe.crc2.closePath();
+                    Endabgabe.scoreBird.push([score, 0]);
+                }
+            }
         }
     }
     Endabgabe.Moveable = Moveable;
