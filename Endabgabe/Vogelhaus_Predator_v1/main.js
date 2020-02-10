@@ -136,7 +136,7 @@ var Endabgabe;
         window.open("https://aliciaTED.github.io/EIA2/Endabgabe/Vogelhaus_Predator_v1/startIndex.html", "_self");
     }
     async function sendEntryToList(_userName, _highscore) {
-        let query = "highScore=" + _highscore + "&name=" + _userName; // Variable für Werte, die gespeichert werden sollen
+        let query = "name=" + _userName + "&highScore=" + _highscore; // Variable für Werte, die gespeichert werden sollen
         let response = await fetch(url + "?" + query); // Variablen in Response einfügen und darauf warten)
         alert(response); // Benachrichtigung mit Response
     }

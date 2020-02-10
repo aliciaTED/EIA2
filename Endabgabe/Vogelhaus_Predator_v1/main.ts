@@ -162,7 +162,7 @@ namespace Endabgabe {
     }
 
     async function sendEntryToList(_userName: string, _highscore: number): Promise<void> { // unbedingt anschauen und verstehen!!!
-        let query: string = "highScore=" + _highscore + "&name=" + _userName; // Variable für Werte, die gespeichert werden sollen
+        let query: string = "name=" + _userName + "&highScore=" + _highscore; // Variable für Werte, die gespeichert werden sollen
         let response: Response = await fetch(url + "?" + query); // Variablen in Response einfügen und darauf warten)
         alert(response); // Benachrichtigung mit Response
     }
