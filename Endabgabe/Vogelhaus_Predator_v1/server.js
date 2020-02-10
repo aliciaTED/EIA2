@@ -6,10 +6,10 @@ const Mongo = require("mongodb");
 var Endabgabe;
 (function (Endabgabe) {
     let highscoreList;
-    // let databaseURL: string;
-    // let dbName: string = "birdhouse";
-    // let dbCollection: string = "highscoreList";
-    let databaseUrl = "mongodb+srv://zero-x:Inverted456@cluster0-ldpu0.mongodb.net/test?retryWrites=true&w=majority";
+    let databaseUrl;
+    let dbName = "birdhouse";
+    let dbCollection = "highscoreList";
+    databaseUrl = "mongodb+srv://zero-x:Inverted456@cluster0-ldpu0.mongodb.net/test?retryWrites=true&w=majority";
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
@@ -25,7 +25,7 @@ var Endabgabe;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        highscoreList = mongoClient.db("birdhouse").collection("highscoreList");
+        highscoreList = mongoClient.db(dbName).collection(dbCollection);
         console.log("Database connection ", highscoreList != undefined);
     }
     async function handleRequest(_request, _response) {

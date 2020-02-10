@@ -5,12 +5,12 @@ import * as Mongo from "mongodb";
 export namespace Endabgabe {
 
     let highscoreList: Mongo.Collection;
-    // let databaseURL: string;
+    let databaseUrl: string;
 
-    // let dbName: string = "birdhouse";
-    // let dbCollection: string = "highscoreList";
+    let dbName: string = "birdhouse";
+    let dbCollection: string = "highscoreList";
 
-    let databaseUrl: string = "mongodb+srv://zero-x:Inverted456@cluster0-ldpu0.mongodb.net/test?retryWrites=true&w=majority";
+    databaseUrl = "mongodb+srv://zero-x:Inverted456@cluster0-ldpu0.mongodb.net/test?retryWrites=true&w=majority";
 
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
@@ -31,7 +31,7 @@ export namespace Endabgabe {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        highscoreList = mongoClient.db("birdhouse").collection("highscoreList");
+        highscoreList = mongoClient.db(dbName).collection(dbCollection);
         console.log("Database connection ", highscoreList != undefined);
     }
 
