@@ -299,7 +299,7 @@ namespace Endabgabe {
         crc2.restore();
     }
 
-    export function showScore(): void {
+    export function updateScore(): void {
         crc2.beginPath();
         crc2.fillStyle = "darkred";
         crc2.fillRect(630, 564, 170, 30);

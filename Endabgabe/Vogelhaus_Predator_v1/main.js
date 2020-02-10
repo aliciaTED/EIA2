@@ -59,16 +59,19 @@ var Endabgabe;
                 if (Endabgabe.moveables[i].isLured) {
                     Endabgabe.moveables[i].score = 10;
                     Endabgabe.highscore += Endabgabe.moveables[i].score;
+                    Endabgabe.moveables[i].showScore();
                     console.log("Your Highscore: " + Endabgabe.highscore);
                 }
                 if (Endabgabe.moveables[i].isPartyBird) {
                     Endabgabe.moveables[i].score = 50;
                     Endabgabe.highscore += Endabgabe.moveables[i].score;
+                    Endabgabe.moveables[i].showScore();
                     console.log("Your Highscore: " + Endabgabe.highscore);
                 }
                 if (!Endabgabe.moveables[i].isLured && !Endabgabe.moveables[i].isPartyBird) {
                     Endabgabe.moveables[i].score = 20;
                     Endabgabe.highscore += Endabgabe.moveables[i].score;
+                    Endabgabe.moveables[i].showScore();
                     console.log("Your Highscore: " + Endabgabe.highscore);
                 }
                 Endabgabe.moveables.splice(i, 1);
@@ -149,7 +152,7 @@ var Endabgabe;
                 deleteBird();
             }
         }
-        Endabgabe.showScore();
+        Endabgabe.updateScore();
         Endabgabe.drawSlingshotWoodenPart({ x: Endabgabe.crc2.canvas.width - 55, y: Endabgabe.crc2.canvas.height - 50 });
     }
 })(Endabgabe || (Endabgabe = {}));

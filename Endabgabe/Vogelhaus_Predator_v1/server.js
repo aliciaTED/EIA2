@@ -5,11 +5,11 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var Endabgabe;
 (function (Endabgabe) {
-    let orders;
+    let highscoreList;
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
-    let databaseUrl = "mongodb://localhost:27017"; // eigenen MongoDB-Namen angeben
+    let databaseUrl = "mongodb+srv://zero-x:Inverted456@cluster0-ldpu0.mongodb.net/test?retryWrites=true&w=majority";
     startServer(port);
     connectToDatabase(databaseUrl);
     function startServer(_port) {
@@ -22,10 +22,9 @@ var Endabgabe;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        orders = mongoClient.db("CocktailBar").collection("Orders"); // anderen Namen angeben
-        console.log("Database connection ", orders != undefined);
+        highscoreList = mongoClient.db("birdhouse").collection("highscoreList");
+        console.log("Database connection ", highscoreList != undefined);
     }
-    // seeeehr viel ändern!!!
     function handleRequest(_request, _response) {
         console.log("What's up?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
@@ -37,12 +36,10 @@ var Endabgabe;
             }
             let jsonString = JSON.stringify(url.query);
             _response.write(jsonString);
-            storeOrder(url.query);
+            highscoreList.insert(url.query);
         }
+        _response.write("this is my response");
         _response.end();
     }
-    function storeOrder(_order) {
-        orders.insert(_order);
-    }
 })(Endabgabe = exports.Endabgabe || (exports.Endabgabe = {}));
-//# sourceMappingURL=server.js.map
+//# sourceMappingURL=Server.js.map

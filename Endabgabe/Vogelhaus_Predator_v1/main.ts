@@ -31,7 +31,7 @@ namespace Endabgabe {
         drawTree();
         drawSnowman({ x: 400, y: 500 });
         drawBirdhouse();
-        drawBirdsInTree({ x: 530 + Math.random() * 100 , y: 200 + Math.random() * 100 }, { x: 180, y: 120 });
+        drawBirdsInTree({ x: 530 + Math.random() * 100, y: 200 + Math.random() * 100 }, { x: 180, y: 120 });
 
         let background: ImageData = crc2.getImageData(0, 0, 800, 600);
 
@@ -77,16 +77,19 @@ namespace Endabgabe {
                 if (moveables[i].isLured) {
                     moveables[i].score = 10;
                     highscore += moveables[i].score;
+                    moveables[i].showScore();
                     console.log("Your Highscore: " + highscore);
                 }
                 if (moveables[i].isPartyBird) {
                     moveables[i].score = 50;
                     highscore += moveables[i].score;
+                    moveables[i].showScore();
                     console.log("Your Highscore: " + highscore);
                 }
                 if (!moveables[i].isLured && !moveables[i].isPartyBird) {
                     moveables[i].score = 20;
                     highscore += moveables[i].score;
+                    moveables[i].showScore();
                     console.log("Your Highscore: " + highscore);
                 }
                 moveables.splice(i, 1);
@@ -178,7 +181,7 @@ namespace Endabgabe {
                 deleteBird();
             }
         }
-        showScore();
-        drawSlingshotWoodenPart({ x: crc2.canvas.width - 55, y: crc2.canvas.height - 50});
+        updateScore();
+        drawSlingshotWoodenPart({ x: crc2.canvas.width - 55, y: crc2.canvas.height - 50 });
     }
 }

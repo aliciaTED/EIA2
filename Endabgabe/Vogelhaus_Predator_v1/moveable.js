@@ -26,6 +26,13 @@ var Endabgabe;
         draw() {
             //console.log("Moveable drawn");
         }
+        showScore() {
+            Endabgabe.crc2.beginPath();
+            Endabgabe.crc2.font = "20px Arial";
+            Endabgabe.crc2.fillStyle = "darkred";
+            Endabgabe.crc2.fillText("+ " + this.score, this.position.x, this.position.y);
+            Endabgabe.crc2.closePath();
+        }
     }
     Endabgabe.Moveable = Moveable;
 })(Endabgabe || (Endabgabe = {}));

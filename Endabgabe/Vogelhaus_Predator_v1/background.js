@@ -244,7 +244,7 @@ var Endabgabe;
         Endabgabe.crc2.restore();
     }
     Endabgabe.drawSlingshotWoodenPart = drawSlingshotWoodenPart;
-    function showScore() {
+    function updateScore() {
         Endabgabe.crc2.beginPath();
         Endabgabe.crc2.fillStyle = "darkred";
         Endabgabe.crc2.fillRect(630, 564, 170, 30);
@@ -253,6 +253,6 @@ var Endabgabe;
         Endabgabe.crc2.fillText("score: ", 640, 585);
         Endabgabe.crc2.fillText("" + Endabgabe.highscore, 703, 586);
     }
-    Endabgabe.showScore = showScore;
+    Endabgabe.updateScore = updateScore;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=background.js.map

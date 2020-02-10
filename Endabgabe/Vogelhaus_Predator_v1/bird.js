@@ -12,10 +12,12 @@ var Endabgabe;
             // anlockbare Vögel
             if (Math.random() <= 0.2) {
                 this.isLured = true;
+                this.isNormal = false;
                 console.log("I am lured & hungry.");
             }
             else {
                 this.isLured = false;
+                this.isNormal = true;
             }
             this.isHit = false;
         }
@@ -37,7 +39,7 @@ var Endabgabe;
                 let stop = new Endabgabe.Vector(0, 0);
                 this.velocity = stop;
                 // console.log("Birds stopped to eat.");
-                this.aim = new Endabgabe.Vector(-1000, -1000);
+                this.aim = new Endabgabe.Vector(-1, -1);
                 setTimeout(this.changeDirection, 1300);
             }
         }
@@ -76,11 +78,33 @@ var Endabgabe;
         // }
         hitBird(_mousePosition) {
             this.aim = _mousePosition;
-            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 9 && this.position.y <= this.aim.y + 9 && this.position.x >= this.aim.x - 9 && this.position.y >= this.aim.y - 9))) {
                 this.isHit = true;
                 console.log("Bird is hit: " + this.isHit);
             }
         }
+        // deleteBird(): void {
+        //     // for (let i: number = 0; i < moveables.length; i++) {
+        //     if (this.isHit) {
+        //         if (this.isLured) {
+        //             this.score = 10;
+        //             highscore += this.score;
+        //             this.showScore();
+        //             delete this.isLured;
+        //             console.log("Your Highscore: " + highscore);
+        //         }
+        //         if (!this.isLured) {
+        //             this.score = 20;
+        //             highscore += this.score;
+        //             this.showScore();
+        //             console.log("Your Highscore: " + highscore);
+        //             delete this.isNormal;
+        //         }
+        //         // moveables.splice(this.moveables, 1);
+        //         console.log("Bird was hit and killed!");
+        //     }
+        //     // }
+        // }
         draw() {
             //sitzende/laufende Vögel
             if (this.position.y >= Endabgabe.crc2.canvas.height * Endabgabe.golden) {
