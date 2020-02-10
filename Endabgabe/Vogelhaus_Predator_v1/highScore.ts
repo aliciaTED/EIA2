@@ -2,7 +2,7 @@ namespace Endabgabe {
     window.addEventListener("load", handleLoad);
 
     let url: string = "https://zero-x.herokuapp.com";
-    document.getElementById("highscore")?.addEventListener("click", showHighScoreList);
+    document.getElementById("highscore").addEventListener("click", showHighScoreList);
 
     async function showHighScoreList(_event: Event): Promise<void> {
         let query: string = "command=retrieve";
