@@ -6,7 +6,7 @@ namespace Endabgabe {
     function handleLoad(_event: Event): void {
         document.getElementById("highscore").addEventListener("click", showHighScoreList);
     }
-    
+
     async function showHighScoreList(_event: Event): Promise<void> {
         let query: string = "command=retrieve";
         let response: Response = await fetch(url + "?" + query);
@@ -14,6 +14,5 @@ namespace Endabgabe {
 
         let highScoreList: HTMLDivElement = <HTMLDivElement>document.querySelector("div#highScoreList");
         highScoreList.innerText = responseText;
-
     }
 }

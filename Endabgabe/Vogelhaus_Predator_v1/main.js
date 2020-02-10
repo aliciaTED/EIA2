@@ -117,7 +117,7 @@ var Endabgabe;
         }
         let food = new Endabgabe.Food(_mousePosition);
         Endabgabe.moveables.push(food);
-        setTimeout(deleteFood, 3000);
+        setTimeout(deleteFood, 30000);
     }
     function deleteFood() {
         for (let i = 0; i < Endabgabe.moveables.length; i++) {
