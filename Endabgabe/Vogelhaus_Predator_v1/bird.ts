@@ -94,7 +94,7 @@ namespace Endabgabe {
 
         hitBird(_mousePosition: Vector): void {
             this.aim = _mousePosition;
-            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 9 && this.position.y <= this.aim.y + 9 && this.position.x >= this.aim.x - 9 && this.position.y >= this.aim.y - 9))) {
+            if (this.position == this.aim || (this.position.x <= this.aim.x + 9 && this.position.y <= this.aim.y + 9 && this.position.x >= this.aim.x - 9 && this.position.y >= this.aim.y - 9)) {
                 this.isHit = true;
                 console.log("Bird is hit: " + this.isHit);
             }

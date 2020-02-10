@@ -31,7 +31,7 @@ var Endabgabe;
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
-        setTimeout(endGame, 5000);
+        setTimeout(endGame, 60000);
     }
     function drawBirds(nBirds) {
         console.log("(Hotdog) birds.");
@@ -108,16 +108,19 @@ var Endabgabe;
     function throwFood(_event) {
         console.log("Food thrown.");
         //console.log(_event);
-        let _mousePosition = new Endabgabe.Vector(_event.clientX, _event.clientY);
-        for (let moveable of Endabgabe.moveables) {
-            if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
-                //console.log(moveable.position);
-                moveable.getFood(_mousePosition);
+        if (_event.clientY > Endabgabe.crc2.canvas.height * Endabgabe.golden && Endabgabe.highscore >= 5) {
+            let _mousePosition = new Endabgabe.Vector(_event.clientX, _event.clientY);
+            for (let moveable of Endabgabe.moveables) {
+                if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
+                    //console.log(moveable.position);
+                    moveable.getFood(_mousePosition);
+                }
             }
+            let food = new Endabgabe.Food(_mousePosition);
+            Endabgabe.moveables.push(food);
+            Endabgabe.highscore -= 5;
+            setTimeout(deleteFood, 3500);
         }
-        let food = new Endabgabe.Food(_mousePosition);
-        Endabgabe.moveables.push(food);
-        setTimeout(deleteFood, 105000);
     }
     function deleteFood() {
         for (let i = 0; i < Endabgabe.moveables.length; i++) {
@@ -129,7 +132,7 @@ var Endabgabe;
     }
     function endGame() {
         console.log("Game over.");
-        let userName = prompt("Game over! \n Your Score: " + Endabgabe.highscore + "\n Please enter your name here.");
+        let userName = prompt("Time's up! \n Your Score: " + Endabgabe.highscore + "\n Please enter your name here. Press okay to play again.");
         if (userName != null) {
             sendEntryToList(userName, Endabgabe.highscore);
         }

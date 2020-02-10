@@ -43,7 +43,7 @@ namespace Endabgabe {
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
 
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
-        setTimeout(endGame, 5000);
+        setTimeout(endGame, 60000);
     }
 
     function drawBirds(nBirds: number): void {
@@ -130,17 +130,20 @@ namespace Endabgabe {
     function throwFood(_event: MouseEvent): void {
         console.log("Food thrown.");
         //console.log(_event);
-        let _mousePosition: Vector = new Vector(_event.clientX, _event.clientY);
-        for (let moveable of moveables) {
-            if (moveable instanceof Bird && moveable.isLured) {
-                //console.log(moveable.position);
-                moveable.getFood(_mousePosition);
+        if (_event.clientY > crc2.canvas.height * golden && highscore >= 5) {
+            let _mousePosition: Vector = new Vector(_event.clientX, _event.clientY);
+            for (let moveable of moveables) {
+                if (moveable instanceof Bird && moveable.isLured) {
+                    //console.log(moveable.position);
+                    moveable.getFood(_mousePosition);
+                }
             }
-        }
-        let food: Food = new Food(_mousePosition);
-        moveables.push(food);
+            let food: Food = new Food(_mousePosition);
+            moveables.push(food);
 
-        setTimeout(deleteFood, 105000);
+            highscore -= 5;
+            setTimeout(deleteFood, 3500);
+        }
     }
 
     function deleteFood(): void {
@@ -154,7 +157,7 @@ namespace Endabgabe {
 
     function endGame(): void {
         console.log("Game over.");
-        let userName: any = prompt("Game over! \n Your Score: " + highscore + "\n Please enter your name here.");
+        let userName: any = prompt("Time's up! \n Your Score: " + highscore + "\n Please enter your name here. Press okay to play again.");
         if (userName != null) {
             sendEntryToList(userName, highscore);
         }
