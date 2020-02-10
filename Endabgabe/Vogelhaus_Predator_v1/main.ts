@@ -140,7 +140,7 @@ namespace Endabgabe {
         let food: Food = new Food(_mousePosition);
         moveables.push(food);
 
-        setTimeout(deleteFood, 30000);
+        setTimeout(deleteFood, 105000);
     }
 
     function deleteFood(): void {
