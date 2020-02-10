@@ -214,27 +214,39 @@ namespace Endabgabe {
         crc2.fillStyle = "darkred";
         crc2.fill();
         crc2.closePath();
-
+        crc2.restore();
     }
 
     export function drawBirdsInTree(_position: VectorBack, _size: VectorBack): void {
         //console.log("Birds in Tree");
 
-        let nBirds: number = 3;
-        let radiusBird: number = 10 + Math.random() * 7;
-        let bird: Path2D = new Path2D();
+        let nBirds: number = 1;
 
-        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
-
-        let wing: number = 0 - radiusBird;
-        bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
-        crc2.stroke(bird);
-
-        let head: number = 0 - radiusBird;
-        bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
-
+        crc2.beginPath();
         crc2.save();
         crc2.translate(_position.x, _position.y);
+        crc2.arc(0, 0, 15, 0, 2 * Math.PI);
+        let head: number = -15;
+        crc2.arc(head, 0, 15, 0, 0.5 * Math.PI);
+        crc2.arc(0, head, (1 / 2) * 15, 0, 2 * Math.PI);
+        crc2.fill();
+        crc2.restore();
+        crc2.closePath();
+
+
+        // let bird: Path2D = new Path2D();
+
+        // bird.arc(_position.x, _position.y, radiusBird, 0, 2 * Math.PI);
+
+        // let wing: number = 0 - radiusBird;
+        // bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
+        // crc2.stroke(bird);
+
+        // let head: number = 0 - radiusBird;
+        // bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+
+        // crc2.save();
+        // crc2.translate(_position.x, _position.y);
 
 
         for (let drawn: number = 0; drawn < nBirds; drawn++) {
@@ -245,7 +257,7 @@ namespace Endabgabe {
             let x: number = Math.random() * _size.x;
             let y: number = - (Math.random() * _size.y);
             crc2.translate(x, y);
-            crc2.fill(bird);
+            crc2.fill();
             crc2.restore();
         }
         crc2.restore();
@@ -284,16 +296,17 @@ namespace Endabgabe {
         crc2.fillStyle = "HSL(30, 80%, 30%)";
         crc2.fill();
         crc2.closePath();
+        crc2.restore();
     }
 
     export function showScore(): void {
         crc2.beginPath();
         crc2.fillStyle = "darkred";
-        crc2.fillRect(630, 685, 170, 30);
+        crc2.fillRect(630, 564, 170, 30);
         crc2.font = "20px Arial";
         crc2.fillStyle = "white";
-        crc2.fillText("score: ", 640, 706);
+        crc2.fillText("score: ", 640, 585);
 
-        crc2.fillText("" + highscore, 703, 707);
+        crc2.fillText("" + highscore, 703, 586);
     }
 }

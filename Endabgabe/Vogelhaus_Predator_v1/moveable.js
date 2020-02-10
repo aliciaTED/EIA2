@@ -20,7 +20,7 @@ var Endabgabe;
                 this.position.y += Endabgabe.crc2.canvas.height;
             if (this.position.x > 800)
                 this.position.x -= Endabgabe.crc2.canvas.width;
-            if (this.position.y > 725)
+            if (this.position.y > 600)
                 this.position.y -= Endabgabe.crc2.canvas.height;
         }
         draw() {

@@ -4,7 +4,7 @@ namespace Endabgabe {
 
         constructor() {
             super();
-            this.position = new Vector(crc2.canvas.width - 50, crc2.canvas.height + 50);
+            this.position = new Vector(crc2.canvas.width - 50, crc2.canvas.height - 70);
             // Geschwindigkeit & Richtung
             this.velocity = new Vector(0, 0);
         }
@@ -16,7 +16,6 @@ namespace Endabgabe {
             let newVelocity: Vector = new Vector(newVelocityX, newVelocityY);
             this.velocity = newVelocity;
             // console.log("Slingshot shot.");
-            flyingSlingshot = true;
         }
 
         reachedTarget(): void {
@@ -32,9 +31,20 @@ namespace Endabgabe {
                         moveable.hitPartyBird(this.aim);
                     }
                 }
-                setTimeout(deleteSlingshot, 500);
+                setTimeout(this.deleteSlingshot, 500);
             }
             // drawTarget(this.aim);
+        }
+
+        deleteSlingshot(): void {
+            for (let i: number = 0; i < moveables.length; i++) {
+                if (moveables[i] instanceof Slingshot) {
+                    moveables.splice(i, 1);
+                    // console.log("Sling was deleted.");
+                }
+            }
+            let slingShot: Slingshot = new Slingshot();
+            moveables.push(slingShot);
         }
 
         draw(): void {

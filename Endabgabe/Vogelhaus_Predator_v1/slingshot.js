@@ -4,7 +4,7 @@ var Endabgabe;
     class Slingshot extends Endabgabe.Moveable {
         constructor() {
             super();
-            this.position = new Endabgabe.Vector(Endabgabe.crc2.canvas.width - 50, Endabgabe.crc2.canvas.height + 50);
+            this.position = new Endabgabe.Vector(Endabgabe.crc2.canvas.width - 50, Endabgabe.crc2.canvas.height - 70);
             // Geschwindigkeit & Richtung
             this.velocity = new Endabgabe.Vector(0, 0);
         }
@@ -15,7 +15,6 @@ var Endabgabe;
             let newVelocity = new Endabgabe.Vector(newVelocityX, newVelocityY);
             this.velocity = newVelocity;
             // console.log("Slingshot shot.");
-            Endabgabe.flyingSlingshot = true;
         }
         reachedTarget() {
             if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
@@ -30,9 +29,19 @@ var Endabgabe;
                         moveable.hitPartyBird(this.aim);
                     }
                 }
-                setTimeout(Endabgabe.deleteSlingshot, 500);
+                setTimeout(this.deleteSlingshot, 500);
             }
             // drawTarget(this.aim);
+        }
+        deleteSlingshot() {
+            for (let i = 0; i < Endabgabe.moveables.length; i++) {
+                if (Endabgabe.moveables[i] instanceof Slingshot) {
+                    Endabgabe.moveables.splice(i, 1);
+                    // console.log("Sling was deleted.");
+                }
+            }
+            let slingShot = new Slingshot();
+            Endabgabe.moveables.push(slingShot);
         }
         draw() {
             //console.log("drawn");

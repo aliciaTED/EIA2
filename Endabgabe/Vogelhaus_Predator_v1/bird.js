@@ -33,13 +33,47 @@ var Endabgabe;
             // console.log("Birds are lured to food.");
         }
         eatFood() {
-            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 12 && this.position.y <= this.aim.y + 12 && this.position.x >= this.aim.x - 12 && this.position.y >= this.aim.y - 12))) {
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 let stop = new Endabgabe.Vector(0, 0);
                 this.velocity = stop;
                 // console.log("Birds stopped to eat.");
-                setTimeout(Endabgabe.changeDirection, 1300);
+                this.aim = new Endabgabe.Vector(-1000, -1000);
+                setTimeout(this.changeDirection, 1300);
             }
         }
+        changeDirection() {
+            for (let i = 0; i <= Endabgabe.moveables.length; i++) {
+                if (Endabgabe.moveables[i] instanceof Bird) {
+                    if (Endabgabe.moveables[i].isLured) {
+                        // moveables[i].isLured = false;
+                        let a = -1 + Math.random() * 3;
+                        let b = -1 + Math.random() * 3;
+                        Endabgabe.moveables[i].velocity = new Endabgabe.Vector(a, b);
+                    }
+                }
+            }
+        }
+        createLuredBirds() {
+            console.log("test");
+            for (let i = 0; i >= Endabgabe.moveables.length; i++) {
+                if (Endabgabe.moveables[i] instanceof Bird) {
+                    for (let n = 0; n <= 3; n++) {
+                        Endabgabe.moveables[i].isLured = true;
+                    }
+                }
+            }
+        }
+        // changeDirection(): void {
+        //     for (let moveable of moveables) {
+        //         if (moveable instanceof Bird && moveable.isLured) {
+        //             if (Math.random() * 5 < 0.07) {
+        //                 let a: number = Math.random() * 5;
+        //                 let b: number = Math.random() * 5;
+        //                 moveable.velocity = new Vector(a, b);
+        //             }
+        //         }
+        //     }
+        // }
         hitBird(_mousePosition) {
             this.aim = _mousePosition;
             if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
@@ -49,7 +83,7 @@ var Endabgabe;
         }
         draw() {
             //sitzende/laufende Vögel
-            if (this.position.y >= 490) {
+            if (this.position.y >= Endabgabe.crc2.canvas.height * Endabgabe.golden) {
                 Endabgabe.crc2.fillStyle = this.color;
                 Endabgabe.crc2.beginPath();
                 Endabgabe.crc2.save();
@@ -71,13 +105,6 @@ var Endabgabe;
                 Endabgabe.crc2.arc(0, 0, 15, 0, 2 * Math.PI);
                 Endabgabe.crc2.arc(-15, -2, (1 / 2) * 15, 0, 2 * Math.PI);
                 Endabgabe.crc2.ellipse(5, -5, (1 / 3) * 15, 15, 13, 0, 2 * Math.PI);
-                // for (let drawn: number = 0; drawn < 20; drawn++) {
-                //     let colorAngle: number = 120 - Math.random() * 290;
-                //     let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
-                //     crc2.fillStyle = color;
-                //     crc2.fill();
-                //     crc2.restore();
-                // }
                 Endabgabe.crc2.fill();
                 Endabgabe.crc2.restore();
                 Endabgabe.crc2.closePath();

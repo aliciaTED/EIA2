@@ -22,7 +22,7 @@ var Endabgabe;
         }
         draw() {
             //sitzender/laufender Vogel
-            if (this.position.y >= 490) {
+            if (this.position.y >= Endabgabe.crc2.canvas.height * Endabgabe.golden) {
                 Endabgabe.crc2.beginPath();
                 Endabgabe.crc2.save();
                 Endabgabe.crc2.translate(this.position.x, this.position.y);

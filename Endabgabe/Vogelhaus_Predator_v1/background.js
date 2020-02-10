@@ -172,21 +172,31 @@ var Endabgabe;
         Endabgabe.crc2.fillStyle = "darkred";
         Endabgabe.crc2.fill();
         Endabgabe.crc2.closePath();
+        Endabgabe.crc2.restore();
     }
     Endabgabe.drawBirdhouse = drawBirdhouse;
     function drawBirdsInTree(_position, _size) {
         //console.log("Birds in Tree");
-        let nBirds = 3;
-        let radiusBird = 10 + Math.random() * 7;
-        let bird = new Path2D();
-        bird.arc(0, 0, radiusBird, 0, 2 * Math.PI);
-        let wing = 0 - radiusBird;
-        bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
-        Endabgabe.crc2.stroke(bird);
-        let head = 0 - radiusBird;
-        bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+        let nBirds = 1;
+        Endabgabe.crc2.beginPath();
         Endabgabe.crc2.save();
         Endabgabe.crc2.translate(_position.x, _position.y);
+        Endabgabe.crc2.arc(0, 0, 15, 0, 2 * Math.PI);
+        let head = -15;
+        Endabgabe.crc2.arc(head, 0, 15, 0, 0.5 * Math.PI);
+        Endabgabe.crc2.arc(0, head, (1 / 2) * 15, 0, 2 * Math.PI);
+        Endabgabe.crc2.fill();
+        Endabgabe.crc2.restore();
+        Endabgabe.crc2.closePath();
+        // let bird: Path2D = new Path2D();
+        // bird.arc(_position.x, _position.y, radiusBird, 0, 2 * Math.PI);
+        // let wing: number = 0 - radiusBird;
+        // bird.arc(wing, 0, radiusBird, 0, 0.5 * Math.PI);
+        // crc2.stroke(bird);
+        // let head: number = 0 - radiusBird;
+        // bird.arc(0, head, (1 / 2) * radiusBird, 0, 2 * Math.PI);
+        // crc2.save();
+        // crc2.translate(_position.x, _position.y);
         for (let drawn = 0; drawn < nBirds; drawn++) {
             let colorAngle = 120 - Math.random() * 290;
             let color = "HSLA(" + colorAngle + ", 90%, 50%, 1)";
@@ -195,7 +205,7 @@ var Endabgabe;
             let x = Math.random() * _size.x;
             let y = -(Math.random() * _size.y);
             Endabgabe.crc2.translate(x, y);
-            Endabgabe.crc2.fill(bird);
+            Endabgabe.crc2.fill();
             Endabgabe.crc2.restore();
         }
         Endabgabe.crc2.restore();
@@ -231,16 +241,17 @@ var Endabgabe;
         Endabgabe.crc2.fillStyle = "HSL(30, 80%, 30%)";
         Endabgabe.crc2.fill();
         Endabgabe.crc2.closePath();
+        Endabgabe.crc2.restore();
     }
     Endabgabe.drawSlingshotWoodenPart = drawSlingshotWoodenPart;
     function showScore() {
         Endabgabe.crc2.beginPath();
         Endabgabe.crc2.fillStyle = "darkred";
-        Endabgabe.crc2.fillRect(630, 685, 170, 30);
+        Endabgabe.crc2.fillRect(630, 564, 170, 30);
         Endabgabe.crc2.font = "20px Arial";
         Endabgabe.crc2.fillStyle = "white";
-        Endabgabe.crc2.fillText("score: ", 640, 706);
-        Endabgabe.crc2.fillText("" + Endabgabe.highscore, 703, 707);
+        Endabgabe.crc2.fillText("score: ", 640, 585);
+        Endabgabe.crc2.fillText("" + Endabgabe.highscore, 703, 586);
     }
     Endabgabe.showScore = showScore;
 })(Endabgabe || (Endabgabe = {}));

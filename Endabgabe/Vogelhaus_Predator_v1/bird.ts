@@ -24,7 +24,7 @@ namespace Endabgabe {
                 this.isLured = false;
             }
 
-            this.isHit = false; 
+            this.isHit = false;
         }
 
         static getRandomColor(): string {
@@ -44,13 +44,50 @@ namespace Endabgabe {
         }
 
         eatFood(): void {
-            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 12 && this.position.y <= this.aim.y + 12 && this.position.x >= this.aim.x - 12 && this.position.y >= this.aim.y - 12))) {
+            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 let stop: Vector = new Vector(0, 0);
                 this.velocity = stop;
                 // console.log("Birds stopped to eat.");
-                setTimeout(changeDirection, 1300);
+                this.aim = new Vector(-1000, -1000);
+                setTimeout(this.changeDirection, 1300);
             }
         }
+
+        changeDirection(): void {
+            for (let i: number = 0; i <= moveables.length; i++) {
+                if (moveables[i] instanceof Bird) {
+                    if (moveables[i].isLured) {
+                        // moveables[i].isLured = false;
+                        let a: number = -1 + Math.random() * 3;
+                        let b: number = -1 + Math.random() * 3;
+                        moveables[i].velocity = new Vector(a, b);
+                    }
+                }
+            }
+        }
+
+        createLuredBirds(): void {
+            console.log("test");
+            for (let i: number = 0; i >= moveables.length; i++) {
+                if (moveables[i] instanceof Bird) {
+                    for (let n: number = 0; n <= 3; n++) {
+                        moveables[i].isLured = true;
+                    }
+                }
+            }
+        }
+
+        // changeDirection(): void {
+        //     for (let moveable of moveables) {
+        //         if (moveable instanceof Bird && moveable.isLured) {
+        //             if (Math.random() * 5 < 0.07) {
+        //                 let a: number = Math.random() * 5;
+        //                 let b: number = Math.random() * 5;
+        //                 moveable.velocity = new Vector(a, b);
+        //             }
+        //         }
+        //     }
+        // }
 
         hitBird(_mousePosition: Vector): void {
             this.aim = _mousePosition;
@@ -64,7 +101,7 @@ namespace Endabgabe {
 
             //sitzende/laufende Vögel
 
-            if (this.position.y >= 490) {
+            if (this.position.y >= crc2.canvas.height * golden) {
                 crc2.fillStyle = this.color;
                 crc2.beginPath();
                 crc2.save();
@@ -89,13 +126,6 @@ namespace Endabgabe {
 
                 crc2.arc(-15, -2, (1 / 2) * 15, 0, 2 * Math.PI);
                 crc2.ellipse(5, -5, (1 / 3) * 15, 15, 13, 0, 2 * Math.PI);
-                // for (let drawn: number = 0; drawn < 20; drawn++) {
-                //     let colorAngle: number = 120 - Math.random() * 290;
-                //     let color: string = "HSLA(" + colorAngle + ", 90%, 50%, 0.7)";
-                //     crc2.fillStyle = color;
-                //     crc2.fill();
-                //     crc2.restore();
-                // }
                 crc2.fill();
                 crc2.restore();
                 crc2.closePath();

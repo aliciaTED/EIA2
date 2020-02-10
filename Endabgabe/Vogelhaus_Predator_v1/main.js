@@ -7,8 +7,6 @@ var Endabgabe;
     Endabgabe.golden = 0.62;
     Endabgabe.moveables = [];
     // let luredBirds: Moveable[] = [];
-    Endabgabe.flyingSlingshot = false;
-    console.log("Slingshot is flying: " + Endabgabe.flyingSlingshot);
     Endabgabe.highscore = 0;
     console.log("Your Highscore: " + Endabgabe.highscore);
     function handleLoad(_event) {
@@ -24,11 +22,9 @@ var Endabgabe;
         Endabgabe.drawTree();
         Endabgabe.drawSnowman({ x: 400, y: 500 });
         Endabgabe.drawBirdhouse();
-        Endabgabe.drawBirdsInTree({ x: 510, y: 400 }, { x: 180, y: 120 });
-        // drawSlingshotWoodenPart({ x: canvas.width - 55, y: canvas.height + 70 });
-        Endabgabe.showScore();
+        Endabgabe.drawBirdsInTree({ x: 530 + Math.random() * 100, y: 200 + Math.random() * 100 }, { x: 180, y: 120 });
         let background = Endabgabe.crc2.getImageData(0, 0, 800, 600);
-        drawBirds(15);
+        drawBirds(17);
         drawSnowflakes(150);
         drawPartyBird(3);
         drawSlingshot();
@@ -57,25 +53,15 @@ var Endabgabe;
             Endabgabe.moveables.push(partyBird);
         }
     }
-    function changeDirection() {
-        for (let moveable of Endabgabe.moveables) {
-            if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
-                if (Math.random() * 5 < 0.07) {
-                    moveable.velocity = new Endabgabe.Vector(2, 3);
-                }
-            }
-        }
-    }
-    Endabgabe.changeDirection = changeDirection;
     function deleteBird() {
         for (let i = 0; i < Endabgabe.moveables.length; i++) {
             if (Endabgabe.moveables[i].isHit) {
-                if (Endabgabe.moveables[i].isHit && Endabgabe.moveables[i].isLured) {
+                if (Endabgabe.moveables[i].isLured) {
                     Endabgabe.moveables[i].score = 10;
                     Endabgabe.highscore += Endabgabe.moveables[i].score;
                     console.log("Your Highscore: " + Endabgabe.highscore);
                 }
-                if (Endabgabe.moveables[i].isHit && Endabgabe.moveables[i].isPartyBird) {
+                if (Endabgabe.moveables[i].isPartyBird) {
                     Endabgabe.moveables[i].score = 50;
                     Endabgabe.highscore += Endabgabe.moveables[i].score;
                     console.log("Your Highscore: " + Endabgabe.highscore);
@@ -91,13 +77,6 @@ var Endabgabe;
         }
     }
     Endabgabe.deleteBird = deleteBird;
-    // export function drawTarget(_mousePosition: Vector): void {
-    //     crc2.beginPath();
-    //     crc2.moveTo(_mousePosition.x + 10, _mousePosition.y - 5);
-    //     crc2.moveTo(_mousePosition.x + 10, _mousePosition.y + 5);
-    //     crc2.moveTo(_mousePosition.x + 20, _mousePosition.y - 5);
-    //     crc2.moveTo(_mousePosition.x + 20, _mousePosition.y + 5);
-    // }
     function drawSlingshot() {
         //console.log("Slingshot.");
         let slingShot = new Endabgabe.Slingshot();
@@ -105,7 +84,7 @@ var Endabgabe;
     }
     function useSlingshot(_event) {
         console.log("Slingshot used.");
-        let _mousePosition = new Endabgabe.Vector(_event.screenX, _event.screenY);
+        let _mousePosition = new Endabgabe.Vector(_event.clientX, _event.clientY);
         for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Slingshot) {
                 // console.log("Slingshot started.");
@@ -113,21 +92,19 @@ var Endabgabe;
             }
         }
     }
-    function deleteSlingshot() {
-        for (let i = 0; i < Endabgabe.moveables.length; i++) {
-            if (Endabgabe.moveables[i] instanceof Endabgabe.Slingshot) {
-                Endabgabe.moveables.splice(i, 1);
-                // console.log("Sling was deleted.");
-                Endabgabe.flyingSlingshot = false;
-            }
-        }
-        drawSlingshot();
-    }
-    Endabgabe.deleteSlingshot = deleteSlingshot;
+    // export function deleteSlingshot(): void {
+    //     for (let i: number = 0; i < moveables.length; i++) {
+    //         if (moveables[i] instanceof Slingshot) {
+    //             moveables.splice(i, 1);
+    //             // console.log("Sling was deleted.");
+    //         }
+    //     }
+    //     drawSlingshot();
+    // }
     function throwFood(_event) {
         console.log("Food thrown.");
         //console.log(_event);
-        let _mousePosition = new Endabgabe.Vector(_event.screenX, _event.screenY);
+        let _mousePosition = new Endabgabe.Vector(_event.clientX, _event.clientY);
         for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
                 //console.log(moveable.position);
@@ -146,15 +123,6 @@ var Endabgabe;
             }
         }
     }
-    // function showScore(): void {
-    //     crc2.fillStyle = "#0f0f0f";
-    //     crc2.fillRect(700, 0, 200, 80);
-    //     crc2.font = "20px Typescript";
-    //     crc2.fillStyle = "white";
-    //     crc2.fillText("Score: ", 660, 25);
-    //     crc2.fillText("" + highscore, 720, 25);
-    //     crc2.font = "20px Typescript";
-    // }
     // update Background & Animation
     function update(_background) {
         //console.log("updated");
@@ -182,8 +150,7 @@ var Endabgabe;
             }
         }
         Endabgabe.showScore();
-        Endabgabe.drawSlingshotWoodenPart({ x: Endabgabe.crc2.canvas.width - 55, y: Endabgabe.crc2.canvas.height + 70 });
-        // showScore();
+        Endabgabe.drawSlingshotWoodenPart({ x: Endabgabe.crc2.canvas.width - 55, y: Endabgabe.crc2.canvas.height - 50 });
     }
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map
