@@ -33,18 +33,18 @@ var Endabgabe;
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
         setTimeout(endGame, 60000);
     }
-    function drawBirds(nBirds) {
-        console.log("(Hotdog) birds.");
-        for (let i = 0; i < nBirds; i++) {
-            let bird = new Endabgabe.Bird();
-            Endabgabe.moveables.push(bird);
-        }
-    }
     function drawSnowflakes(nSnowflakes) {
         console.log("Snowflakes.");
         for (let i = 0; i < nSnowflakes; i++) {
             let snowflake = new Endabgabe.Snowflake();
             Endabgabe.moveables.push(snowflake);
+        }
+    }
+    function drawBirds(nBirds) {
+        console.log("(Hotdog) birds.");
+        for (let i = 0; i < nBirds; i++) {
+            let bird = new Endabgabe.Bird();
+            Endabgabe.moveables.push(bird);
         }
     }
     function drawPartyBird(nBirds) {
@@ -84,7 +84,6 @@ var Endabgabe;
     }
     Endabgabe.deleteBird = deleteBird;
     function drawSlingshot() {
-        //console.log("Slingshot.");
         let slingShot = new Endabgabe.Slingshot();
         Endabgabe.moveables.push(slingShot);
     }
@@ -151,7 +150,6 @@ var Endabgabe;
         let response = await fetch(Endabgabe.url + "?" + query); // Variablen in Response einfügen und darauf warten)
         alert(response); // Benachrichtigung mit Response
     }
-    // update Background & Animation
     function update(_background) {
         //console.log("updated");
         Endabgabe.crc2.putImageData(_background, 0, 0);

@@ -46,21 +46,21 @@ namespace Endabgabe {
         setTimeout(endGame, 60000);
     }
 
-    function drawBirds(nBirds: number): void {
-        console.log("(Hotdog) birds.");
-
-        for (let i: number = 0; i < nBirds; i++) {
-            let bird: Bird = new Bird();
-            moveables.push(bird);
-        }
-    }
-
     function drawSnowflakes(nSnowflakes: number): void {
         console.log("Snowflakes.");
 
         for (let i: number = 0; i < nSnowflakes; i++) {
             let snowflake: Snowflake = new Snowflake();
             moveables.push(snowflake);
+        }
+    }
+
+    function drawBirds(nBirds: number): void {
+        console.log("(Hotdog) birds.");
+
+        for (let i: number = 0; i < nBirds; i++) {
+            let bird: Bird = new Bird();
+            moveables.push(bird);
         }
     }
 
@@ -102,7 +102,6 @@ namespace Endabgabe {
     }
 
     function drawSlingshot(): void {
-        //console.log("Slingshot.");
         let slingShot: Slingshot = new Slingshot();
         moveables.push(slingShot);
     }
@@ -179,7 +178,6 @@ namespace Endabgabe {
         alert(response); // Benachrichtigung mit Response
     }
 
-    // update Background & Animation
     function update(_background: ImageData): void {
         //console.log("updated");
         crc2.putImageData(_background, 0, 0);

@@ -20,7 +20,6 @@ var Endabgabe;
             if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 let stop = new Endabgabe.Vector(0, 0);
                 this.velocity = stop;
-                this.exists = true;
                 // console.log("Slingshot stopped.")
                 for (let moveable of Endabgabe.moveables) {
                     if (moveable instanceof Endabgabe.Bird) {
@@ -38,8 +37,6 @@ var Endabgabe;
             for (let i = 0; i < Endabgabe.moveables.length; i++) {
                 if (Endabgabe.moveables[i] instanceof Slingshot) {
                     Endabgabe.moveables.splice(i, 1);
-                    this.exists = false;
-                    // console.log("Sling was deleted.");
                 }
             }
             let slingShot = new Slingshot();
