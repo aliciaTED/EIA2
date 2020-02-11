@@ -4,12 +4,12 @@ namespace Endabgabe {
         y: number;
     }
 
-    let url: string = "https://zero-x.herokuapp.com/";
-    console.log(url);
-
     window.addEventListener("load", handleLoad);
     export let crc2: CanvasRenderingContext2D;
     export let golden: number = 0.62;
+
+    export let url: string = "https://zero-x.herokuapp.com/";
+    // console.log(url);
 
     export let moveables: Moveable[] = [];
     export let scoreBird: Score[] = [];
@@ -77,7 +77,7 @@ namespace Endabgabe {
             let bird: Bird = moveables[i] as Bird; // typecast von Moveables zu Bird/PartyBird
             let partyBird: PartyBird = moveables[i] as PartyBird;
             if (bird.isHit) {
-                if (bird.isLured && bird.isFeeding) {
+                if (bird.isLured) {
                     bird.score = 10;
                     highscore += bird.score;
                     bird.showScore();
@@ -89,7 +89,7 @@ namespace Endabgabe {
                     partyBird.showScore();
                     console.log("Your Highscore: " + highscore);
                 }
-                if (!bird.isLured && !partyBird.isPartyBird && !bird.isFeeding) {
+                if (!bird.isLured && !partyBird.isPartyBird) {
                     bird.score = 20;
                     highscore += bird.score;
                     bird.showScore();
@@ -200,8 +200,6 @@ namespace Endabgabe {
                 moveable.eatFood();
             }
         }
-
-
 
         for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isHit) {

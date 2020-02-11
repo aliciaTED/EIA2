@@ -1,10 +1,10 @@
 "use strict";
 var Endabgabe;
 (function (Endabgabe) {
-    let url = "https://zero-x.herokuapp.com/";
-    console.log(url);
     window.addEventListener("load", handleLoad);
     Endabgabe.golden = 0.62;
+    Endabgabe.url = "https://zero-x.herokuapp.com/";
+    // console.log(url);
     Endabgabe.moveables = [];
     Endabgabe.scoreBird = [];
     Endabgabe.highscore = 0;
@@ -59,7 +59,7 @@ var Endabgabe;
             let bird = Endabgabe.moveables[i]; // typecast von Moveables zu Bird/PartyBird
             let partyBird = Endabgabe.moveables[i];
             if (bird.isHit) {
-                if (bird.isLured && bird.isFeeding) {
+                if (bird.isLured) {
                     bird.score = 10;
                     Endabgabe.highscore += bird.score;
                     bird.showScore();
@@ -71,7 +71,7 @@ var Endabgabe;
                     partyBird.showScore();
                     console.log("Your Highscore: " + Endabgabe.highscore);
                 }
-                if (!bird.isLured && !partyBird.isPartyBird && !bird.isFeeding) {
+                if (!bird.isLured && !partyBird.isPartyBird) {
                     bird.score = 20;
                     Endabgabe.highscore += bird.score;
                     bird.showScore();
@@ -148,7 +148,7 @@ var Endabgabe;
     }
     async function sendEntryToList(_userName, _highscore) {
         let query = "name=" + _userName + "&highScore=" + _highscore; // Variable für Werte, die gespeichert werden sollen
-        let response = await fetch(url + "?" + query); // Variablen in Response einfügen und darauf warten)
+        let response = await fetch(Endabgabe.url + "?" + query); // Variablen in Response einfügen und darauf warten)
         alert(response); // Benachrichtigung mit Response
     }
     // update Background & Animation
