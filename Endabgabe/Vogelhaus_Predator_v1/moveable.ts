@@ -1,4 +1,4 @@
-namespace Endabgabe {
+namespace Endabgabe { 
     export abstract class Moveable {
         position: Vector;
         velocity: Vector;
