@@ -179,7 +179,7 @@ namespace Endabgabe {
     }
 
     function update(_background: ImageData): void {
-        //console.log("updated");
+        // Update der Moveables & des Hintergrunds
         crc2.putImageData(_background, 0, 0);
 
         for (let moveable of moveables) {
@@ -187,18 +187,21 @@ namespace Endabgabe {
             moveable.draw();
         }
 
+        //Bird hit at target?
         for (let moveable of moveables) {
             if (moveable instanceof Slingshot) {
                 moveable.reachedTarget();
             }
         }
 
+        //Bird at food?
         for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isLured) {
                 moveable.eatFood();
             }
         }
 
+        //Bird hit >> delete!
         for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isHit) {
                 deleteBird();

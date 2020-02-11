@@ -151,22 +151,25 @@ var Endabgabe;
         alert(response); // Benachrichtigung mit Response
     }
     function update(_background) {
-        //console.log("updated");
+        // Update der Moveables & des Hintergrunds
         Endabgabe.crc2.putImageData(_background, 0, 0);
         for (let moveable of Endabgabe.moveables) {
             moveable.move();
             moveable.draw();
         }
+        //Bird hit at target?
         for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Slingshot) {
                 moveable.reachedTarget();
             }
         }
+        //Bird at food?
         for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
                 moveable.eatFood();
             }
         }
+        //Bird hit >> delete!
         for (let moveable of Endabgabe.moveables) {
             if (moveable instanceof Endabgabe.Bird && moveable.isHit) {
                 deleteBird();

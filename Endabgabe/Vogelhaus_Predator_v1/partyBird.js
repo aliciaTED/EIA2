@@ -10,7 +10,9 @@ var Endabgabe;
             let y = 700 * Endabgabe.golden * Math.random();
             this.position = new Endabgabe.Vector(x, y);
             // Geschwindigkeit & Richtung
-            this.velocity = new Endabgabe.Vector(-4, 3);
+            let a = -8 + Math.random() * 8;
+            let b = -1 + Math.random() * 5;
+            this.velocity = new Endabgabe.Vector(a, b);
             this.isHit = false;
         }
         hitPartyBird(_mousePosition) {

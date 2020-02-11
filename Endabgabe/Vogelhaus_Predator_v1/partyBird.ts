@@ -15,7 +15,9 @@ namespace Endabgabe {
             this.position = new Vector(x, y);
 
             // Geschwindigkeit & Richtung
-            this.velocity = new Vector(-4, 3);
+            let a: number = -8 + Math.random() * 8;
+            let b: number = -1 + Math.random() * 5;
+            this.velocity = new Vector(a, b);
 
             this.isHit = false;
         }
