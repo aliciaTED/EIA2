@@ -14,12 +14,10 @@ var Endabgabe;
             // anlockbare Vögel
             if (Math.random() <= 0.2) {
                 this.isLured = true;
-                this.isNormal = false;
                 console.log("I am lured & hungry.");
             }
             else {
                 this.isLured = false;
-                this.isNormal = true;
             }
             this.isFeeding = false;
             this.isHit = false;

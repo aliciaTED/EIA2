@@ -8,7 +8,7 @@ namespace Endabgabe {
     export let crc2: CanvasRenderingContext2D;
     export let golden: number = 0.62;
 
-    export let url: string = "https://zero-x.herokuapp.com/";
+    let url: string = "https://zero-x.herokuapp.com/";
     // console.log(url);
 
     export let moveables: Moveable[] = [];

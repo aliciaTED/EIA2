@@ -2,7 +2,6 @@ namespace Endabgabe {
     export class Bird extends Moveable {
         color: string;
         aim: Vector;
-        isNormal: boolean;
         isLured: boolean;
         isHit: boolean;
         isFeeding: boolean;
@@ -23,11 +22,9 @@ namespace Endabgabe {
             // anlockbare Vögel
             if (Math.random() <= 0.2) {
                 this.isLured = true;
-                this.isNormal = false;
                 console.log("I am lured & hungry.");
             } else {
                 this.isLured = false;
-                this.isNormal = true;
             }
 
             this.isFeeding = false;

@@ -4,6 +4,7 @@ namespace Endabgabe {
         y: number;
         score: number;
         timer: number;
+        
         constructor(x: number, y: number, score: number, timer: number) {
             this.x = x;
             this.y = y;

@@ -1,6 +1,8 @@
 namespace Endabgabe {
     window.addEventListener("load", handleLoad);
 
+    let url: string = "https://zero-x.herokuapp.com";
+
     function handleLoad(_event: Event): void {
         document.getElementById("highscore").addEventListener("click", showHighScoreList);
     }

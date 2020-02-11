@@ -11,4 +11,4 @@ var Endabgabe;
     }
     Endabgabe.Score = Score;
 })(Endabgabe || (Endabgabe = {}));
-//# sourceMappingURL=displayScore.js.map
+//# sourceMappingURL=Score.js.map

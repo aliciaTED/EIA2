@@ -3,7 +3,7 @@ var Endabgabe;
 (function (Endabgabe) {
     window.addEventListener("load", handleLoad);
     Endabgabe.golden = 0.62;
-    Endabgabe.url = "https://zero-x.herokuapp.com/";
+    let url = "https://zero-x.herokuapp.com/";
     // console.log(url);
     Endabgabe.moveables = [];
     Endabgabe.scoreBird = [];
@@ -147,7 +147,7 @@ var Endabgabe;
     }
     async function sendEntryToList(_userName, _highscore) {
         let query = "name=" + _userName + "&highScore=" + _highscore; // Variable für Werte, die gespeichert werden sollen
-        let response = await fetch(Endabgabe.url + "?" + query); // Variablen in Response einfügen und darauf warten)
+        let response = await fetch(url + "?" + query); // Variablen in Response einfügen und darauf warten)
         alert(response); // Benachrichtigung mit Response
     }
     function update(_background) {
