@@ -10,8 +10,8 @@ var Endabgabe;
         }
         targetBird(_mousePosition) {
             this.aim = _mousePosition;
-            let newVelocityX = (_mousePosition.x - this.position.x) * 0.03;
-            let newVelocityY = (_mousePosition.y - this.position.y) * 0.03;
+            let newVelocityX = (_mousePosition.x - this.position.x) * 0.05;
+            let newVelocityY = (_mousePosition.y - this.position.y) * 0.05;
             let newVelocity = new Endabgabe.Vector(newVelocityX, newVelocityY);
             this.velocity = newVelocity;
             // console.log("Slingshot shot.");

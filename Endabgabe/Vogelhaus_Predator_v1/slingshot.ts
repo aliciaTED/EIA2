@@ -12,8 +12,8 @@ namespace Endabgabe {
 
         targetBird(_mousePosition: Vector): void {
             this.aim = _mousePosition;
-            let newVelocityX: number = (_mousePosition.x - this.position.x) * 0.03;
-            let newVelocityY: number = (_mousePosition.y - this.position.y) * 0.03;
+            let newVelocityX: number = (_mousePosition.x - this.position.x) * 0.05;
+            let newVelocityY: number = (_mousePosition.y - this.position.y) * 0.05;
             let newVelocity: Vector = new Vector(newVelocityX, newVelocityY);
             this.velocity = newVelocity;
             // console.log("Slingshot shot.");

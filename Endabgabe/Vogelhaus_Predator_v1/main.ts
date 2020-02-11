@@ -12,8 +12,7 @@ namespace Endabgabe {
     export let golden: number = 0.62;
 
     export let moveables: Moveable[] = [];
-    // let luredBirds: Moveable[] = [];
-    export let scoreBird: Score[] = []; // tuple >> zwei Datentypen in einem Datentyp vereinen
+    export let scoreBird: Score[] = [];
 
     export let highscore: number = 0;
     console.log("Your Highscore: " + highscore);
@@ -75,24 +74,25 @@ namespace Endabgabe {
 
     export function deleteBird(): void {
         for (let i: number = 0; i < moveables.length; i++) {
-            // typecast hinzfügen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if (moveables[i].isHit) {
-                if (moveables[i].isLured) {
-                    moveables[i].score = 10;
-                    highscore += moveables[i].score;
-                    moveables[i].showScore();
+            let bird: Bird = moveables[i] as Bird; // typecast von Moveables zu Bird/PartyBird
+            let partyBird: PartyBird = moveables[i] as PartyBird;
+            if (bird.isHit) {
+                if (bird.isLured && bird.isFeeding) {
+                    bird.score = 10;
+                    highscore += bird.score;
+                    bird.showScore();
                     console.log("Your Highscore: " + highscore);
                 }
-                if (moveables[i].isPartyBird) {
-                    moveables[i].score = 50;
-                    highscore += moveables[i].score;
-                    moveables[i].showScore();
+                if (partyBird.isPartyBird) {
+                    bird.score = 50;
+                    highscore += partyBird.score;
+                    partyBird.showScore();
                     console.log("Your Highscore: " + highscore);
                 }
-                if (!moveables[i].isLured && !moveables[i].isPartyBird) {
-                    moveables[i].score = 20;
-                    highscore += moveables[i].score;
-                    moveables[i].showScore();
+                if (!bird.isLured && !partyBird.isPartyBird && !bird.isFeeding) {
+                    bird.score = 20;
+                    highscore += bird.score;
+                    bird.showScore();
                     console.log("Your Highscore: " + highscore);
                 }
                 moveables.splice(i, 1);
@@ -118,16 +118,6 @@ namespace Endabgabe {
             }
         }
     }
-
-    // export function deleteSlingshot(): void {
-    //     for (let i: number = 0; i < moveables.length; i++) {
-    //         if (moveables[i] instanceof Slingshot) {
-    //             moveables.splice(i, 1);
-    //             // console.log("Sling was deleted.");
-    //         }
-    //     }
-    //     drawSlingshot();
-    // }
 
     function throwFood(_event: MouseEvent): void {
         console.log("Food thrown.");
@@ -211,7 +201,7 @@ namespace Endabgabe {
             }
         }
 
-        
+
 
         for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isHit) {

@@ -20,6 +20,11 @@ var Endabgabe;
                 console.log("Partybird is hit: " + this.isHit);
             }
         }
+        showScore() {
+            for (let i = 0; i < Endabgabe.moveables.length; i++) {
+                Endabgabe.scoreBird.push(new Endabgabe.Score(this.position.x, this.position.y, this.score, 0));
+            }
+        }
         draw() {
             //sitzender/laufender Vogel
             if (this.position.y >= Endabgabe.crc2.canvas.height * Endabgabe.golden) {

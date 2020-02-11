@@ -5,15 +5,17 @@ namespace Endabgabe {
         isNormal: boolean;
         isLured: boolean;
         isHit: boolean;
-        score: number;
         isFeeding: boolean;
+        score: number;
 
         constructor() {
             super();
             // console.log("constructed");
 
             // Geschwindigkeit & Richtung
-            this.velocity = new Vector(-1, 1);
+            let a: number = -3 + Math.random() * 3;
+            let b: number = -1 + Math.random() * 3;
+            this.velocity = new Vector(a, b);
 
             // Farbe für Vögel
             this.color = Bird.getRandomColor();
@@ -50,7 +52,7 @@ namespace Endabgabe {
         }
 
         eatFood(): void {
-            
+
             if (this.aim && this.isFeeding && !this.isHit && (this.position == this.aim || (this.position.x <= this.aim.x + 9 && this.position.y <= this.aim.y + 9 && this.position.x >= this.aim.x - 9 && this.position.y >= this.aim.y - 9))) {
                 let stop: Vector = new Vector(0, 0);
                 this.velocity = stop;
@@ -63,12 +65,12 @@ namespace Endabgabe {
         changeDirection(): void {
             for (let i: number = 0; i <= moveables.length; i++) {
                 if (moveables[i] instanceof Bird) {
-                    if (moveables[i].isLured) {
+                    let bird: Bird = moveables[i] as Bird; // typecast = Typumwandlung (möglich, da Moveables = Elternklasse von Bird) >> Zugriff auf Eigenschaften von Bird ohne sie in Moveables zu deklarieren
+                    if (bird.isLured) {
                         // moveables[i].isLured = false;
-                        let a: number = -1 + Math.random() * 3;
+                        let a: number = -3 + Math.random() * 3;
                         let b: number = -1 + Math.random() * 3;
-                        moveables[i].velocity = new Vector(a, b);
-                        let bird: Bird = moveables[i] as Bird; // typecast = Typumwandlung (möglich, da Moveables = Elternklasse von Bird) >> Zugriff auf Eigenschaften von Bird ohne sie in Moveables zu deklarieren
+                        bird.velocity = new Vector(a, b);
                         bird.isFeeding = false;
                     }
                 }
@@ -86,48 +88,19 @@ namespace Endabgabe {
         //     }
         // }
 
-        // changeDirection(): void {
-        //     for (let moveable of moveables) {
-        //         if (moveable instanceof Bird && moveable.isLured) {
-        //             if (Math.random() * 5 < 0.07) {
-        //                 let a: number = Math.random() * 5;
-        //                 let b: number = Math.random() * 5;
-        //                 moveable.velocity = new Vector(a, b);
-        //             }
-        //         }
-        //     }
-        // }
-
         hitBird(_mousePosition: Vector): void {
             this.aim = _mousePosition;
-            if (this.position == this.aim || (this.position.x <= this.aim.x + 9 && this.position.y <= this.aim.y + 9 && this.position.x >= this.aim.x - 9 && this.position.y >= this.aim.y - 9)) {
+            if (this.position == this.aim || (this.position.x <= this.aim.x + 12 && this.position.y <= this.aim.y + 12 && this.position.x >= this.aim.x - 12 && this.position.y >= this.aim.y - 12)) {
                 this.isHit = true;
                 console.log("Bird is hit: " + this.isHit);
             }
         }
 
-        // deleteBird(): void {
-        //     // for (let i: number = 0; i < moveables.length; i++) {
-        //     if (this.isHit) {
-        //         if (this.isLured) {
-        //             this.score = 10;
-        //             highscore += this.score;
-        //             this.showScore();
-        //             delete this.isLured;
-        //             console.log("Your Highscore: " + highscore);
-        //         }
-        //         if (!this.isLured) {
-        //             this.score = 20;
-        //             highscore += this.score;
-        //             this.showScore();
-        //             console.log("Your Highscore: " + highscore);
-        //             delete this.isNormal;
-        //         }
-        //         // moveables.splice(this.moveables, 1);
-        //         console.log("Bird was hit and killed!");
-        //     }
-        //     // }
-        // }
+        showScore(): void {
+            for (let i: number = 0; i < moveables.length; i++) {
+                    scoreBird.push(new Score(this.position.x, this.position.y, this.score, 0));
+            }
+        }
 
         draw(): void {
 

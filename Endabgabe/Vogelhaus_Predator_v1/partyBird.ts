@@ -28,6 +28,12 @@ namespace Endabgabe {
             }
         }
 
+        showScore(): void {
+            for (let i: number = 0; i < moveables.length; i++) {
+                    scoreBird.push(new Score(this.position.x, this.position.y, this.score, 0));
+            }
+        }
+
         draw(): void {
 
             //sitzender/laufender Vogel

@@ -6,7 +6,9 @@ var Endabgabe;
             super();
             // console.log("constructed");
             // Geschwindigkeit & Richtung
-            this.velocity = new Endabgabe.Vector(-1, 1);
+            let a = -3 + Math.random() * 3;
+            let b = -1 + Math.random() * 3;
+            this.velocity = new Endabgabe.Vector(a, b);
             // Farbe für Vögel
             this.color = Bird.getRandomColor();
             // anlockbare Vögel
@@ -48,12 +50,12 @@ var Endabgabe;
         changeDirection() {
             for (let i = 0; i <= Endabgabe.moveables.length; i++) {
                 if (Endabgabe.moveables[i] instanceof Bird) {
-                    if (Endabgabe.moveables[i].isLured) {
+                    let bird = Endabgabe.moveables[i]; // typecast = Typumwandlung (möglich, da Moveables = Elternklasse von Bird) >> Zugriff auf Eigenschaften von Bird ohne sie in Moveables zu deklarieren
+                    if (bird.isLured) {
                         // moveables[i].isLured = false;
-                        let a = -1 + Math.random() * 3;
+                        let a = -3 + Math.random() * 3;
                         let b = -1 + Math.random() * 3;
-                        Endabgabe.moveables[i].velocity = new Endabgabe.Vector(a, b);
-                        let bird = Endabgabe.moveables[i]; // typecast = Typumwandlung (möglich, da Moveables = Elternklasse von Bird) >> Zugriff auf Eigenschaften von Bird ohne sie in Moveables zu deklarieren
+                        bird.velocity = new Endabgabe.Vector(a, b);
                         bird.isFeeding = false;
                     }
                 }
@@ -69,46 +71,18 @@ var Endabgabe;
         //         }
         //     }
         // }
-        // changeDirection(): void {
-        //     for (let moveable of moveables) {
-        //         if (moveable instanceof Bird && moveable.isLured) {
-        //             if (Math.random() * 5 < 0.07) {
-        //                 let a: number = Math.random() * 5;
-        //                 let b: number = Math.random() * 5;
-        //                 moveable.velocity = new Vector(a, b);
-        //             }
-        //         }
-        //     }
-        // }
         hitBird(_mousePosition) {
             this.aim = _mousePosition;
-            if (this.position == this.aim || (this.position.x <= this.aim.x + 9 && this.position.y <= this.aim.y + 9 && this.position.x >= this.aim.x - 9 && this.position.y >= this.aim.y - 9)) {
+            if (this.position == this.aim || (this.position.x <= this.aim.x + 12 && this.position.y <= this.aim.y + 12 && this.position.x >= this.aim.x - 12 && this.position.y >= this.aim.y - 12)) {
                 this.isHit = true;
                 console.log("Bird is hit: " + this.isHit);
             }
         }
-        // deleteBird(): void {
-        //     // for (let i: number = 0; i < moveables.length; i++) {
-        //     if (this.isHit) {
-        //         if (this.isLured) {
-        //             this.score = 10;
-        //             highscore += this.score;
-        //             this.showScore();
-        //             delete this.isLured;
-        //             console.log("Your Highscore: " + highscore);
-        //         }
-        //         if (!this.isLured) {
-        //             this.score = 20;
-        //             highscore += this.score;
-        //             this.showScore();
-        //             console.log("Your Highscore: " + highscore);
-        //             delete this.isNormal;
-        //         }
-        //         // moveables.splice(this.moveables, 1);
-        //         console.log("Bird was hit and killed!");
-        //     }
-        //     // }
-        // }
+        showScore() {
+            for (let i = 0; i < Endabgabe.moveables.length; i++) {
+                Endabgabe.scoreBird.push(new Endabgabe.Score(this.position.x, this.position.y, this.score, 0));
+            }
+        }
         draw() {
             //sitzende/laufende Vögel
             if (this.position.y >= Endabgabe.crc2.canvas.height * Endabgabe.golden) {

@@ -2,11 +2,6 @@ namespace Endabgabe {
     export abstract class Moveable {
         position: Vector;
         velocity: Vector;
-        isHit: boolean;
-        isLured: boolean;
-        score: number;
-        isPartyBird: boolean;
-        exists: boolean;
 
         constructor() {
             // console.log("constructed");   
@@ -38,17 +33,15 @@ namespace Endabgabe {
             //console.log("Moveable drawn");
         }
 
-        showScore(): void {
-            for (let i: number = 0; i < moveables.length; i++) {
-                if (moveables[i] instanceof Slingshot && moveables[i].exists){
-                    scoreBird.push(new Score(this.position.x, this.position.y, this.score, 0));
-                    /*crc2.beginPath();
-                    crc2.font = "20px Arial";
-                    crc2.fillStyle = "darkred";
-                    crc2.fillText("+ " + this.score, this.position.x, this.position.y);
-                    crc2.closePath();*/
-                }
-            }
-        }
+        // showScore(): void {
+        //     for (let i: number = 0; i < moveables.length; i++) {
+        //             scoreBird.push(new Score(this.position.x, this.position.y, this.score, 0));
+        //             /*crc2.beginPath();
+        //             crc2.font = "20px Arial";
+        //             crc2.fillStyle = "darkred";
+        //             crc2.fillText("+ " + this.score, this.position.x, this.position.y);
+        //             crc2.closePath();*/
+        //     }
+        // }
     }
 }
