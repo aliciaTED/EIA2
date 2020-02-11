@@ -7,15 +7,14 @@ namespace Endabgabe {
     window.addEventListener("load", handleLoad);
     export let crc2: CanvasRenderingContext2D;
     export let golden: number = 0.62;
+    export let highscore: number = 0;
 
     let url: string = "https://zero-x.herokuapp.com/";
-    // console.log(url);
 
     export let moveables: Moveable[] = [];
     export let scoreBird: Score[] = [];
 
-    export let highscore: number = 0;
-    console.log("Your Highscore: " + highscore);
+    // console.log("Your Highscore: " + highscore);
 
     function handleLoad(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -166,12 +165,14 @@ namespace Endabgabe {
         console.log("Game over.");
         let userName: any = prompt("Time's up! \n Your Score: " + highscore + "\n Please enter your name here. Press okay to play again.");
         if (userName != null) {
+            console.log("Entry created.");
             sendEntryToList(userName, highscore);
         }
         window.open("https://aliciaTED.github.io/EIA2/Endabgabe/Vogelhaus_Predator_v1/startIndex.html", "_self");
     }
 
     async function sendEntryToList(_userName: string, _highscore: number): Promise<void> { // unbedingt anschauen und verstehen!!!
+        console.log("Entry sent.")
         let query: string = "name=" + _userName + "&highScore=" + _highscore; // Variable für Werte, die gespeichert werden sollen
         let response: Response = await fetch(url + "?" + query); // Variablen in Response einfügen und darauf warten)
         alert(response); // Benachrichtigung mit Response
