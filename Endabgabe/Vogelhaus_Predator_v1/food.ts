@@ -2,14 +2,14 @@ namespace Endabgabe {
     export class Food extends Moveable {
 
 
-        constructor(_position: Vector) {
+        public constructor(_position: Vector) {
             super();
             this.position = new Vector(_position.x, _position.y);
             // Geschwindigkeit & Richtung
             this.velocity = new Vector(0, 0);
         }
 
-        draw(): void {
+        public draw(): void {
             //console.log("drawn");
 
             crc2.beginPath();

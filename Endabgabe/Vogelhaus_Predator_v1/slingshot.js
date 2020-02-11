@@ -33,15 +33,6 @@ var Endabgabe;
             }
             // drawTarget(this.aim);
         }
-        deleteSlingshot() {
-            for (let i = 0; i < Endabgabe.moveables.length; i++) {
-                if (Endabgabe.moveables[i] instanceof Slingshot) {
-                    Endabgabe.moveables.splice(i, 1);
-                }
-            }
-            let slingShot = new Slingshot();
-            Endabgabe.moveables.push(slingShot);
-        }
         draw() {
             //console.log("drawn");
             Endabgabe.crc2.beginPath();
@@ -52,6 +43,15 @@ var Endabgabe;
             Endabgabe.crc2.fill();
             Endabgabe.crc2.restore();
             Endabgabe.crc2.closePath();
+        }
+        deleteSlingshot() {
+            for (let i = 0; i < Endabgabe.moveables.length; i++) {
+                if (Endabgabe.moveables[i] instanceof Slingshot) {
+                    Endabgabe.moveables.splice(i, 1);
+                }
+            }
+            let slingShot = new Slingshot();
+            Endabgabe.moveables.push(slingShot);
         }
     }
     Endabgabe.Slingshot = Slingshot;

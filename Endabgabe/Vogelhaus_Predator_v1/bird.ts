@@ -7,7 +7,7 @@ namespace Endabgabe {
         isFeeding: boolean;
         score: number;
 
-        constructor() {
+        public constructor() {
             super();
             // console.log("constructed");
 
@@ -17,7 +17,7 @@ namespace Endabgabe {
             this.velocity = new Vector(a, b);
 
             // Farbe für Vögel
-            this.color = Bird.getRandomColor();
+            this.color = this.getRandomColor();
 
             // anlockbare Vögel
             if (Math.random() <= 0.2) {
@@ -31,14 +31,7 @@ namespace Endabgabe {
             this.isHit = false;
         }
 
-        static getRandomColor(): string {
-            let colorAngle: number = 120 - Math.random() * 300;
-            let color: string = "HSLA(" + colorAngle + ", 90%, 45%, 1)";
-
-            return color;
-        }
-
-        getFood(_mousePosition: Vector): void {
+        public getFood(_mousePosition: Vector): void {
             this.aim = _mousePosition;
             this.isFeeding = true;
             let newVelocityX: number = (_mousePosition.x - this.position.x) * 0.01;
@@ -48,7 +41,7 @@ namespace Endabgabe {
             // console.log("Birds are lured to food.");
         }
 
-        eatFood(): void {
+        public eatFood(): void {
 
             if (this.aim && this.isFeeding && !this.isHit && (this.position == this.aim || (this.position.x <= this.aim.x + 9 && this.position.y <= this.aim.y + 9 && this.position.x >= this.aim.x - 9 && this.position.y >= this.aim.y - 9))) {
                 let stop: Vector = new Vector(0, 0);
@@ -56,21 +49,6 @@ namespace Endabgabe {
                 // console.log("Birds stopped to eat.");
                 this.aim = new Vector(-1, -1);
                 setTimeout(this.changeDirection, 1300);
-            }
-        }
-
-        changeDirection(): void {
-            for (let i: number = 0; i <= moveables.length; i++) {
-                if (moveables[i] instanceof Bird) {
-                    let bird: Bird = moveables[i] as Bird; // typecast = Typumwandlung (möglich, da Moveables = Elternklasse von Bird) >> Zugriff auf Eigenschaften von Bird ohne sie in Moveables zu deklarieren
-                    if (bird.isLured) {
-                        // moveables[i].isLured = false;
-                        let a: number = -3 + Math.random() * 3;
-                        let b: number = -1 + Math.random() * 3;
-                        bird.velocity = new Vector(a, b);
-                        bird.isFeeding = false;
-                    }
-                }
             }
         }
 
@@ -85,7 +63,7 @@ namespace Endabgabe {
         //     }
         // }
 
-        hitBird(_mousePosition: Vector): void {
+        public hitBird(_mousePosition: Vector): void {
             this.aim = _mousePosition;
             if (this.position == this.aim || (this.position.x <= this.aim.x + 12 && this.position.y <= this.aim.y + 12 && this.position.x >= this.aim.x - 12 && this.position.y >= this.aim.y - 12)) {
                 this.isHit = true;
@@ -93,13 +71,13 @@ namespace Endabgabe {
             }
         }
 
-        showScore(): void {
+        public showScore(): void {
             for (let i: number = 0; i < moveables.length; i++) {
-                    scoreBird.push(new Score(this.position.x, this.position.y, this.score, 0));
+                scoreBird.push(new Score(this.position.x, this.position.y, this.score, 0));
             }
         }
 
-        draw(): void {
+        public draw(): void {
 
             //sitzende/laufende Vögel
 
@@ -132,6 +110,28 @@ namespace Endabgabe {
                 crc2.restore();
                 crc2.closePath();
             }
+        }
+
+        private changeDirection(): void {
+            for (let i: number = 0; i <= moveables.length; i++) {
+                if (moveables[i] instanceof Bird) {
+                    let bird: Bird = moveables[i] as Bird; // typecast = Typumwandlung (möglich, da Moveables = Elternklasse von Bird) >> Zugriff auf Eigenschaften von Bird ohne sie in Moveables zu deklarieren
+                    if (bird.isLured) {
+                        // moveables[i].isLured = false;
+                        let a: number = -3 + Math.random() * 3;
+                        let b: number = -1 + Math.random() * 3;
+                        bird.velocity = new Vector(a, b);
+                        bird.isFeeding = false;
+                    }
+                }
+            }
+        }
+
+        private getRandomColor(): string { // Instanz nicht benötigt, keine Methoden aufgerufen
+            let colorAngle: number = 120 - Math.random() * 300;
+            let color: string = "HSLA(" + colorAngle + ", 90%, 45%, 1)";
+
+            return color;
         }
     }
 }

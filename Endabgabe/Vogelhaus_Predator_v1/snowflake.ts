@@ -1,7 +1,7 @@
 namespace Endabgabe {
     export class Snowflake extends Moveable {
-        
-        constructor() {
+
+        public constructor() {
             super();
             // console.log("constructed");
 
@@ -11,7 +11,7 @@ namespace Endabgabe {
             this.velocity = new Vector(a, b);
         }
 
-        draw(): void {
+        public draw(): void {
             //console.log("drawn");
 
             let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, 7);

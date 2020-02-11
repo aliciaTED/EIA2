@@ -1,9 +1,9 @@
-namespace Endabgabe { 
+namespace Endabgabe {
     export abstract class Moveable {
         position: Vector;
         velocity: Vector;
 
-        constructor() {
+        public constructor() {
             // console.log("constructed");   
 
             let x: number = 800 * Math.random();
@@ -14,7 +14,7 @@ namespace Endabgabe {
             this.velocity = new Vector(0, 0);
         }
 
-        move(): void {
+        public move(): void {
             //console.log("moved");
             this.position.add(this.velocity);
 
@@ -29,7 +29,7 @@ namespace Endabgabe {
                 this.position.y -= crc2.canvas.height;
         }
 
-        draw(): void {
+        public draw(): void {
             //console.log("Moveable drawn");
         }
     }

@@ -5,7 +5,7 @@ namespace Endabgabe {
         score: number;
         isPartyBird: boolean = true;
 
-        constructor() {
+        public constructor() {
             super();
 
             //console.log("constructed");
@@ -22,7 +22,7 @@ namespace Endabgabe {
             this.isHit = false;
         }
 
-        hitPartyBird(_mousePosition: Vector): void {
+        public hitPartyBird(_mousePosition: Vector): void {
             this.aim = _mousePosition;
             if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 this.isHit = true;
@@ -30,13 +30,13 @@ namespace Endabgabe {
             }
         }
 
-        showScore(): void {
+        public showScore(): void {
             for (let i: number = 0; i < moveables.length; i++) {
                 scoreBird.push(new Score(this.position.x, this.position.y, this.score, 0));
             }
         }
 
-        draw(): void {
+        public draw(): void {
 
             //sitzender/laufender Vogel
 

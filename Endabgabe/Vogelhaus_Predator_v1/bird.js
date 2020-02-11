@@ -10,7 +10,7 @@ var Endabgabe;
             let b = -1 + Math.random() * 3;
             this.velocity = new Endabgabe.Vector(a, b);
             // Farbe für Vögel
-            this.color = Bird.getRandomColor();
+            this.color = this.getRandomColor();
             // anlockbare Vögel
             if (Math.random() <= 0.2) {
                 this.isLured = true;
@@ -21,11 +21,6 @@ var Endabgabe;
             }
             this.isFeeding = false;
             this.isHit = false;
-        }
-        static getRandomColor() {
-            let colorAngle = 120 - Math.random() * 300;
-            let color = "HSLA(" + colorAngle + ", 90%, 45%, 1)";
-            return color;
         }
         getFood(_mousePosition) {
             this.aim = _mousePosition;
@@ -43,20 +38,6 @@ var Endabgabe;
                 // console.log("Birds stopped to eat.");
                 this.aim = new Endabgabe.Vector(-1, -1);
                 setTimeout(this.changeDirection, 1300);
-            }
-        }
-        changeDirection() {
-            for (let i = 0; i <= Endabgabe.moveables.length; i++) {
-                if (Endabgabe.moveables[i] instanceof Bird) {
-                    let bird = Endabgabe.moveables[i]; // typecast = Typumwandlung (möglich, da Moveables = Elternklasse von Bird) >> Zugriff auf Eigenschaften von Bird ohne sie in Moveables zu deklarieren
-                    if (bird.isLured) {
-                        // moveables[i].isLured = false;
-                        let a = -3 + Math.random() * 3;
-                        let b = -1 + Math.random() * 3;
-                        bird.velocity = new Endabgabe.Vector(a, b);
-                        bird.isFeeding = false;
-                    }
-                }
             }
         }
         // createLuredBirds(): void {
@@ -109,6 +90,25 @@ var Endabgabe;
                 Endabgabe.crc2.restore();
                 Endabgabe.crc2.closePath();
             }
+        }
+        changeDirection() {
+            for (let i = 0; i <= Endabgabe.moveables.length; i++) {
+                if (Endabgabe.moveables[i] instanceof Bird) {
+                    let bird = Endabgabe.moveables[i]; // typecast = Typumwandlung (möglich, da Moveables = Elternklasse von Bird) >> Zugriff auf Eigenschaften von Bird ohne sie in Moveables zu deklarieren
+                    if (bird.isLured) {
+                        // moveables[i].isLured = false;
+                        let a = -3 + Math.random() * 3;
+                        let b = -1 + Math.random() * 3;
+                        bird.velocity = new Endabgabe.Vector(a, b);
+                        bird.isFeeding = false;
+                    }
+                }
+            }
+        }
+        getRandomColor() {
+            let colorAngle = 120 - Math.random() * 300;
+            let color = "HSLA(" + colorAngle + ", 90%, 45%, 1)";
+            return color;
         }
     }
     Endabgabe.Bird = Bird;

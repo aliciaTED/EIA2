@@ -2,14 +2,14 @@ namespace Endabgabe {
     export class Slingshot extends Moveable {
         aim: Vector;
 
-        constructor() {
+        public constructor() {
             super();
             this.position = new Vector(crc2.canvas.width - 50, crc2.canvas.height - 70);
             // Geschwindigkeit & Richtung
             this.velocity = new Vector(0, 0);
         }
 
-        targetBird(_mousePosition: Vector): void {
+        public targetBird(_mousePosition: Vector): void {
             this.aim = _mousePosition;
             let newVelocityX: number = (_mousePosition.x - this.position.x) * 0.05;
             let newVelocityY: number = (_mousePosition.y - this.position.y) * 0.05;
@@ -18,7 +18,7 @@ namespace Endabgabe {
             // console.log("Slingshot shot.");
         }
 
-        reachedTarget(): void {
+        public reachedTarget(): void {
             if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
                 let stop: Vector = new Vector(0, 0);
                 this.velocity = stop;
@@ -36,17 +36,7 @@ namespace Endabgabe {
             // drawTarget(this.aim);
         }
 
-        deleteSlingshot(): void {
-            for (let i: number = 0; i < moveables.length; i++) {
-                if (moveables[i] instanceof Slingshot) {
-                    moveables.splice(i, 1);
-                }
-            }
-            let slingShot: Slingshot = new Slingshot();
-            moveables.push(slingShot);
-        }
-
-        draw(): void {
+        public draw(): void {
             //console.log("drawn");
 
             crc2.beginPath();
@@ -59,6 +49,16 @@ namespace Endabgabe {
 
             crc2.restore();
             crc2.closePath();
+        }
+
+        private deleteSlingshot(): void {
+            for (let i: number = 0; i < moveables.length; i++) {
+                if (moveables[i] instanceof Slingshot) {
+                    moveables.splice(i, 1);
+                }
+            }
+            let slingShot: Slingshot = new Slingshot();
+            moveables.push(slingShot);
         }
     }
 }
