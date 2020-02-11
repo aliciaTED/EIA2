@@ -58,7 +58,7 @@ var Endabgabe;
             let bird = Endabgabe.moveables[i]; // typecast von Moveables zu Bird/PartyBird
             let partyBird = Endabgabe.moveables[i];
             if (bird.isHit) {
-                if (bird.isLured) {
+                if (bird.isLured && bird.isFeeding) {
                     bird.score = 10;
                     Endabgabe.highscore += bird.score;
                     bird.showScore();
@@ -70,7 +70,7 @@ var Endabgabe;
                     partyBird.showScore();
                     console.log("Your Highscore: " + Endabgabe.highscore);
                 }
-                if (!bird.isLured && !partyBird.isPartyBird) {
+                if (!bird.isFeeding && !partyBird.isPartyBird) {
                     bird.score = 20;
                     Endabgabe.highscore += bird.score;
                     bird.showScore();

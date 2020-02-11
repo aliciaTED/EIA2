@@ -23,10 +23,10 @@ var Endabgabe;
                 // console.log("Slingshot stopped.")
                 for (let moveable of Endabgabe.moveables) {
                     if (moveable instanceof Endabgabe.Bird) {
-                        moveable.hitBird(this.aim);
+                        moveable.hitBird(this.position);
                     }
                     if (moveable instanceof Endabgabe.PartyBird) {
-                        moveable.hitPartyBird(this.aim);
+                        moveable.hitPartyBird(this.position);
                     }
                 }
                 setTimeout(this.deleteSlingshot, 500);

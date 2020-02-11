@@ -25,10 +25,10 @@ namespace Endabgabe {
                 // console.log("Slingshot stopped.")
                 for (let moveable of moveables) {
                     if (moveable instanceof Bird) {
-                        moveable.hitBird(this.aim);
+                        moveable.hitBird(this.position);
                     }
                     if (moveable instanceof PartyBird) {
-                        moveable.hitPartyBird(this.aim);
+                        moveable.hitPartyBird(this.position);
                     }
                 }
                 setTimeout(this.deleteSlingshot, 500);

@@ -76,7 +76,7 @@ namespace Endabgabe {
             let bird: Bird = moveables[i] as Bird; // typecast von Moveables zu Bird/PartyBird
             let partyBird: PartyBird = moveables[i] as PartyBird;
             if (bird.isHit) {
-                if (bird.isLured) {
+                if (bird.isLured && bird.isFeeding) {
                     bird.score = 10;
                     highscore += bird.score;
                     bird.showScore();
@@ -88,7 +88,7 @@ namespace Endabgabe {
                     partyBird.showScore();
                     console.log("Your Highscore: " + highscore);
                 }
-                if (!bird.isLured && !partyBird.isPartyBird) {
+                if (!bird.isFeeding && !partyBird.isPartyBird) {
                     bird.score = 20;
                     highscore += bird.score;
                     bird.showScore();
