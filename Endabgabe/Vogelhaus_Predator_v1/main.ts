@@ -166,7 +166,7 @@ namespace Endabgabe {
         let userName: string | null = prompt("Time's up! \n Your Score: " + highscore + "\n Please enter your name here. Press okay to play again.");
         if (userName != null) {
             sendEntryToList(userName, highscore);
-            alert("Your Name and score were added. Press okay to start another game of HIT THE BIRDS.");
+            // alert("Your Name and score were added. Press okay to start another game of HIT THE BIRDS.");
         }
     }
 

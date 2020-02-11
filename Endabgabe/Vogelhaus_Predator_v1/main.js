@@ -140,7 +140,7 @@ var Endabgabe;
         let userName = prompt("Time's up! \n Your Score: " + Endabgabe.highscore + "\n Please enter your name here. Press okay to play again.");
         if (userName != null) {
             sendEntryToList(userName, Endabgabe.highscore);
-            alert("Your Name and score were added. Press okay to start another game of HIT THE BIRDS.");
+            // alert("Your Name and score were added. Press okay to start another game of HIT THE BIRDS.");
         }
     }
     async function sendEntryToList(_userName, _highscore) {

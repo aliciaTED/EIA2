@@ -32,7 +32,7 @@ namespace Endabgabe {
 
         showScore(): void {
             for (let i: number = 0; i < moveables.length; i++) {
-                    scoreBird.push(new Score(this.position.x, this.position.y, this.score, 0));
+                scoreBird.push(new Score(this.position.x, this.position.y, this.score, 0));
             }
         }
 
@@ -48,7 +48,7 @@ namespace Endabgabe {
                 let head: number = -15;
                 crc2.arc(head, 0, 15, 0, 0.5 * Math.PI);
                 crc2.arc(0, head, (1 / 2) * 15, 0, 2 * Math.PI);
-               
+
                 for (let drawn: number = 0; drawn < 20; drawn++) {
                     let colorAngle: number = 120 - Math.random() * 320;
                     let color: string = "HSLA(" + colorAngle + ", 90%, 60%, 1)";
