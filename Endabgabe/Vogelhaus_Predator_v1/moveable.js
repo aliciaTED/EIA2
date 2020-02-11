@@ -29,12 +29,12 @@ var Endabgabe;
         showScore() {
             for (let i = 0; i < Endabgabe.moveables.length; i++) {
                 if (Endabgabe.moveables[i] instanceof Endabgabe.Slingshot && Endabgabe.moveables[i].exists) {
-                    let score = new Path2D;
-                    Endabgabe.crc2.font = "20px Arial";
-                    Endabgabe.crc2.fillStyle = "darkred";
-                    Endabgabe.crc2.fillText("+ " + this.score, this.position.x, this.position.y);
-                    Endabgabe.crc2.closePath();
-                    Endabgabe.scoreBird.push([score, 0]);
+                    Endabgabe.scoreBird.push(new Endabgabe.Score(this.position.x, this.position.y, this.score, 0));
+                    /*crc2.beginPath();
+                    crc2.font = "20px Arial";
+                    crc2.fillStyle = "darkred";
+                    crc2.fillText("+ " + this.score, this.position.x, this.position.y);
+                    crc2.closePath();*/
                 }
             }
         }

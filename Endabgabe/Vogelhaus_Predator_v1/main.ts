@@ -13,7 +13,7 @@ namespace Endabgabe {
 
     export let moveables: Moveable[] = [];
     // let luredBirds: Moveable[] = [];
-    export let scoreBird: [Path2D, number][] = []; // tuple >> zwei Datentypen in einem Datentyp vereinen
+    export let scoreBird: Score[] = []; // tuple >> zwei Datentypen in einem Datentyp vereinen
 
     export let highscore: number = 0;
     console.log("Your Highscore: " + highscore);
@@ -75,6 +75,7 @@ namespace Endabgabe {
 
     export function deleteBird(): void {
         for (let i: number = 0; i < moveables.length; i++) {
+            // typecast hinzfügen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (moveables[i].isHit) {
                 if (moveables[i].isLured) {
                     moveables[i].score = 10;
@@ -156,6 +157,23 @@ namespace Endabgabe {
         }
     }
 
+    function drawScores(): void {
+        for (let i: number = 0; i < scoreBird.length; i++) {
+            let score: Score = scoreBird[i];
+            crc2.beginPath();
+            crc2.font = "20px Arial";
+            crc2.fillStyle = "darkred";
+            console.log(score.x + " " + score.y);
+            crc2.fillText("+ " + score.score, score.x, score.y);
+            crc2.closePath();
+            score.timer++;
+
+            if (score.timer > 20) {
+                scoreBird.splice(i, 1);
+            }
+        }
+    }
+
     function endGame(): void {
         console.log("Game over.");
         let userName: any = prompt("Time's up! \n Your Score: " + highscore + "\n Please enter your name here. Press okay to play again.");
@@ -182,16 +200,18 @@ namespace Endabgabe {
         }
 
         for (let moveable of moveables) {
+            if (moveable instanceof Slingshot) {
+                moveable.reachedTarget();
+            }
+        }
+
+        for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isLured) {
                 moveable.eatFood();
             }
         }
 
-        for (let moveable of moveables) {
-            if (moveable instanceof Slingshot) {
-                moveable.reachedTarget();
-            }
-        }
+        
 
         for (let moveable of moveables) {
             if (moveable instanceof Bird && moveable.isHit) {
@@ -201,6 +221,7 @@ namespace Endabgabe {
                 deleteBird();
             }
         }
+        drawScores();
         updateScore();
         drawSlingshotWoodenPart({ x: crc2.canvas.width - 55, y: crc2.canvas.height - 50 });
     }

@@ -19,6 +19,7 @@ var Endabgabe;
                 this.isLured = false;
                 this.isNormal = true;
             }
+            this.isFeeding = false;
             this.isHit = false;
         }
         static getRandomColor() {
@@ -28,6 +29,7 @@ var Endabgabe;
         }
         getFood(_mousePosition) {
             this.aim = _mousePosition;
+            this.isFeeding = true;
             let newVelocityX = (_mousePosition.x - this.position.x) * 0.01;
             let newVelocityY = (_mousePosition.y - this.position.y) * 0.01;
             let newVelocity = new Endabgabe.Vector(newVelocityX, newVelocityY);
@@ -35,7 +37,7 @@ var Endabgabe;
             // console.log("Birds are lured to food.");
         }
         eatFood() {
-            if (this.aim && (this.position == this.aim || (this.position.x <= this.aim.x + 10 && this.position.y <= this.aim.y + 10 && this.position.x >= this.aim.x - 10 && this.position.y >= this.aim.y - 10))) {
+            if (this.aim && this.isFeeding && !this.isHit && (this.position == this.aim || (this.position.x <= this.aim.x + 9 && this.position.y <= this.aim.y + 9 && this.position.x >= this.aim.x - 9 && this.position.y >= this.aim.y - 9))) {
                 let stop = new Endabgabe.Vector(0, 0);
                 this.velocity = stop;
                 // console.log("Birds stopped to eat.");
@@ -51,20 +53,22 @@ var Endabgabe;
                         let a = -1 + Math.random() * 3;
                         let b = -1 + Math.random() * 3;
                         Endabgabe.moveables[i].velocity = new Endabgabe.Vector(a, b);
+                        let bird = Endabgabe.moveables[i]; // typecast = Typumwandlung (möglich, da Moveables = Elternklasse von Bird) >> Zugriff auf Eigenschaften von Bird ohne sie in Moveables zu deklarieren
+                        bird.isFeeding = false;
                     }
                 }
             }
         }
-        createLuredBirds() {
-            console.log("test");
-            for (let i = 0; i >= Endabgabe.moveables.length; i++) {
-                if (Endabgabe.moveables[i] instanceof Bird) {
-                    for (let n = 0; n <= 3; n++) {
-                        Endabgabe.moveables[i].isLured = true;
-                    }
-                }
-            }
-        }
+        // createLuredBirds(): void {
+        //     console.log("test");
+        //     for (let i: number = 0; i >= moveables.length; i++) {
+        //         if (moveables[i] instanceof Bird) {
+        //             for (let n: number = 0; n <= 3; n++) {
+        //                 moveables[i].isLured = true;
+        //             }
+        //         }
+        //     }
+        // }
         // changeDirection(): void {
         //     for (let moveable of moveables) {
         //         if (moveable instanceof Bird && moveable.isLured) {

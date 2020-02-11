@@ -57,6 +57,7 @@ var Endabgabe;
     }
     function deleteBird() {
         for (let i = 0; i < Endabgabe.moveables.length; i++) {
+            // typecast hinzfügen!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (Endabgabe.moveables[i].isHit) {
                 if (Endabgabe.moveables[i].isLured) {
                     Endabgabe.moveables[i].score = 10;
@@ -131,6 +132,21 @@ var Endabgabe;
             }
         }
     }
+    function drawScores() {
+        for (let i = 0; i < Endabgabe.scoreBird.length; i++) {
+            let score = Endabgabe.scoreBird[i];
+            Endabgabe.crc2.beginPath();
+            Endabgabe.crc2.font = "20px Arial";
+            Endabgabe.crc2.fillStyle = "darkred";
+            console.log(score.x + " " + score.y);
+            Endabgabe.crc2.fillText("+ " + score.score, score.x, score.y);
+            Endabgabe.crc2.closePath();
+            score.timer++;
+            if (score.timer > 20) {
+                Endabgabe.scoreBird.splice(i, 1);
+            }
+        }
+    }
     function endGame() {
         console.log("Game over.");
         let userName = prompt("Time's up! \n Your Score: " + Endabgabe.highscore + "\n Please enter your name here. Press okay to play again.");
@@ -153,13 +169,13 @@ var Endabgabe;
             moveable.draw();
         }
         for (let moveable of Endabgabe.moveables) {
-            if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
-                moveable.eatFood();
+            if (moveable instanceof Endabgabe.Slingshot) {
+                moveable.reachedTarget();
             }
         }
         for (let moveable of Endabgabe.moveables) {
-            if (moveable instanceof Endabgabe.Slingshot) {
-                moveable.reachedTarget();
+            if (moveable instanceof Endabgabe.Bird && moveable.isLured) {
+                moveable.eatFood();
             }
         }
         for (let moveable of Endabgabe.moveables) {
@@ -170,6 +186,7 @@ var Endabgabe;
                 deleteBird();
             }
         }
+        drawScores();
         Endabgabe.updateScore();
         Endabgabe.drawSlingshotWoodenPart({ x: Endabgabe.crc2.canvas.width - 55, y: Endabgabe.crc2.canvas.height - 50 });
     }
