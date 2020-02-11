@@ -30,7 +30,7 @@ var Endabgabe;
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
-        setTimeout(endGame, 500);
+        setTimeout(endGame, 60000);
     }
     function drawSnowflakes(nSnowflakes) {
         console.log("Snowflakes.");
