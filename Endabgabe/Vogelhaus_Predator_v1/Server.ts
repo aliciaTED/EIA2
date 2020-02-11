@@ -63,7 +63,7 @@ export namespace Endabgabe {
     }
 
     async function retrieveHighscore(): Promise<any[] | string> {
-        let cursor: Mongo.Cursor = await highscoreList.find();
+        let cursor: Mongo.Cursor = await highscoreList.find().sort({highscore: -1}); // decending, d.h. absteigend sortieren
         let answer: Promise<any[]> = await cursor.toArray();
         console.log("DB CursorToArray", answer);
         if (answer != null) {

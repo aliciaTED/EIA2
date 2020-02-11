@@ -172,7 +172,7 @@ namespace Endabgabe {
 
     async function sendEntryToList(_userName: string, _highscore: number): Promise<void> { // unbedingt anschauen und verstehen!!!
         console.log("Entry sent.");
-        let query: string = "name=" + _userName + "&highScore=" + _highscore; // Variable für Werte, die gespeichert werden sollen
+        let query: string = "name=" + _userName + "&highscore=" + _highscore; // Variable für Werte, die gespeichert werden sollen
         await fetch(url + "?" + query); // Variablen in Response einfügen und darauf warten)
         window.open("https://aliciaTED.github.io/EIA2/Endabgabe/Vogelhaus_Predator_v1/startIndex.html", "_self");
     }

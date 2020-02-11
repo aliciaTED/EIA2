@@ -14,7 +14,5 @@ namespace Endabgabe {
 
         let highScoreList: HTMLDivElement = <HTMLDivElement>document.querySelector("div#highScoreList");
         highScoreList.innerText = responseText;
-
-        // for (let i: number = 0; i < 6; )
     }
 }

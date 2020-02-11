@@ -12,7 +12,6 @@ var Endabgabe;
         let responseText = await response.text();
         let highScoreList = document.querySelector("div#highScoreList");
         highScoreList.innerText = responseText;
-        // for (let i: number = 0; i < 6; )
     }
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=highScore.js.map
