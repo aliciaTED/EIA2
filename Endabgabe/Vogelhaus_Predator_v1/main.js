@@ -30,7 +30,7 @@ var Endabgabe;
         canvas.addEventListener("click", useSlingshot);
         canvas.addEventListener("auxclick", throwFood); // dblclick unhandlich, also auxclick
         window.setInterval(update, 20, background); // triggert alle 20ms die update-Funktion für den Hintergrund & neue Position der animierten Elemente
-        setTimeout(endGame, 60000);
+        setTimeout(endGame, 500);
     }
     function drawSnowflakes(nSnowflakes) {
         console.log("Snowflakes.");
@@ -139,16 +139,15 @@ var Endabgabe;
         console.log("Game over.");
         let userName = prompt("Time's up! \n Your Score: " + Endabgabe.highscore + "\n Please enter your name here. Press okay to play again.");
         if (userName != null) {
-            console.log("Entry created.");
             sendEntryToList(userName, Endabgabe.highscore);
+            alert("Your Name and score were added. Press okay to start another game of HIT THE BIRDS.");
         }
-        window.open("https://aliciaTED.github.io/EIA2/Endabgabe/Vogelhaus_Predator_v1/startIndex.html", "_self");
     }
     async function sendEntryToList(_userName, _highscore) {
         console.log("Entry sent.");
         let query = "name=" + _userName + "&highScore=" + _highscore; // Variable für Werte, die gespeichert werden sollen
-        let response = await fetch(url + "?" + query); // Variablen in Response einfügen und darauf warten)
-        alert(response); // Benachrichtigung mit Response
+        await fetch(url + "?" + query); // Variablen in Response einfügen und darauf warten)
+        window.open("https://aliciaTED.github.io/EIA2/Endabgabe/Vogelhaus_Predator_v1/startIndex.html", "_self");
     }
     function update(_background) {
         // Update der Moveables & des Hintergrunds
