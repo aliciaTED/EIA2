@@ -16,10 +16,10 @@ namespace Endabgabe {
         // highScoreList.innerText = responseText;
         let entries: any[] = JSON.parse(responseText);
 
-        for (let entry of entries) {
+        for (let i: number = 0; i <= entries.length; i++) {
             // console.log(entries[1]);
             let paragraph: HTMLParagraphElement = document.createElement("p");
-            paragraph.innerText = entry.name + ": " + entry.highscore + " Points";
+            paragraph.innerText = (i + 1) + ". Platz: " + entries[i].name + ": " + entries[i].highscore + " Points";
             highScoreList.appendChild(paragraph);
         }
     }
