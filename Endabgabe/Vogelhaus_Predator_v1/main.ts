@@ -152,7 +152,6 @@ namespace Endabgabe {
             crc2.beginPath();
             crc2.font = "20px Arial";
             crc2.fillStyle = "darkred";
-            console.log(score.x + " " + score.y);
             crc2.fillText("+ " + score.score, score.x, score.y);
             crc2.closePath();
             score.timer++;

@@ -128,7 +128,6 @@ var Endabgabe;
             Endabgabe.crc2.beginPath();
             Endabgabe.crc2.font = "20px Arial";
             Endabgabe.crc2.fillStyle = "darkred";
-            console.log(score.x + " " + score.y);
             Endabgabe.crc2.fillText("+ " + score.score, score.x, score.y);
             Endabgabe.crc2.closePath();
             score.timer++;
