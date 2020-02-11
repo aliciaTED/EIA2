@@ -52,7 +52,7 @@ var Endabgabe;
         _response.end();
     }
     async function retrieveHighscore() {
-        let cursor = await highscoreList.find();
+        let cursor = await highscoreList.find().sort({ highscore: -1 }); // decending, d.h. absteigend sortieren
         let answer = await cursor.toArray();
         console.log("DB CursorToArray", answer);
         if (answer != null) {
